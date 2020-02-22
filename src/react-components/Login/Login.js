@@ -43,7 +43,7 @@ class Login extends React.Component {
                     />
                     <br/>
                     
-                    <Link to={"login"} style={{textDecoration: 'none', color: 'black'}}>Forgot password?</Link> 
+                    <Link to={"forgotPassword"} style={{textDecoration: 'none', color: 'black'}}>Forgot password?</Link> 
                     <br/><br/>
                     <button id="loginButton" onClick={e => { e.preventDefault();}}> 
                         Done

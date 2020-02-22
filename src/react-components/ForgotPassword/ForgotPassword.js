@@ -1,14 +1,14 @@
 import React from "react";
-import "./Signup.css";
+import "./ForgotPassword.css";
 import {Link} from "react-router-dom";
 
-class Signup extends React.Component {
+class ForgotPassword extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: "",
             email: "",
-            password: "",
+            oldPassword: "",
+            newPassword: "",
             confirmPassword: ""
         }
     }
@@ -17,15 +17,15 @@ class Signup extends React.Component {
         document.body.style = "background: lightskyblue;";
 
         return (
-            <div className="signup">
-                <form className="signupForm">
+            <div className="forgotPassword">
+                <form className="forgotPasswordForm">
 
                     <br/>
-                    <span className="signupTitle">Sign Up</span>
+                    <span className="forgotPasswordTitle">Reset Password</span>
                     <br/><br/>
 
                     <input 
-                        className="signupInput"
+                        className="forgotPasswordInput"
                         name="Email"
                         placeholder="Email"
                         type="text"
@@ -33,48 +33,46 @@ class Signup extends React.Component {
                             this.setState({email: e.target.value});
                         }}
                     />
-                    <br/> <br/>
-                    
+                    <br/><br/>
+
                     <input 
-                        className="signupInput"
-                        name="Username"
-                        placeholder="Username"
+                        className="forgotPasswordInput"
+                        name="oldPassword"
+                        placeholder="Old Password"
                         type="text"
                         onChange={e => {
-                            this.setState({username: e.target.value});
+                            this.setState({oldPassword: e.target.value});
                         }}
                     />
                     <br/><br/>
 
                     <input 
-                        className="signupInput"
-                        name="Password"
-                        placeholder="Password"
-                        type="password"
+                        className="forgotPasswordInput"
+                        name="newPassword"
+                        placeholder="New Password"
+                        type="text"
                         onChange={e => {
-                            this.setState({password: e.target.value});
+                            this.setState({newPassword: e.target.value});
                         }}
                     />
                     <br/><br/>
 
                     <input 
-                        className="signupInput"
+                        className="forgotPasswordInput"
                         name="ConfirmPassword"
                         placeholder="Confirm Password"
                         type="password"
                         onChange={e => {
-                            this.setState({password: e.target.value});
+                            this.setState({confirmPassword: e.target.value});
                         }}
                     />
+                    <br/>
+                    
+                    <Link to={"login"} style={{textDecoration: 'none', color: 'black'}}>Return to login</Link> 
                     <br/><br/>
-
-                    <button id="signupButton" onClick={e => { e.preventDefault();}}> 
+                    <button id="forgotPasswordButton" onClick={e => { e.preventDefault();}}> 
                         Done
                     </button>
-                    <br/><br/><br/><br/>
-                    
-                    <Link to={"login"} style={{textDecoration: 'none', color: 'black'}}>Already a user? Login here</Link> 
-                    <br/>
 
                 </form>
             </div>
@@ -82,4 +80,4 @@ class Signup extends React.Component {
     }
 }
 
-export default Signup;
+export default ForgotPassword;

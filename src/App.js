@@ -4,6 +4,7 @@ import './App.css';
 
 import Login from "./react-components/Login/Login";
 import Signup from "./react-components/Signup/Signup";
+import ForgotPassword from "./react-components/ForgotPassword/ForgotPassword";
 
 class App extends React.Component  {
   render () {
@@ -15,6 +16,8 @@ class App extends React.Component  {
               <Signup/>}/>
             <Route exact path="/login" render={() =>
               <Login/>}/>
+            <Route exact path="/forgotPassword" render={() =>
+              <ForgotPassword/>}/>
           </Switch>
         </BrowserRouter>
       </div>
