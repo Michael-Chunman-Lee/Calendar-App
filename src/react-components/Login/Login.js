@@ -1,11 +1,11 @@
 import React from "react";
 import "./Login.css";
-
+import {Link} from "react-router-dom";
 class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: "",
+            email: "",
             password: ""
         }
     }
@@ -27,7 +27,7 @@ class Login extends React.Component {
                         placeholder="Email"
                         type="text"
                         onChange={e => {
-                            this.setState({username: e.target.value});
+                            this.setState({email: e.target.value});
                         }}
                     />
                     <br/> <br/>
@@ -42,8 +42,8 @@ class Login extends React.Component {
                         }}
                     />
                     <br/>
-
-                    <span className="placeholderText">Forgot password?</span>
+                    
+                    <Link to={"login"} style={{textDecoration: 'none', color: 'black'}}>Forgot password?</Link> 
                     <br/><br/>
                     <button id="loginButton" onClick={e => { e.preventDefault();}}> 
                         Done
@@ -55,4 +55,4 @@ class Login extends React.Component {
     }
 }
 
-export default Login
+export default Login;

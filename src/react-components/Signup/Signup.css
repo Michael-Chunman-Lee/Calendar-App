@@ -1,7 +1,7 @@
-.loginForm {
+.signupForm {
     background-color: #EFF5FB;
     width: 250px;
-    height: 220px;
+    height: 340px;
     padding: 20px;
     position: absolute;
     top: 50%;
@@ -10,7 +10,7 @@
     margin: -70px 0 0 -170px;
 }
 
-#loginButton {
+#signupButton {
     background-color: #01A9DB;
     border: none;
     border-radius: 10%;
@@ -22,7 +22,7 @@
     font-size: 16px;
 }
 
-.loginInput {
+.signupInput {
     width: 200px;
     height: 30px;
     font-size: 15px;
@@ -30,11 +30,11 @@
     border: none;
 }
 
-.login {
+.signup {
     line-height: 1;
 }
 
-.loginTitle {
+.signupTitle {
     font-size: 20px;
 }
 
