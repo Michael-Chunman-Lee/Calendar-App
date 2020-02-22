@@ -2,6 +2,11 @@ import React from "react";
 import "./Login.css";
 import {Link} from "react-router-dom";
 import Button from "@material-ui/core/Button";
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import { SnackbarContent } from "@material-ui/core";
+
 
 class Login extends React.Component {
     constructor(props) {
@@ -9,19 +14,21 @@ class Login extends React.Component {
         this.state = {
             email: "",
             password: "",
-            anchorEl: null,
-            open: false
+            open: false,
         }
-    }
 
-    flipOpen = () => {
-        this.setState({...this.state, open: !this.state.open});
     }
 
     onLoginClick = e => {
-        console.log(e.currentTarget);
-        this.state.anchorEl ? this.setState({anchorEl: null}) : this.setState({anchorEl: e.currentTarget});
-        this.flipOpen();
+        this.setState({open: true});
+    }
+
+    handleClose = (e, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        this.setState({open: false});
     }
 
     render() {
@@ -59,6 +66,27 @@ class Login extends React.Component {
                     
                     <Link to={"forgotPassword"} style={{textDecoration: 'none', color: 'black'}}>Forgot password?</Link> 
                     <br/><br/>
+
+                    <Snackbar
+                        anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'center',
+                        }}
+                        open={this.state.open}
+                        autoHideDuration={6000}
+                        onClose={this.handleClose}
+                    >
+                        <SnackbarContent 
+                            style={{backgroundColor: '#d62400'}} 
+                            message="test" 
+                            action={
+                                <React.Fragment>
+                                    <IconButton size="small" aria-label="close" color="inherit" onClick={this.handleClose}>
+                                        <CloseIcon fontSize="small" />
+                                    </IconButton>
+                                </React.Fragment>
+                        }/>
+                    </Snackbar>
                     
                     <Button id="loginButton" onClick={this.onLoginClick}> 
                         Done
