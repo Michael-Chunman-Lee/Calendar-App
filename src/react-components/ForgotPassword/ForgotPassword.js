@@ -71,6 +71,7 @@ class ForgotPassword extends React.Component {
                     
                     <Link to={"login"} style={{textDecoration: 'none', color: 'black'}}>Return to login</Link> 
                     <br/><br/>
+                    
                     <Button id="forgotPasswordButton" onClick={e => { e.preventDefault();}}> 
                         Done
                     </Button>

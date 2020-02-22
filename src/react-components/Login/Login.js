@@ -26,8 +26,6 @@ class Login extends React.Component {
 
     render() {
         document.body.style = "background: lightskyblue;";
-        const open = this.state.anchorEl === null ? false : true;
-        const id = open ? "transitions-popper" : undefined;
 
         return (
             <div className="login">
@@ -61,6 +59,7 @@ class Login extends React.Component {
                     
                     <Link to={"forgotPassword"} style={{textDecoration: 'none', color: 'black'}}>Forgot password?</Link> 
                     <br/><br/>
+                    
                     <Button id="loginButton" onClick={this.onLoginClick}> 
                         Done
                     </Button>
