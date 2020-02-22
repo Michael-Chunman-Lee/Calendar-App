@@ -1,6 +1,7 @@
 import React from "react";
 import "./Signup.css";
 import {Link} from "react-router-dom";
+import Button from "@material-ui/core/Button";
 
 class Signup extends React.Component {
     constructor(props) {
@@ -68,9 +69,9 @@ class Signup extends React.Component {
                     />
                     <br/><br/>
 
-                    <button id="signupButton" onClick={e => { e.preventDefault();}}> 
+                    <Button id="signupButton" onClick={e => { e.preventDefault();}}> 
                         Done
-                    </button>
+                    </Button>
                     <br/><br/><br/><br/>
                     
                     <Link to={"login"} style={{textDecoration: 'none', color: 'black'}}>Already a user? Login here</Link> 

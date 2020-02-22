@@ -1,6 +1,7 @@
 import React from "react";
 import "./ForgotPassword.css";
 import {Link} from "react-router-dom";
+import Button from "@material-ui/core/Button";
 
 class ForgotPassword extends React.Component {
     constructor(props) {
@@ -70,9 +71,9 @@ class ForgotPassword extends React.Component {
                     
                     <Link to={"login"} style={{textDecoration: 'none', color: 'black'}}>Return to login</Link> 
                     <br/><br/>
-                    <button id="forgotPasswordButton" onClick={e => { e.preventDefault();}}> 
+                    <Button id="forgotPasswordButton" onClick={e => { e.preventDefault();}}> 
                         Done
-                    </button>
+                    </Button>
 
                 </form>
             </div>

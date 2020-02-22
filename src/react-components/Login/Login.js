@@ -1,17 +1,37 @@
 import React from "react";
 import "./Login.css";
 import {Link} from "react-router-dom";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import Fade from "@material-ui/core/Fade";
+import Paper from "@material-ui/core/Paper";
+import Popper from "@material-ui/core/Popper";
+
 class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             email: "",
-            password: ""
+            password: "",
+            anchorEl: null,
+            open: false
         }
+    }
+
+    flipOpen = () => {
+        this.setState({...this.state, open: !this.state.open});
+    }
+
+    onLoginClick = e => {
+        console.log(e.currentTarget);
+        this.state.anchorEl ? this.setState({anchorEl: null}) : this.setState({anchorEl: e.currentTarget});
+        this.flipOpen();
     }
 
     render() {
         document.body.style = "background: lightskyblue;";
+        const open = this.state.anchorEl === null ? false : true;
+        const id = open ? "transitions-popper" : undefined;
 
         return (
             <div className="login">
@@ -45,10 +65,9 @@ class Login extends React.Component {
                     
                     <Link to={"forgotPassword"} style={{textDecoration: 'none', color: 'black'}}>Forgot password?</Link> 
                     <br/><br/>
-                    <button id="loginButton" onClick={e => { e.preventDefault();}}> 
+                    <Button id="loginButton" onClick={this.onLoginClick}> 
                         Done
-                    </button>
-
+                    </Button>
                 </form>
             </div>
         )
