@@ -1,7 +1,7 @@
 .loginForm {
     background-color: #EFF5FB;
     width: 250px;
-    height: 220px;
+    height: 250px;
     padding: 20px;
     position: absolute;
     top: 40%;
@@ -36,8 +36,4 @@
 
 .loginTitle {
     font-size: 20px;
-}
-
-.placeholderText {
-    font-size: 15px;
 }

@@ -2,6 +2,10 @@ import React from "react";
 import "./Signup.css";
 import {Link} from "react-router-dom";
 import Button from "@material-ui/core/Button";
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import { SnackbarContent } from "@material-ui/core";
 
 class Signup extends React.Component {
     constructor(props) {
@@ -10,8 +14,32 @@ class Signup extends React.Component {
             username: "",
             email: "",
             password: "",
-            confirmPassword: ""
+            confirmPassword: "",
+            errorMessage: "",
+            open: false
         }
+    }
+
+    validateSignup = () =>{
+        //Dummy data below will be replaced with calls to a server-side database api
+         if (this.state.password === "" || this.state.confirmPassword === "" || this.state.username === "" || this.state.email === "") {
+            this.setState({errorMessage: "One or more of the fields are empty!", open: true});
+        } else if (this.state.password !== this.state.confirmPassword) {
+            this.setState({errorMessage: "Passwords do not match!", open: true});
+        } 
+    }
+
+    onSignupClick = e => {
+        e.preventDefault();
+        this.validateSignup();
+    }
+
+    handleClose = (e, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        this.setState({open: false});
     }
 
     render() {
@@ -64,12 +92,33 @@ class Signup extends React.Component {
                         placeholder="Confirm Password"
                         type="password"
                         onChange={e => {
-                            this.setState({password: e.target.value});
+                            this.setState({confirmPassword: e.target.value});
                         }}
                     />
                     <br/><br/>
 
-                    <Button id="signupButton" onClick={e => { e.preventDefault();}}> 
+                    <Snackbar
+                        anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'center',
+                        }}
+                        open={this.state.open}
+                        autoHideDuration={3000}
+                        onClose={this.handleClose}
+                    >
+                        <SnackbarContent 
+                            style={{backgroundColor: '#d62400'}} 
+                            message={this.state.errorMessage} 
+                            action={
+                                <React.Fragment>
+                                    <IconButton size="small" aria-label="close" color="inherit" onClick={this.handleClose}>
+                                        <CloseIcon fontSize="small" />
+                                    </IconButton>
+                                </React.Fragment>
+                        }/>
+                    </Snackbar>
+                    
+                    <Button id="signupButton" onClick={this.onSignupClick}> 
                         Done
                     </Button>
                     <br/><br/><br/><br/>

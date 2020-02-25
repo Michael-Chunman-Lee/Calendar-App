@@ -19,8 +19,24 @@ class Login extends React.Component {
 
     }
 
+    validateLogin = () =>{
+        //Dummy data below will be replaced with calls to a server-side database api
+        if (this.state.email === "admin") {
+            if (this.state.password === "admin") {
+                //Send user to admin dashboard
+            } 
+        } else if (this.state.email === "user") {
+            if (this.state.password === "user") {
+                //Send user to user dashboard
+            }
+        } else {
+            this.setState({open: true});
+        }
+    }
+
     onLoginClick = e => {
-        this.setState({open: true});
+        e.preventDefault();
+        this.validateLogin();
     }
 
     handleClose = (e, reason) => {
@@ -73,12 +89,12 @@ class Login extends React.Component {
                         horizontal: 'center',
                         }}
                         open={this.state.open}
-                        autoHideDuration={6000}
+                        autoHideDuration={3000}
                         onClose={this.handleClose}
                     >
                         <SnackbarContent 
                             style={{backgroundColor: '#d62400'}} 
-                            message="test" 
+                            message="Invalid password or username!" 
                             action={
                                 <React.Fragment>
                                     <IconButton size="small" aria-label="close" color="inherit" onClick={this.handleClose}>
@@ -91,6 +107,11 @@ class Login extends React.Component {
                     <Button id="loginButton" onClick={this.onLoginClick}> 
                         Done
                     </Button>
+                    <br/><br/><br/>
+                    
+                    <Link to={""} style={{textDecoration: 'none', color: 'black'}}>Not yet a user? Sign up here</Link> 
+                    <br/>
+
                 </form>
             </div>
         )
