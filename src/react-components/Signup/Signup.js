@@ -1,6 +1,6 @@
 import React from "react";
 import "./Signup.css";
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -24,9 +24,13 @@ class Signup extends React.Component {
         //Dummy data below will be replaced with calls to a server-side database api
          if (this.state.password === "" || this.state.confirmPassword === "" || this.state.username === "" || this.state.email === "") {
             this.setState({errorMessage: "One or more of the fields are empty!", open: true});
+        } else if (this.state.username === "user" || this.state.username === "admin") {
+            this.setState({errorMessage: "Username already taken!", open: true});
         } else if (this.state.password !== this.state.confirmPassword) {
             this.setState({errorMessage: "Passwords do not match!", open: true});
-        } 
+        } else if (this.state.password === this.state.confirmPassword) {
+            this.props.history.push("./login")
+        }
     }
 
     onSignupClick = e => {
@@ -132,4 +136,4 @@ class Signup extends React.Component {
     }
 }
 
-export default Signup;
+export default withRouter(Signup);

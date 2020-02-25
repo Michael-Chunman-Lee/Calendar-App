@@ -1,6 +1,6 @@
 import React from "react";
 import "./ForgotPassword.css";
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -26,7 +26,9 @@ class ForgotPassword extends React.Component {
             this.setState({errorMessage: "One or more of the fields are empty!", open: true});
         } else if (this.state.newPassword !== this.state.confirmPassword) {
             this.setState({errorMessage: "Passwords do not match!", open: true});
-        } 
+        } else if (this.state.newPassword === this.state.confirmPassword) {
+            this.props.history.push("./login");
+        }
     }
 
     onButtonClick= e => {
@@ -131,4 +133,4 @@ class ForgotPassword extends React.Component {
     }
 }
 
-export default ForgotPassword;
+export default withRouter(ForgotPassword);
