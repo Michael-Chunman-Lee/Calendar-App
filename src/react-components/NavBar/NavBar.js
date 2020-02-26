@@ -1,16 +1,19 @@
 import React, { Component } from 'react'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import { Link, withRouter } from 'react-router-dom'
 import HomeIcon from '@material-ui/icons/Home'
+import SearchIcon from '@material-ui/icons/Search'
+import InputBase from '@material-ui/core/InputBase'
+import './NavBar.css'
 
 class NavBar extends Component {
     constructor(props) {
         super(props)
 
-        this.state = {}
+        this.state = {
+            serachQuery: '',
+        }
     }
 
     onProfileClick = e => {
@@ -22,23 +25,36 @@ class NavBar extends Component {
         this.props.history.push('./home')
     }
 
+    updateSearchQuery = e => {
+        this.setState({
+            serachQuery: e.target.value,
+        })
+    }
+
     render() {
         return (
-            <div>
-                <AppBar position="static">
-                    <Toolbar>
-                        <span>Title</span>
-                        <IconButton
-                            onClick={this.onProfileClick}
-                            color="inherit"
-                        >
-                            <AccountCircle />
+            <div className="nav">
+                <span className="title">Title</span>
+                <div className="search">
+                    <div className="search-icon">
+                        <IconButton>
+                            <SearchIcon></SearchIcon>
                         </IconButton>
-                        <IconButton onClick={this.onHomeClick} color="inherit">
-                            <HomeIcon />
-                        </IconButton>
-                    </Toolbar>
-                </AppBar>
+                    </div>
+                    <InputBase
+                        placeholder="Search…"
+                        onChange={this.updateSearchQuery}
+                        inputProps={{ 'aria-label': 'search' }}
+                    />
+                </div>
+                <span className="nav-icons">
+                    <IconButton onClick={this.onProfileClick} color="inherit">
+                        <AccountCircle />
+                    </IconButton>
+                    <IconButton onClick={this.onHomeClick} color="inherit">
+                        <HomeIcon />
+                    </IconButton>
+                </span>
             </div>
         )
     }
