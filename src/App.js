@@ -5,6 +5,7 @@ import './App.css';
 import Login from "./react-components/Login/Login";
 import Signup from "./react-components/Signup/Signup";
 import ForgotPassword from "./react-components/ForgotPassword/ForgotPassword";
+import Home from './react-components/Home/Home';
 
 class App extends React.Component  {
   render () {
@@ -18,6 +19,8 @@ class App extends React.Component  {
               <Login/>}/>
             <Route exact path="/forgotPassword" render={() =>
               <ForgotPassword/>}/>
+            <Route exact path="/home" render={() =>
+              <Home/>}/>
           </Switch>
         </BrowserRouter>
       </div>
