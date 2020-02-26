@@ -1,0 +1,13 @@
+.post-container {
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+    min-height: 37%;
+    max-width: 37%;
+    background-color: rgb(253, 253, 253);
+}
+.title {
+    text-align: left;
+    font-size: larger;
+}
