@@ -11,6 +11,7 @@ export default class Post extends Component {
     render() {
         return (
             <div className="post-container">
+                <div className="posted-by">{}</div>
                 <div className="post-title">
                     <h2>{this.props.title}</h2>
                 </div>

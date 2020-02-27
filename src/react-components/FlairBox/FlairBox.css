@@ -1,0 +1,18 @@
+.flair-box {
+    margin-bottom: 2%;
+    background-color: rgb(253, 253, 253);
+    padding: 0;
+}
+
+.flair-list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 1%;
+    margin-left: 2.5%;
+    /* justify-content: space-evenly; */
+}
+
+.flair-button {
+    margin-top: 1%;
+}

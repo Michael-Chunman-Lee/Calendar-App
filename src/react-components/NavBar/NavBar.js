@@ -13,16 +13,18 @@ class NavBar extends Component {
 
         this.state = {
             serachQuery: '',
+            name: this.props.name,
         }
     }
 
     onProfileClick = e => {
         e.preventDefault()
         //Redirect to page
+        this.props.history.push('/user/' + this.props.name)
     }
     onHomeClick = e => {
         e.preventDefault()
-        this.props.history.push('./home')
+        this.props.history.push('/home')
     }
 
     updateSearchQuery = e => {
