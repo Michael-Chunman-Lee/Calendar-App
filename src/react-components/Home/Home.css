@@ -1,19 +1,22 @@
 .main-div {
+    overflow: auto;
     background-color: rgb(226, 224, 224);
     height: 100%;
+    /* padding-bottom: 10%; */
 }
 .filter-toolbar {
     margin-left: auto;
     margin-right: auto;
     text-align: left;
     width: 37%;
-    margin-top: 2%;
+    margin-top: 1%;
+    margin-bottom: 1%;
     padding: 10px;
     background-color: rgb(253, 253, 253);
     border-radius: 10px;
 }
 .posts {
-    height: 80%;
+    height: 70%;
 }
 .calendar {
     height: 20%;

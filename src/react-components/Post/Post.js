@@ -11,8 +11,10 @@ export default class Post extends Component {
     render() {
         return (
             <div className="post-container">
-                <div className="title">Title</div>
-                <ScheduleCalendar></ScheduleCalendar>
+                <div className="post-title">Title</div>
+                <span>
+                    <ScheduleCalendar></ScheduleCalendar>
+                </span>
             </div>
         )
     }
