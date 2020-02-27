@@ -1,5 +1,4 @@
 import React from "react";
-import "./Calendar.css";
 import {withRouter} from "react-router-dom";
 import {
     Calendar,
@@ -10,7 +9,10 @@ import ical from 'ical';
 import {sourceStr} from '../../data/coursesCalendarString';
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import "./Calendar.css";
 const localizer = momentLocalizer(moment)
+
+
 class ScheduleCalendar extends React.Component {
     constructor(props) {
         super(props);
@@ -19,6 +21,8 @@ class ScheduleCalendar extends React.Component {
             events: [
               ]
         }
+
+        
     }
 
     parseEventsFromICS(source) {
@@ -153,8 +157,10 @@ class ScheduleCalendar extends React.Component {
             <Calendar
                 localizer={localizer}
                 defaultView="week"
+                views={['month', 'week', 'day', 'agenda']}
                 events={this.state.events}
                 selectable={false}
+                eventPropGetter={this.eventStyleGetter}
             />
             </div>
         );
