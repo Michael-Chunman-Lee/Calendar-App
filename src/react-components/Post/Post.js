@@ -11,7 +11,9 @@ export default class Post extends Component {
     render() {
         return (
             <div className="post-container">
-                <div className="post-title">Title</div>
+                <div className="post-title">
+                    <h2>{this.props.title}</h2>
+                </div>
                 <span>
                     <ScheduleCalendar></ScheduleCalendar>
                 </span>

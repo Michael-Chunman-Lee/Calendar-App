@@ -3,12 +3,10 @@
     margin-left: auto;
     margin-right: auto;
     height: inherit;
-    max-width: 37%;
     margin-bottom: 1%;
     background-color: rgb(253, 253, 253);
     padding: 3%;
 }
 .post-title {
     text-align: left;
-    font-size: 40px;
 }
