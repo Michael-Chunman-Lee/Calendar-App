@@ -34,7 +34,9 @@
     color: rgb(160,160,158);
 }
 
-
+.removeUserButton {
+    transform:scale(1.8);
+}
 
 
 

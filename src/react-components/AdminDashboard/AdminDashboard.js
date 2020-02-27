@@ -2,12 +2,21 @@ import React, { Component } from 'react'
 import NavBar from '../NavBar/NavBar'
 import './AdminDashboard.css'
 
+import IconButton from '@material-ui/core/IconButton'
+import CloseIcon from '@material-ui/icons/Close';
+
 export default class AdminDashboard extends Component {
     constructor(props) {
         super(props)
 
         this.state = {}
     }
+
+    onRemoveUserClick = e => {
+        e.preventDefault()
+        //Redirect to page
+    }
+    
 
     render() {
         // We have a list of objects meant to represent each user, eventually, this data will be
@@ -38,7 +47,11 @@ export default class AdminDashboard extends Component {
                                 <td style={{width:"20%"}}> {user.user} </td>
                                 <td style={{width:"30%"}}> {user.email} </td>
                                 <td style={{width:"20%"}}> {user.created} </td>
-                                <td style={{width:"30%"}}></td>
+                                <td style={{width:"30%", textAlign:"right"}}>
+                                    <IconButton onClick={this.onRemoveUserClick} color="inherit" className="removeUserButton">
+                                        <CloseIcon />
+                                    </IconButton>
+                                </td>
                             </tr>
                         ))}
                         </tbody>
