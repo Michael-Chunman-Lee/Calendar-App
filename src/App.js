@@ -7,6 +7,7 @@ import Signup from "./react-components/Signup/Signup";
 import ForgotPassword from "./react-components/ForgotPassword/ForgotPassword";
 import ScheduleCalendar from "./react-components/Calendar/Calendar";
 import Home from './react-components/Home/Home';
+import AdminDashboard from './react-components/AdminDashboard/AdminDashboard';
 
 class App extends React.Component  {
   render () {
@@ -24,6 +25,8 @@ class App extends React.Component  {
               <ScheduleCalendar/>}/>
             <Route exact path="/home" render={() =>
               <Home/>}/>
+            <Route exact path="/admindashboard" render={() =>
+              <AdminDashboard/>}/>
           </Switch>
         </BrowserRouter>
       </div>
