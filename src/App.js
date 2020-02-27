@@ -6,6 +6,8 @@ import Login from "./react-components/Login/Login";
 import Signup from "./react-components/Signup/Signup";
 import ForgotPassword from "./react-components/ForgotPassword/ForgotPassword";
 import ScheduleCalendar from "./react-components/Calendar/Calendar";
+import Home from './react-components/Home/Home';
+
 class App extends React.Component  {
   render () {
     return (
@@ -20,6 +22,8 @@ class App extends React.Component  {
               <ForgotPassword/>}/>
             <Route exact path="/calendar" render={() =>
               <ScheduleCalendar/>}/>
+            <Route exact path="/home" render={() =>
+              <Home/>}/>
           </Switch>
         </BrowserRouter>
       </div>

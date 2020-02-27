@@ -1,6 +1,6 @@
 import React from "react";
 import "./Login.css";
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -28,6 +28,7 @@ class Login extends React.Component {
         } else if (this.state.email === "user") {
             if (this.state.password === "user") {
                 //Send user to user dashboard
+                this.props.history.push("./home")
             }
         } else {
             this.setState({open: true});
@@ -118,4 +119,4 @@ class Login extends React.Component {
     }
 }
 
-export default Login;
+export default withRouter(Login);
