@@ -1,0 +1,42 @@
+#userTable {
+    font-family: lucida sans unicode, lucida grande, Sans-Serif;
+    font-size: 100%;
+    width: 70%;
+    text-align: left;
+    border-collapse: separate;
+    border-spacing: 0px 10px;
+    
+}
+
+#userTable th {
+    font-size: 100%;
+    font-weight: 400;
+    background: rgb(234, 246, 255);
+    color: #0;
+    padding: 1%;
+}
+
+#userTable td {
+    background: rgb(160,160, 158); /* color of the box */
+    color: #fff; /* text font color */
+    padding: 1%;
+}
+
+#userTable tr:hover td {
+    background: rgb(127,127,127); /* color of the box */
+    color: #fff; /* text font color */
+    padding: 1%;
+}
+
+.pageHeading {
+    font-size:200%;
+    font-weight:700;
+    color: rgb(160,160,158);
+}
+
+
+
+
+
+
+
