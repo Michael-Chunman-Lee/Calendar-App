@@ -32,8 +32,20 @@
 
 .login {
     line-height: 1;
+    background-color: rgb(226, 224, 224);
+    height: 100%;
+    width: 100%;
 }
 
 .loginTitle {
     font-size: 20px;
+}
+
+.linkStyle {
+    text-decoration: none;
+    color: black;
+}
+
+#snackBarStyle {
+    background-color: #d62400;
 }

@@ -47,7 +47,6 @@ class Signup extends React.Component {
     }
 
     render() {
-        document.body.style = "background: lightskyblue;";
 
         return (
             <div className="signup">
@@ -111,7 +110,7 @@ class Signup extends React.Component {
                         onClose={this.handleClose}
                     >
                         <SnackbarContent 
-                            style={{backgroundColor: '#d62400'}} 
+                            id="snackBarStyle"
                             message={this.state.errorMessage} 
                             action={
                                 <React.Fragment>
@@ -127,7 +126,7 @@ class Signup extends React.Component {
                     </Button>
                     <br/><br/><br/><br/>
                     
-                    <Link to={"login"} style={{textDecoration: 'none', color: 'black'}}>Already a user? Login here</Link> 
+                    <Link to={"login"} className="linkStyle">Already a user? Login here</Link> 
                     <br/>
 
                 </form>

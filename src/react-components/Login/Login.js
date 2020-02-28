@@ -50,7 +50,6 @@ class Login extends React.Component {
     }
 
     render() {
-        document.body.style = "background: lightskyblue;";
 
         return (
             <div className="login">
@@ -82,7 +81,7 @@ class Login extends React.Component {
                     />
                     <br/>
                     
-                    <Link to={"forgotPassword"} style={{textDecoration: 'none', color: 'black'}}>Forgot password?</Link> 
+                    <Link to={"forgotPassword"} className="linkStyle">Forgot password?</Link> 
                     <br/><br/>
 
                     <Snackbar
@@ -95,7 +94,7 @@ class Login extends React.Component {
                         onClose={this.handleClose}
                     >
                         <SnackbarContent 
-                            style={{backgroundColor: '#d62400'}} 
+                            id="snackBarStyle"
                             message="Invalid password or username!" 
                             action={
                                 <React.Fragment>
@@ -111,7 +110,7 @@ class Login extends React.Component {
                     </Button>
                     <br/><br/><br/>
                     
-                    <Link to={""} style={{textDecoration: 'none', color: 'black'}}>Not yet a user? Sign up here</Link> 
+                    <Link to={""} className="linkStyle">Not yet a user? Sign up here</Link> 
                     <br/>
 
                 </form>
