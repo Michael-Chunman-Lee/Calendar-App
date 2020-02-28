@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import NavBar from '../NavBar/NavBar'
+import {withRouter} from "react-router-dom";
 import './Profile.css'
 import Post from '../Post/Post'
 import ProfileBox from '../ProfileBox/ProfileBox'
 import FlairBox from '../FlairBox/FlairBox'
-export default class Profile extends Component {
+import Button from "@material-ui/core/Button";
+
+class Profile extends Component {
     constructor(props) {
         super(props)
 
@@ -35,6 +38,7 @@ export default class Profile extends Component {
                         //Api call to get profile info (if not current user profile)
                     }
                     <div className="right-content">
+                        <Button id="createScheduleButton" onClick={e => {this.props.history.push("../uploadPost")}}>Create a new schedule</Button>
                         <FlairBox></FlairBox>
                         <ProfileBox name="Robert"></ProfileBox>
                     </div>
@@ -43,3 +47,5 @@ export default class Profile extends Component {
         )
     }
 }
+
+export default withRouter(Profile);

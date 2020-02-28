@@ -9,6 +9,8 @@ import ScheduleCalendar from './react-components/Calendar/Calendar'
 import Home from './react-components/Home/Home'
 import AdminDashboard from './react-components/AdminDashboard/AdminDashboard'
 import Profile from './react-components/Profile/Profile'
+import UploadPost from './react-components/UploadPost/UploadPost'
+
 class App extends React.Component {
     render() {
         return (
@@ -37,6 +39,10 @@ class App extends React.Component {
                             exact
                             path="/user/*"
                             render={() => <Profile />}
+                        />
+                        <Route
+                            exact path="/uploadPost"
+                            render={() => <UploadPost />}
                         />
                     </Switch>
                 </BrowserRouter>
