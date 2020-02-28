@@ -24,6 +24,7 @@ class Login extends React.Component {
         if (this.state.email === "admin") {
             if (this.state.password === "admin") {
                 //Send user to admin dashboard
+                this.props.history.push("./admindashboard")
             } 
         } else if (this.state.email === "user") {
             if (this.state.password === "user") {
