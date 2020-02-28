@@ -16,7 +16,8 @@ class UploadPost extends Component {
 
         this.state = {
             title: "",
-            tag: "Fitness"
+            tag: "Fitness",
+            fileName: "Drag and drop your schedule here, or click to select your schedule"
         }
     }
 
@@ -26,6 +27,7 @@ class UploadPost extends Component {
 
     onDrop = files => {
         console.log(files);
+        this.setState({fileName: "Are you sure you want to upload" + files[0].name + "?"})
     }
     
     onButtonClick = e => {
@@ -64,7 +66,7 @@ class UploadPost extends Component {
                                 <section>
                                     <div {...getRootProps({className: 'iCalDrop'})}>
                                     <input {...getInputProps()} />
-                                    <p>Drag and drop your schedule here, or click to select your schedule</p>
+                                    <p>{this.state.fileName}</p>
                                     </div>
                                 </section>
                             )}
