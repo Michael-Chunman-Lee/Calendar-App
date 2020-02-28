@@ -48,6 +48,8 @@ class UploadPost extends Component {
                             <Select onChange={this.setTag} value={this.state.tag}>
                                 <MenuItem value="Fitness">Fitness</MenuItem>
                                 <MenuItem value="School">School</MenuItem>
+                                <MenuItem value="Gaming">Gaming</MenuItem>
+                                <MenuItem value="Food">Food</MenuItem>
                             </Select>
                             <FormHelperText>Required</FormHelperText>
                         </FormControl>
