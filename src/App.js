@@ -10,6 +10,7 @@ import Home from './react-components/Home/Home'
 import AdminDashboard from './react-components/AdminDashboard/AdminDashboard'
 import Profile from './react-components/Profile/Profile'
 import UploadPost from './react-components/UploadPost/UploadPost'
+import SpecificPost from './react-components/PostRatings/SpecificPost'
 
 class App extends React.Component {
     render() {
@@ -43,6 +44,10 @@ class App extends React.Component {
                         <Route
                             exact path="/uploadPost"
                             render={() => <UploadPost />}
+                        />
+                        <Route
+                            exact path="/specificPost/*"
+                            render={() => <SpecificPost />}
                         />
                     </Switch>
                 </BrowserRouter>
