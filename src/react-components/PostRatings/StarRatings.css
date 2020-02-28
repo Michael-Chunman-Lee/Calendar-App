@@ -3,8 +3,21 @@
   opacity: 0;
   width: 0;
   height: 0;
+  overflow:hidden;
 }
 
-.rating {
+.stars {
   width:0;
+  overflow:hidden;
+}
+
+
+.rating {
+  display:flex;
+  justify-content: space-between;
+}
+
+.starsLabel {
+  margin-right:10px;
+  vertical-align: middle;
 }
