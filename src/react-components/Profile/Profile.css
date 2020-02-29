@@ -24,6 +24,7 @@
 }
 .middle-content {
     height: 100%;
+    min-width: 43%;
     margin-left: 5%;
 }
 .right-content {
@@ -42,7 +43,7 @@
 }
 
 #createScheduleButton {
-    background-color: #01A9DB;
+    background-color: #01a9db;
     height: 40px;
     width: 300px;
 }
