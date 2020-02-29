@@ -75,7 +75,7 @@ class UploadPost extends Component {
                                 <section>
                                     <div {...getRootProps({className: 'iCalDrop'})}>
                                     <input {...getInputProps()} />
-                                    <p>{this.state.fileName} <br/> (Only accepted file extensions are .ics)</p>
+                                    <p>{this.state.fileName} <br/> (Only accepted file extension is .ics)</p>
                                     </div>
                                 </section>
                             )}
