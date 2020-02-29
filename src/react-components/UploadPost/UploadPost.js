@@ -80,6 +80,10 @@ class UploadPost extends Component {
         })
     }
 
+    onTitleFieldChange = e => {
+        this.setState({title: e.target.value});
+    }
+
     render() {
         return (
             <div className="upload-div">
@@ -92,7 +96,7 @@ class UploadPost extends Component {
                     <br/>
                     <div className="tagBar">
                         <span className="text"><strong>Tag:</strong></span>
-                        <FormControl required className="tagForm"  >
+                        <FormControl required className="tagForm">
                             <Select onChange={this.setTag} value={this.state.tag}>
                                 <MenuItem value="Fitness">Fitness</MenuItem>
                                 <MenuItem value="School">School</MenuItem>
@@ -104,7 +108,7 @@ class UploadPost extends Component {
                     </div>
                     <br/>
                     <div className="postUpload">
-                        <TextField inputProps={{maxLength: 100}} className="titleField" label="Title (max 100 characters)"></TextField>
+                        <TextField onChange={this.onTitleFieldChange} inputProps={{maxLength: 100}} className="titleField" label="Title (max 100 characters)"></TextField>
                         <br/><br/><br/>
 
                         <Dropzone onDrop={this.onDrop} accept=".ICS">
