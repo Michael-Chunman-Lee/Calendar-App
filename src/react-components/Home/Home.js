@@ -4,7 +4,9 @@ import './Home.css'
 import Post from '../Post/Post'
 import ProfileBox from '../ProfileBox/ProfileBox'
 import FlairBox from '../FlairBox/FlairBox'
-export default class Home extends Component {
+import {withRouter} from "react-router-dom";
+
+class Home extends Component {
     constructor(props) {
         super(props)
 
@@ -37,3 +39,5 @@ export default class Home extends Component {
         )
     }
 }
+
+export default withRouter(Home);

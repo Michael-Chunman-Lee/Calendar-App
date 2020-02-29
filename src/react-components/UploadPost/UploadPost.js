@@ -9,6 +9,10 @@ import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 import Dropzone from "react-dropzone";
 import Button from "@material-ui/core/Button";
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import { SnackbarContent } from "@material-ui/core";
 
 class UploadPost extends Component {
     constructor(props) {
@@ -17,12 +21,21 @@ class UploadPost extends Component {
         this.state = {
             title: "",
             tag: "Fitness",
-            fileName: "Drag and drop your schedule here, or click to select your schedule"
+            fileName: "Drag and drop your schedule here, or click to select your schedule",
+            icsRawText: null,
+            open: false
         }
     }
 
     setTag = e => {
         this.setState({tag: e.target.value});
+    }
+
+    onHandleSnackBarClose = (e, reason) => {
+        if (reason === 'clickaway') {
+            return
+        }
+        this.setState({open: false});
     }
 
     onDrop = files => {
@@ -31,16 +44,35 @@ class UploadPost extends Component {
         //When the file is ready parse the contents 
         reader.onload = function(e) {
             //Plain text of the ics file
-            console.log(e.target.result);
-        }
+            this.setState({icsRawText: e.target.result});
+        }.bind(this);
 
         //Read the ics file in as plain text
         reader.readAsText(files[0]);
         this.setState({fileName: "Are you sure you want to post " + files[0].name + "?"})
     }
     
-    onButtonClick = e => {
+    onCloseClick = e => {
         this.props.history.push("./home")
+    }
+
+    onPostClick = e => {
+        if (this.state.icsRawText === null) {
+            this.setState({open: true});
+            return
+        }
+        
+        //In your home page, the uploadedContent will be available in this.props.location.uploadedContent
+        //If the this.props.location.uploadedContent is undefined, then this means that the user has not actually
+        //uploaded anything (i.e. redirected from login or clicked cancel on upload post page, etc...)
+        this.props.history.push({
+            pathname: "./home",
+            uploadedContent: {
+                title: this.state.title,
+                icsRawText: this.state.icsRawText,
+                tag: this.state.tag
+            }
+        })
     }
 
     render() {
@@ -82,9 +114,31 @@ class UploadPost extends Component {
                         </Dropzone>
                         <br/><br/>
 
-                        <Button onClick={this.onButtonClick}>Cancel</Button>
-                        <Button onClick={this.onButtonClick} id="uploadButton">Post</Button>
+                        <Button onClick={this.onCloseClick}>Cancel</Button>
+                        <Button onClick={this.onPostClick} id="uploadButton">Post</Button>
                     </div>
+
+                    <Snackbar
+                        anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'center',
+                        }}
+                        open={this.state.open}
+                        autoHideDuration={3000}
+                        onClose={this.handleClose}
+                    >
+                        <SnackbarContent 
+                            id="snackBarStyle"
+                            message="You have not yet uploaded a schedule!"
+                            action={
+                                <React.Fragment>
+                                    <IconButton size="small" aria-label="close" color="inherit" onClick={this.onHandleSnackBarClose}>
+                                        <CloseIcon fontSize="small" />
+                                    </IconButton>
+                                </React.Fragment>
+                        }/>
+                    </Snackbar>
+
                 </div>
             </div>
         )

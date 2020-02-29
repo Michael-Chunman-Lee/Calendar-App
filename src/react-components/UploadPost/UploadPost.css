@@ -49,7 +49,7 @@
 }
 
 .iCalDrop {
-    margin-left: 200px;
+    margin-left: 230px;
     padding: 130px;
     font-size: 20px;
     width: 660px;
@@ -61,4 +61,8 @@
 
 #uploadButton {
     background-color: #01A9DB;
+}
+
+#snackBarStyle {
+    background-color: #d62400;
 }
