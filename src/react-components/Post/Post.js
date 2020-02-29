@@ -11,12 +11,18 @@ export default class Post extends Component {
     render() {
         return (
             <div className="post-container">
-                <div className="posted-by">{}</div>
+                <div className="post-headers">
+                    <span className="posted-by">{this.props.post.name}</span>
+                    <span className="post-tag">{this.props.post.tag}</span>
+                </div>
+
                 <div className="post-title">
-                    <h2>{this.props.title}</h2>
+                    <h2>{this.props.post.title}</h2>
                 </div>
                 <span>
-                    <ScheduleCalendar></ScheduleCalendar>
+                    <ScheduleCalendar
+                        icsRawText={this.props.post.icsRawText}
+                    ></ScheduleCalendar>
                 </span>
             </div>
         )

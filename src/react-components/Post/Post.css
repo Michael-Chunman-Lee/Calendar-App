@@ -10,3 +10,15 @@
 .post-title {
     text-align: left;
 }
+.post-tag {
+    font-size: 120%;
+    float: right;
+}
+.posted-by {
+    color: gray;
+    font-size: 120%;
+}
+.post-headers {
+    display: flex;
+    justify-content: space-between;
+}

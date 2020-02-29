@@ -7,15 +7,7 @@ export default class FlairBox extends Component {
     constructor(props) {
         super(props)
 
-        this.state = {
-            flairs: { Fitness: true, Gaming: false, School: true, Food: false },
-        }
-    }
-
-    handleFlairClick = (event, newVal) => {
-        let newState = Object.assign({}, this.state)
-        newState.flairs[newVal] = !newState.flairs[newVal]
-        this.setState(newState)
+        this.state = {}
     }
 
     render() {
@@ -26,13 +18,13 @@ export default class FlairBox extends Component {
                     <h1> Flairs</h1>{' '}
                 </div>
                 <div className="flair-list">
-                    {Object.keys(this.state.flairs).map(k => (
+                    {Object.keys(this.props.flairs).map(k => (
                         <ToggleButton
                             className="flair-button"
                             key={k}
                             value={k}
-                            selected={this.state.flairs[k]}
-                            onClick={this.handleFlairClick}
+                            selected={this.props.flairs[k]}
+                            onClick={this.props.handleFlairClick}
                         >
                             {k}
                         </ToggleButton>
