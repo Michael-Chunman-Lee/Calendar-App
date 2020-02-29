@@ -74,7 +74,8 @@ class UploadPost extends Component {
             uploadedContent: {
                 title: this.state.title,
                 icsRawText: this.state.icsRawText,
-                tag: this.state.tag
+                tag: this.state.tag,
+                name: this.state.name
             }
         })
     }
