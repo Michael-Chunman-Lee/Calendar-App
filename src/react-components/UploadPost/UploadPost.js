@@ -23,7 +23,8 @@ class UploadPost extends Component {
             tag: "Fitness",
             fileName: "Drag and drop your schedule here, or click to select your schedule",
             icsRawText: null,
-            open: false
+            open: false,
+            name: this.props.location.name
         }
     }
 
@@ -61,7 +62,8 @@ class UploadPost extends Component {
             this.setState({open: true});
             return
         }
-        
+        //Will need to make a call to a database to store the new schedule
+
         //In your home page, the uploadedContent will be available in this.props.location.uploadedContent
         //If the this.props.location.uploadedContent is undefined, then this means that the user has not actually
         //uploaded anything (i.e. redirected from login or clicked cancel on upload post page, etc...)
