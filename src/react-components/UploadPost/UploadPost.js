@@ -26,8 +26,17 @@ class UploadPost extends Component {
     }
 
     onDrop = files => {
-        console.log(files);
-        this.setState({fileName: "Are you sure you want to upload" + files[0].name + "?"})
+        const reader = new FileReader();
+
+        //When the file is ready parse the contents 
+        reader.onload = function(e) {
+            //Plain text of the ics file
+            console.log(e.target.result);
+        }
+
+        //Read the ics file in as plain text
+        reader.readAsText(files[0]);
+        this.setState({fileName: "Are you sure you want to post " + files[0].name + "?"})
     }
     
     onButtonClick = e => {
@@ -66,7 +75,7 @@ class UploadPost extends Component {
                                 <section>
                                     <div {...getRootProps({className: 'iCalDrop'})}>
                                     <input {...getInputProps()} />
-                                    <p>{this.state.fileName}</p>
+                                    <p>{this.state.fileName} <br/> (Only accepted file extensions are .ics)</p>
                                     </div>
                                 </section>
                             )}
