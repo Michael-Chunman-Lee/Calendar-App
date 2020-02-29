@@ -11,6 +11,12 @@ export default class SpecificPost extends Component {
         super(props)
 
         this.state = {
+            post: {
+                    name: 'Robert',
+                    tag: 'Fitness',
+                    title:
+                        'My Grandfather turns the big 100 today!! Checkout his workout schedule!!',
+                },
 
             ratingLabels: ["Workload", "Interest", "Timing"],
 
@@ -65,7 +71,7 @@ export default class SpecificPost extends Component {
                 <div className="content">
                     <div className="middle-content">
                         <div className="posts">
-                            <Post title="My Grandfather turns the big 100 today!! Checkout his workout schedule!!"></Post>
+                            <Post post={this.state.post}></Post>
                         </div>
 
                         <RatingForm ratingLabels={this.state.ratingLabels} submithandler={this.submithandler.bind(this)}></RatingForm>
