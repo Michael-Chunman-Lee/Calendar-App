@@ -3,8 +3,9 @@ import { FaStar } from "react-icons/fa";
 import "./StarRatings.css";
 
 const StarRating = (props) => {
-    const [rating, setRating] = useState(1);
-    const [hover, setHover] = useState(1);
+  // props.rating signals that the stars are to remain static since a value is already assigned
+    const [rating, setRating] = useState((props.rating) ? props.rating: 1);
+    const [hover, setHover] = useState((props.rating) ? props.rating: 1);
     
     return (
         <div className = "rating">
@@ -14,23 +15,27 @@ const StarRating = (props) => {
 
           <div>
             {[...Array(5)].map((star, i) => {
-                const ratingValue = i + 1;
+              let ratingValue = i + 1;
+              let isDisabled;
+              if (props.rating) {isDisabled = true} else {isDisabled=false}
                 return (
                     <label>
                         <input type="radio" className="stars"
                                value={ratingValue}
+                               disabled={isDisabled}
                                onClick={() => setRating(ratingValue)}
                         />
                         <FaStar
                             className="star"
                             color={ratingValue <= (hover || rating) ? "#00b0f0" : "#eaf6ff" }
                             size={20}
-                            onMouseEnter={() => setHover(ratingValue)}
+                            onMouseEnter={() => setHover((props.rating) ? props.rating : ratingValue)}
                             onMouseLeave={() => setHover(null)}
                         />
                     </label>
                 );
             })}
+                <span className={props.label + props.index}>{rating}</span>
           </div>
         </div>
     );
