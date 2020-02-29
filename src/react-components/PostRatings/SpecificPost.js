@@ -2,12 +2,9 @@ import React, { Component } from 'react'
 import NavBar from '../NavBar/NavBar'
 import './SpecificPost.css'
 import Post from '../Post/Post'
-import ProfileBox from '../ProfileBox/ProfileBox'
-import FlairBox from '../FlairBox/FlairBox'
 
 import RatingForm from './RatingForm'
 import OldRating from './OldRating'
-import Button from "@material-ui/core/Button";
 
 export default class SpecificPost extends Component {
     constructor(props) {

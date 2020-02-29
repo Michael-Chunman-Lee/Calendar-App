@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./OldRating.css";
 import StarRatings from "./StarRatings";
-import Button from "@material-ui/core/Button";
 
 export default class OldRating extends Component {
   constructor(props) {
