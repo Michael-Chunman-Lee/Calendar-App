@@ -16,16 +16,22 @@
     padding: 1%;
 }
 
-#userTable td {
-    background: rgb(160,160, 158); /* color of the box */
-    color: #fff; /* text font color */
-    padding: 1%;
+#userTable tr:hover .removeUserCell {
+    background-color:rgb(200, 200, 200);
 }
 
-#userTable tr:hover td {
-    background: rgb(127,127,127); /* color of the box */
-    color: #fff; /* text font color */
-    padding: 1%;
+#userTable tr:hover .btn{
+    height:100%;
+    width:100%;
+      background-color: rgb(200, 200, 200);
+      border: none;
+      color: white;
+      padding-left:4%;
+      text-align: left;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      outline:none;
 }
 
 .pageHeading {
@@ -38,7 +44,42 @@
     transform:scale(1.8);
 }
 
+.btn {
+    height:100%;
+    width:100%;
+      background-color: rgb(160, 160, 158);
+      border: none;
+      color: white;
+      padding-left:4%;
+      text-align: left;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      outline:none;
+}
 
+.usernameCell {
+    padding: 0;
+    width:20%;
+}
+
+.emailCell {
+    padding:0;
+    width:30%;
+}
+
+.dateCreatedCell {
+    padding:0;
+    width:50%;
+}
+
+.removeUserCell {
+    background-color:rgb(160, 160, 158);
+}
+
+.cellForm {
+    height: 100%;
+}
 
 
 

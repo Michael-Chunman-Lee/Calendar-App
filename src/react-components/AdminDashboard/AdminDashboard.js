@@ -9,22 +9,29 @@ export default class AdminDashboard extends Component {
     constructor(props) {
         super(props)
 
-        this.state = {}
+        this.state = {
+            users : [{user:"TheLegend76", email:"thelegend76@gmail.com", created:"01/20/2020"},
+                                 {user:"CerealWithMilk", email:"itsjustcereal@hotmail.com", created:"01/20/2020"},
+                                 {user:"BananaApple5", email:"banana@gmail.com", created:"01/20/2020"},
+                                 {user:"anotheruser2", email:"anotheruser2@gmail.com", created:"01/20/2020"}]
+            
+        }
     }
 
-    onRemoveUserClick = e => {
-        e.preventDefault()
-        //Redirect to page
+    removeUser(user) {
+        let filteredUsers = this.state.users.filter(s => {
+            return s !== user;
+        });
+        
+        this.setState({
+            users: filteredUsers
+        });
     }
     
 
     render() {
         // We have a list of objects meant to represent each user, eventually, this data will be
         // extracted from our backend
-        let users = [{user:"TheLegend76", email:"thelegend76@gmail.com", created:"01/20/2020"},
-                     {user:"CerealWithMilk", email:"itsjustcereal@hotmail.com", created:"01/20/2020"},
-                     {user:"BananaApple5", email:"banana@gmail.com", created:"01/20/2020"},
-                     {user:"anotheruser2", email:"anotheruser2@gmail.com", created:"01/20/2020"}]
         
         return (
             <div className="main-div">
@@ -42,13 +49,20 @@ export default class AdminDashboard extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                        {users.map(user => (
-                            <tr key={user.email}>
-                                <td style={{width:"20%"}}> {user.user} </td>
-                                <td style={{width:"30%"}}> {user.email} </td>
-                                <td style={{width:"20%"}}> {user.created} </td>
-                                <td style={{width:"30%", textAlign:"right"}}>
-                                    <IconButton onClick={this.onRemoveUserClick} color="inherit" className="removeUserButton">
+                        {this.state.users.map((user, i) => (
+                            <tr className={user.email}>
+                                <td className="usernameCell" >
+                                    <form class="cellForm" action="/user/*"><button className="btn">{user.user}</button></form>
+                                </td>
+                                <td className="emailCell" >
+                                    <form class="cellForm" action="/user/*"><button className="btn">{user.email}</button></form>
+                                </td>
+                                <td className="dateCreatedCell" >
+                                    <form class="cellForm" action="/user/*"><button className="btn" type="submit">{user.created}</button></form>
+                                </td>
+                                
+                                <td className="removeUserCell">
+                                    <IconButton onClick={this.removeUser.bind(this, user)} color="inherit" className="removeUserButton">
                                         <CloseIcon />
                                     </IconButton>
                                 </td>
