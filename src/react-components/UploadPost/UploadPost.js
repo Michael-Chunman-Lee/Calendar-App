@@ -65,6 +65,8 @@ class UploadPost extends Component {
         //In your home page, the uploadedContent will be available in this.props.location.uploadedContent
         //If the this.props.location.uploadedContent is undefined, then this means that the user has not actually
         //uploaded anything (i.e. redirected from login or clicked cancel on upload post page, etc...)
+        //For the icsRawText, you will need to pass it into delmar's calendar component so it can be parsed and be displayed
+        //on the calendar component
         this.props.history.push({
             pathname: "./home",
             uploadedContent: {
