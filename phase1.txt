@@ -30,5 +30,13 @@ For the user view of the site the user can access the following features:
 
 - The user can delete their own posts (ones that have their name on the left), since all posts on the profile view are the users, they can delete all.
 
+- Users are able to view schedules created by users of the site and are able to leave a rating and additional thoughts for each of them.
+
 From the admin view of the site the user can access the following features:
-- 
+- The admin dashboard, which will eventually list all the users registered to the site. For each user, the admin will be able to go directly to their profile page by clicking on the user's respective row in the dashboard. Moreover, the X button beside each user is for when the admin decides to remove a user from the site.
+- Each post/schedule will have ratings by users of the site. The admin will be able to remove such ratings when visiting a specific post, similar to how most sites have moderation for inappropriate comments and such.
+
+
+
+
+
