@@ -17,7 +17,7 @@ import { SnackbarContent } from "@material-ui/core";
 class UploadPost extends Component {
   constructor(props) {
     super(props);
-
+    console.log(this.props.location.username)
     this.state = {
       title: "",
       tag: "Fitness",
@@ -84,7 +84,9 @@ class UploadPost extends Component {
         title: this.state.title,
         icsRawText: this.state.icsRawText,
         tag: this.state.tag,
-        name: this.state.name
+        name: this.state.name,
+        date: new Date(),
+        viewCount: 0 
       },
       userType: this.props.location.userType,
       username: this.props.location.username
@@ -99,7 +101,7 @@ class UploadPost extends Component {
     return (
       <div className="upload-div">
         <NavBar
-          usernamename={this.props.location.username}
+          username={this.props.location.username}
           userType={this.props.location.userType}
         ></NavBar>
         <div className="upload-content">

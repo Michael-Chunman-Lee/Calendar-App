@@ -12,6 +12,8 @@ export default class Post extends Component {
                 tag: this.props.post.tag,
                 title: this.props.post.title,
                 icsRawText: this.props.post.icsRawText,
+                viewCount: this.props.post.viewCount,
+                date: this.props.post.date
             },
         }
     }
@@ -37,6 +39,12 @@ export default class Post extends Component {
                             {this.state.post.name}
                         </span>
                         <span className="post-tag">{this.state.post.tag}</span>
+                        <span className="post-tag">
+                            View count: {this.state.post.viewCount}
+                        </span>
+                        <span className="post-tag">
+                            Date posted: {this.state.post.date.toISOString().substring(0,10)}
+                        </span>
                     </div>
 
                     <div className="post-title">

@@ -6,6 +6,7 @@ import ProfileBox from '../ProfileBox/ProfileBox'
 import TagBox from '../TagBox/TagBox'
 import { withRouter } from 'react-router-dom'
 import { sourceStr } from '../../data/coursesCalendarString'
+import SortBox from '../SortBox/SortBox'
 
 class Home extends Component {
     constructor(props) {
@@ -20,6 +21,10 @@ class Home extends Component {
                 School: false,
                 Food: false,
             },
+            sortPosts: {
+                Top: false,
+                New: false
+            },        
             //This will be filled via an api call
             posts: [
                 {
@@ -27,6 +32,8 @@ class Home extends Component {
                     tag: 'Gaming',
                     title: 'Check out my pro gaming schedule',
                     icsRawText: sourceStr,
+                    date: new Date(2018, 11, 24, 10, 33, 30, 0),
+                    viewCount: 20,
                 },
                 {
                     name: 'Robert',
@@ -34,14 +41,21 @@ class Home extends Component {
                     title:
                         'My Grandfather turns the big 100 today!! Checkout his workout schedule!!',
                     icsRawText: sourceStr,
+                    date: new Date(2019, 11, 24, 10, 33, 30, 0),
+                    viewCount: 10
                 },
                 {
                     name: 'Robert 2',
                     tag: 'School',
                     title: 'I love UofT! Checkout my 4th year schedule!!',
                     icsRawText: sourceStr,
+                    date: new Date(2016, 11, 24, 10, 33, 30, 0),
+                    viewCount: 1000000
                 },
             ],
+        }
+        if (this.props.location.uploadedContent) {
+            this.state.posts.push(this.props.location.uploadedContent)
         }
     }
 
@@ -61,10 +75,23 @@ class Home extends Component {
         this.setState(newState)
     }
 
-    render() {
-        if (this.props.location.uploadedContent) {
-            this.state.posts.push(this.props.location.uploadedContent)
+    handleSortClick = (event, newVal) => {
+        if ((this.state.sortPosts["Top"] && newVal === "New") || (this.state.sortPosts["New"] && newVal === "Top")) return;
+        let newState = Object.assign({}, this.state);
+        newState.sortPosts[newVal] = !newState.sortPosts[newVal]
+        if (newState.sortPosts["Top"]) {
+            newState.posts.sort((a,b) => b.viewCount - a.viewCount)
+        } else if (newState.sortPosts["New"]) {
+            newState.posts.sort((a,b) => b.date - a.date);
         }
+        this.setState(newState)
+    }
+
+    checkSortClicked = () => {
+        return (this.state.sortPosts["Top"] || this.state.sortPosts["New"])
+    }
+
+    render() {
 
         let filterTags = []
         Object.keys(this.state.tags).map(
@@ -81,8 +108,7 @@ class Home extends Component {
                 <div className="home-content">
                     <div className="home-middle-content">
                         <div className="home-filter-toolbar">
-                            <span> Top </span>
-                            <span> New </span>
+                            <SortBox sortPosts={this.state.sortPosts} handleSortClick={this.handleSortClick}/>
                         </div>
                         <div className="home-posts">
                             {
@@ -92,7 +118,7 @@ class Home extends Component {
                             // the same state is re-used
                             this.state.posts.map(
                                 (post, i) =>
-                                    this.postPassesSearchQuery(post) && (filterTags.includes(post.tag) ||
+                                    this.checkSortClicked() && this.postPassesSearchQuery(post) && (filterTags.includes(post.tag) ||
                                         filterTags.length === 0) && (
                                         <Post
                                             username={

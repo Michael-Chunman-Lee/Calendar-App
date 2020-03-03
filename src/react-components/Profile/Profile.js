@@ -7,6 +7,7 @@ import ProfileBox from '../ProfileBox/ProfileBox'
 import TagBox from '../TagBox/TagBox'
 import Button from '@material-ui/core/Button'
 import { sourceStr } from '../../data/coursesCalendarString'
+import SortBox from '../SortBox/SortBox'
 
 class Profile extends Component {
     constructor(props) {
@@ -19,33 +20,68 @@ class Profile extends Component {
                 School: false,
                 Food: false,
             },
+            sortPosts: {
+                Top: false,
+                New: false
+            }, 
             name: 'Robert',
             posts: [
                 {
-                    name: 'Robert',
+                    name: this.props.location.username,
+                    tag: 'Gaming',
+                    title: 'Check out my pro gaming schedule',
+                    icsRawText: sourceStr,
+                    date: new Date(2018, 11, 24, 10, 33, 30, 0),
+                    viewCount: 20,
+                },
+                {
+                    name: this.props.location.username,
                     tag: 'Fitness',
                     title:
                         'My Grandfather turns the big 100 today!! Checkout his workout schedule!!',
                     icsRawText: sourceStr,
+                    date: new Date(2019, 11, 24, 10, 33, 30, 0),
+                    viewCount: 10
                 },
                 {
-                    name: 'Robert 2',
+                    name: this.props.location.username,
                     tag: 'School',
                     title: 'I love UofT! Checkout my 4th year schedule!!',
                     icsRawText: sourceStr,
+                    date: new Date(2016, 11, 24, 10, 33, 30, 0),
+                    viewCount: 1000000
                 },
             ],
         }
+        if (this.props.location.uploadedContent) {
+            this.state.posts.push(this.props.location.uploadedContent)
+        }
     }
+
     handletagClick = (event, newVal) => {
         let newState = Object.assign({}, this.state)
         newState.tags[newVal] = !newState.tags[newVal]
         this.setState(newState)
     }
-    render() {
-        if (this.props.location.uploadedContent) {
-            this.state.posts.push(this.props.location.uploadedContent)
+
+    handleSortClick = (event, newVal) => {
+        if ((this.state.sortPosts["Top"] && newVal === "New") || (this.state.sortPosts["New"] && newVal === "Top")) return;
+        let newState = Object.assign({}, this.state);
+        newState.sortPosts[newVal] = !newState.sortPosts[newVal]
+        if (newState.sortPosts["Top"]) {
+            newState.posts.sort((a,b) => b.viewCount - a.viewCount)
+        } else if (newState.sortPosts["New"]) {
+            newState.posts.sort((a,b) => b.date - a.date);
         }
+        console.log(newState.posts)
+        this.setState(newState)
+    }
+
+    checkSortClicked = () => {
+        return (this.state.sortPosts["Top"] || this.state.sortPosts["New"])
+    }
+
+    render() {
         let filterTags = []
         Object.keys(this.state.tags).map(
             k => this.state.tags[k] && filterTags.push(k)
@@ -67,8 +103,7 @@ class Profile extends Component {
                 <div className="content">
                     <div className="middle-content">
                         <div className="filter-toolbar">
-                            <span> Top </span>
-                            <span> New </span>
+                            <SortBox sortPosts={this.state.sortPosts} handleSortClick={this.handleSortClick}/>
                         </div>
                         {
                             //Will need API calls to get posts based on filter
@@ -76,7 +111,7 @@ class Profile extends Component {
                         <div className="posts">
                             {this.state.posts.map(
                                 (post, i) =>
-                                    (filterTags.includes(post.tag) ||
+                                this.checkSortClicked() && (filterTags.includes(post.tag) ||
                                         filterTags.length === 0) && (
                                         <Post
                                             username={
@@ -87,10 +122,12 @@ class Profile extends Component {
                                             }
                                             key={i}
                                             post={{
-                                                name: name,
+                                                name: this.props.location.username,
                                                 tag: post.tag,
                                                 title: post.title,
                                                 icsRawText: post.icsRawText,
+                                                viewCount: post.viewCount,
+                                                date: post.date
                                             }}
                                         ></Post>
                                     )
