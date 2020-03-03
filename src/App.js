@@ -25,11 +25,6 @@ class App extends React.Component {
                             path="/forgotPassword"
                             render={() => <ForgotPassword />}
                         />
-                        <Route
-                            exact
-                            path="/calendar"
-                            render={() => <ScheduleCalendar />}
-                        />
                         <Route exact path="/home" render={() => <Home />} />
                         <Route
                             exact
