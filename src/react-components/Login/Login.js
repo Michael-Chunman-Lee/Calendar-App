@@ -26,7 +26,8 @@ class Login extends React.Component {
                 //Send user to admin dashboard
                 this.props.history.push({
                     pathname: "./admindashboard",
-                    userType: "admin"
+                    userType: "admin",
+                    username: "admin"
                 })
             } 
 
@@ -36,7 +37,8 @@ class Login extends React.Component {
 
                 this.props.history.push({
                     pathname: "./home",
-                    userType: "user"
+                    userType: "user",
+                    username: "user"
                 })
             }
         } else {
