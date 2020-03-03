@@ -13,18 +13,25 @@ class NavBar extends Component {
 
         this.state = {
             serachQuery: '',
-            name: this.props.name,
         }
     }
 
     onProfileClick = e => {
         e.preventDefault()
         //Redirect to page
-        this.props.history.push('/user/' + this.props.name)
+        this.props.history.push({
+            pathname: '/user/' + this.props.username,
+            userType: this.props.userType,
+            username: this.props.username,
+        })
     }
     onHomeClick = e => {
         e.preventDefault()
-        this.props.history.push('/home')
+        this.props.history.push({
+            pathname: '/home',
+            userType: this.props.userType,
+            username: this.props.username,
+        })
     }
 
     updateSearchQuery = e => {
@@ -32,8 +39,17 @@ class NavBar extends Component {
             serachQuery: e.target.value,
         })
     }
+    onAdminClick = e => {
+        e.preventDefault()
+        this.props.history.push({
+            pathname: '/admindashboard',
+            userType: this.props.userType,
+            username: this.props.username,
+        })
+    }
 
     render() {
+        console.log(this.props.userType)
         return (
             <div className="nav">
                 <span className="title">Title</span>
@@ -50,6 +66,9 @@ class NavBar extends Component {
                     />
                 </div>
                 <span className="nav-icons">
+                    {this.props.userType === 'admin' && (
+                        <span onClick={this.onAdminClick}>Admin</span>
+                    )}
                     <IconButton onClick={this.onProfileClick} color="inherit">
                         <AccountCircle />
                     </IconButton>

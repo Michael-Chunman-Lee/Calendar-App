@@ -20,6 +20,11 @@ class Home extends Component {
             },
             posts: [
                 {
+                    name: 'user',
+                    tag: 'Gaming',
+                    title: 'Check out my pro gaming schedule',
+                },
+                {
                     name: 'Robert',
                     tag: 'Fitness',
                     title:
@@ -51,7 +56,10 @@ class Home extends Component {
 
         return (
             <div className="home-main-div">
-                <NavBar name={this.state.name}></NavBar>
+                <NavBar
+                    username={this.props.location.username}
+                    userType={this.props.location.userType}
+                ></NavBar>
                 <div className="home-content">
                     <div className="home-middle-content">
                         <div className="home-filter-toolbar">
@@ -63,7 +71,16 @@ class Home extends Component {
                                 (post, i) =>
                                     (filterTags.includes(post.tag) ||
                                         filterTags.length === 0) && (
-                                        <Post key={i} post={post}></Post>
+                                        <Post
+                                            username={
+                                                this.props.location.username
+                                            }
+                                            userType={
+                                                this.props.location.userType
+                                            }
+                                            key={i}
+                                            post={post}
+                                        ></Post>
                                     )
                             )}
                         </div>
