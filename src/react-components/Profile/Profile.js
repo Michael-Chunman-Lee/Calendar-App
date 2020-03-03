@@ -86,7 +86,12 @@ class Profile extends Component {
                                                 this.props.location.userType
                                             }
                                             key={i}
-                                            post={post}
+                                            post={{
+                                                name: name,
+                                                tag: post.tag,
+                                                title: post.title,
+                                                icsRawText: post.icsRawText,
+                                            }}
                                         ></Post>
                                     )
                             )}
