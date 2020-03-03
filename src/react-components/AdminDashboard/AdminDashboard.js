@@ -13,6 +13,7 @@ class AdminDashboard extends Component {
         this.state = {
             // This information will eventually be obtained from the backend
             // In the meantime, we will use mock objects
+            searchQuery : "",
             users: [
                 {
                     user: 'TheLegend76',
@@ -36,6 +37,15 @@ class AdminDashboard extends Component {
                 },
             ],
         }
+    }
+
+    updateSearchQuery = searchBarText => {
+        this.setState({ searchQuery: searchBarText}) 
+    }
+
+    userPassesSearchQuery = user => {
+        return this.state.searchQuery === "" ||
+            user.user.toLowerCase().includes(this.state.searchQuery.toLowerCase())
     }
 
     redirectToUser(user) {
@@ -66,6 +76,7 @@ class AdminDashboard extends Component {
                 <NavBar
                     username={this.props.location.username}
                     userType={this.props.location.userType}
+                    searchCallback={this.updateSearchQuery}
                 ></NavBar>
                 <p className="pageHeading"> Admin Dashboard </p>
                 <div className="content">
@@ -79,7 +90,7 @@ class AdminDashboard extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.state.users.map((user, i) => (
+                            {this.state.users.map((user, i) => this.userPassesSearchQuery(user) && (
                                 <tr className={user.email}>
                                     <td className="usernameCell">
                                         <button

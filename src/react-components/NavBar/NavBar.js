@@ -12,7 +12,7 @@ class NavBar extends Component {
         super(props)
 
         this.state = {
-            serachQuery: '',
+            searchQuery: '',
         }
     }
 
@@ -35,8 +35,9 @@ class NavBar extends Component {
     }
 
     updateSearchQuery = e => {
+        this.props.searchCallback(e.target.value)
         this.setState({
-            serachQuery: e.target.value,
+            searchQuery: e.target.value,
         })
     }
     onAdminClick = e => {

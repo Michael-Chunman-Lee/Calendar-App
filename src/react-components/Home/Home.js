@@ -13,6 +13,7 @@ class Home extends Component {
 
         //This will represent the currently signed in user data
         this.state = {
+            searchQuery : "",
             tags: {
                 Fitness: false,
                 Gaming: false,
@@ -43,6 +44,17 @@ class Home extends Component {
             ],
         }
     }
+
+    updateSearchQuery = searchBarText => {
+        this.setState({ searchQuery: searchBarText}) 
+    }
+
+    postPassesSearchQuery = post => {
+        return this.state.searchQuery === "" ||
+            post.name.toLowerCase().includes(this.state.searchQuery.toLowerCase()) ||
+            post.title.toLowerCase().includes(this.state.searchQuery.toLowerCase())
+    }
+
     handletagClick = (event, newVal) => {
         let newState = Object.assign({}, this.state)
         newState.tags[newVal] = !newState.tags[newVal]
@@ -64,6 +76,7 @@ class Home extends Component {
                 <NavBar
                     username={this.props.location.username}
                     userType={this.props.location.userType}
+                    searchCallback={this.updateSearchQuery}
                 ></NavBar>
                 <div className="home-content">
                     <div className="home-middle-content">
@@ -72,12 +85,14 @@ class Home extends Component {
                             <span> New </span>
                         </div>
                         <div className="home-posts">
-                            {// This will remap when a different tag is selected
+                            {
+                            
+                            // This will remap when a different tag is selected
                             // since the removal of a post doesn't actually modify a database
                             // the same state is re-used
                             this.state.posts.map(
                                 (post, i) =>
-                                    (filterTags.includes(post.tag) ||
+                                    this.postPassesSearchQuery(post) && (filterTags.includes(post.tag) ||
                                         filterTags.length === 0) && (
                                         <Post
                                             username={
