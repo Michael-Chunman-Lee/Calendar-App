@@ -26,11 +26,20 @@ class Post extends Component {
         e.stopPropagation()
     }
     onPostClick = e => {
-        this.props.history.push({
-            pathname: '../specificPost/*',
-            userType: this.props.location.userType,
-            username: this.props.location.username,
-        })
+        if (this.props.location.userType === "admin") {
+            this.props.history.push({
+                pathname: '../specificPostAdmin/*',
+                userType: this.props.location.userType,
+                username: this.props.location.username,
+            })
+        } else {
+            this.props.history.push({
+                pathname: '../specificPost/*',
+                userType: this.props.location.userType,
+                username: this.props.location.username,
+            })
+        }
+
     }
 
     render() {

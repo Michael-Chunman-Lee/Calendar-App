@@ -6,8 +6,9 @@ import Post from '../Post/Post'
 import RatingForm from './RatingForm'
 import OldRating from './OldRating'
 import { sourceStr } from '../../data/coursesCalendarString'
+import { withRouter } from 'react-router-dom'
 
-export default class SpecificPost extends Component {
+class SpecificPost extends Component {
     constructor(props) {
         super(props)
 
@@ -77,7 +78,7 @@ export default class SpecificPost extends Component {
     render() {
         return (
             <div className="main-div">
-                <NavBar name={this.state.name}></NavBar>
+                <NavBar name={this.state.name} userType={this.props.location.userType} username={this.props.location.username}></NavBar>
                 <div className="content">
                     <div className="middle-content">
                         <div className="posts">
@@ -101,3 +102,5 @@ export default class SpecificPost extends Component {
         )
     }
 }
+
+export default withRouter(SpecificPost)

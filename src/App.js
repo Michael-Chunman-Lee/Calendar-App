@@ -11,7 +11,7 @@ import AdminDashboard from './react-components/AdminDashboard/AdminDashboard'
 import Profile from './react-components/Profile/Profile'
 import UploadPost from './react-components/UploadPost/UploadPost'
 import SpecificPost from './react-components/PostRatings/SpecificPost'
-
+import SpecificPostAdmin from './react-components/PostRatingsAdmin/SpecificPost'
 class App extends React.Component {
     render() {
         return (
@@ -43,6 +43,10 @@ class App extends React.Component {
                         <Route
                             exact path="/specificPost/*"
                             render={() => <SpecificPost />}
+                        />
+                        <Route
+                            exact path="/specificPostAdmin/*"
+                            render={() => <SpecificPostAdmin />}
                         />
                     </Switch>
                 </BrowserRouter>
