@@ -11,6 +11,8 @@ export default class SpecificPost extends Component {
         super(props)
 
         this.state = {
+            // This information will eventually be obtained from the backend
+            // In the meantime, we will use mock objects
             post: {
                     name: 'Robert',
                     tag: 'Fitness',
