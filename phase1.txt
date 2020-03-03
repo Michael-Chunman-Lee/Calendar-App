@@ -1,0 +1,29 @@
+To use the app will require the user install the correct dependencies through npm install and to run the app the user will 
+need to execute npm start.
+
+The app will start up at the sign-up page and to reach the login page, click the link that says "Already a user? Login here". There is also a corresponding
+forgot password page as well (where both the sign-up page and forgot password page has the basic functionality of checking if entered passwords match or
+if the fields are empty).
+
+The user can login using the following credentials:
+username: user
+password: user
+
+If the user wants to login as the admin, they will need to enter the following credentials:
+username: admin
+password: admin
+
+For the user view of the site the user can access the following features:
+- From both the home page and profile page, to view posts the user must either select the top or new button to view all posts sorted either by the top post (sorted by highest
+  view count) or by new (sorted by post date).
+
+- The user can upload posts, in which the upload page can be accessed through a button that says "create a new schedule" from the profile view. In this view,
+  the user can either select the cancel button to return to the home page or upload a post. To upload a post, the user must select one of the valid tags (i.e.
+  Fitness, School, Gaming, Food), enter a non-empty title and upload a post through either dragging and dropping a .ics file into the dropbox or by uploading
+  their .ics schedule by clicking on the box. When the user has entered the correct information, clicking the post button will redirect to the home page with
+  the post now visible.
+
+- The user can also select a post on the home or profile page to be redirected to the specific post view.
+
+From the admin view of the site the user can access the following features:
+- 
