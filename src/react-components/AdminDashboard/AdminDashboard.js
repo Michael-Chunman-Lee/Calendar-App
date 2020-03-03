@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import NavBar from '../NavBar/NavBar'
+import {Link, withRouter} from "react-router-dom";
 import './AdminDashboard.css'
 
 import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close';
 
-export default class AdminDashboard extends Component {
+class AdminDashboard extends Component {
     constructor(props) {
         super(props)
 
@@ -16,6 +17,13 @@ export default class AdminDashboard extends Component {
                                  {user:"anotheruser2", email:"anotheruser2@gmail.com", created:"01/20/2020"}]
             
         }
+    }
+    
+    redirectToUser(user) {
+        this.props.history.push({
+          pathname:"./user/" + user.user,
+          userType: "admin"
+        })
     }
 
     removeUser(user) {
@@ -52,13 +60,13 @@ export default class AdminDashboard extends Component {
                         {this.state.users.map((user, i) => (
                             <tr className={user.email}>
                                 <td className="usernameCell" >
-                                    <form class="cellForm" action="/user/*"><button className="btn">{user.user}</button></form>
+                                    <button onClick={this.redirectToUser.bind(this,user)} className="btn">{user.user}</button>
                                 </td>
                                 <td className="emailCell" >
-                                    <form class="cellForm" action="/user/*"><button className="btn">{user.email}</button></form>
+                                    <button onClick={this.redirectToUser.bind(this,user)} className="btn">{user.email}</button>
                                 </td>
                                 <td className="dateCreatedCell" >
-                                    <form class="cellForm" action="/user/*"><button className="btn" type="submit">{user.created}</button></form>
+                                    <button onClick={this.redirectToUser.bind(this,user)} className="btn" type="submit">{user.created}</button>
                                 </td>
                                 
                                 <td className="removeUserCell">
@@ -75,3 +83,6 @@ export default class AdminDashboard extends Component {
         )
     }
 }
+
+
+export default withRouter(AdminDashboard);
