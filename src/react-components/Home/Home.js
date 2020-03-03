@@ -3,7 +3,7 @@ import NavBar from '../NavBar/NavBar'
 import './Home.css'
 import Post from '../Post/Post'
 import ProfileBox from '../ProfileBox/ProfileBox'
-import FlairBox from '../FlairBox/FlairBox'
+import TagBox from '../TagBox/TagBox'
 import { withRouter } from 'react-router-dom'
 import { sourceStr } from '../../data/coursesCalendarString'
 
@@ -13,7 +13,7 @@ class Home extends Component {
 
         //This will represent the currently signed in user data
         this.state = {
-            flairs: {
+            tags: {
                 Fitness: false,
                 Gaming: false,
                 School: false,
@@ -43,9 +43,9 @@ class Home extends Component {
             ],
         }
     }
-    handleFlairClick = (event, newVal) => {
+    handletagClick = (event, newVal) => {
         let newState = Object.assign({}, this.state)
-        newState.flairs[newVal] = !newState.flairs[newVal]
+        newState.tags[newVal] = !newState.tags[newVal]
         this.setState(newState)
     }
 
@@ -55,8 +55,8 @@ class Home extends Component {
         }
 
         let filterTags = []
-        Object.keys(this.state.flairs).map(
-            k => this.state.flairs[k] && filterTags.push(k)
+        Object.keys(this.state.tags).map(
+            k => this.state.tags[k] && filterTags.push(k)
         )
 
         return (
@@ -94,10 +94,10 @@ class Home extends Component {
                         </div>
                     </div>
                     <div className="home-right-content">
-                        <FlairBox
-                            flairs={this.state.flairs}
-                            handleFlairClick={this.handleFlairClick}
-                        ></FlairBox>
+                        <TagBox
+                            tags={this.state.tags}
+                            handletagClick={this.handletagClick}
+                        ></TagBox>
                     </div>
                 </div>
             </div>

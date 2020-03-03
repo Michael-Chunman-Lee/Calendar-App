@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import './Profile.css'
 import Post from '../Post/Post'
 import ProfileBox from '../ProfileBox/ProfileBox'
-import FlairBox from '../FlairBox/FlairBox'
+import TagBox from '../TagBox/TagBox'
 import Button from '@material-ui/core/Button'
 import { sourceStr } from '../../data/coursesCalendarString'
 
@@ -13,7 +13,7 @@ class Profile extends Component {
         super(props)
 
         this.state = {
-            flairs: {
+            tags: {
                 Fitness: false,
                 Gaming: false,
                 School: false,
@@ -37,9 +37,9 @@ class Profile extends Component {
             ],
         }
     }
-    handleFlairClick = (event, newVal) => {
+    handletagClick = (event, newVal) => {
         let newState = Object.assign({}, this.state)
-        newState.flairs[newVal] = !newState.flairs[newVal]
+        newState.tags[newVal] = !newState.tags[newVal]
         this.setState(newState)
     }
     render() {
@@ -47,8 +47,8 @@ class Profile extends Component {
             this.state.posts.push(this.props.location.uploadedContent)
         }
         let filterTags = []
-        Object.keys(this.state.flairs).map(
-            k => this.state.flairs[k] && filterTags.push(k)
+        Object.keys(this.state.tags).map(
+            k => this.state.tags[k] && filterTags.push(k)
         )
 
         let name
@@ -96,21 +96,24 @@ class Profile extends Component {
                         //Api call to get profile info (if not current user profile)
                     }
                     <div className="right-content">
-                        <Button
-                            id="createScheduleButton"
-                            onClick={e => {
-                                this.props.history.push({
-                                    pathname: '../uploadPost',
-                                    name: this.props.location.username,
-                                })
-                            }}
-                        >
-                            Create a new schedule
-                        </Button>
-                        <FlairBox
-                            flairs={this.state.flairs}
-                            handleFlairClick={this.handleFlairClick}
-                        ></FlairBox>
+                        {this.props.location.username === name && (
+                            <Button
+                                id="createScheduleButton"
+                                onClick={e => {
+                                    this.props.history.push({
+                                        pathname: '../uploadPost',
+                                        name: this.props.location.username,
+                                    })
+                                }}
+                            >
+                                Create a new schedule
+                            </Button>
+                        )}
+
+                        <TagBox
+                            tags={this.state.tags}
+                            handletagClick={this.handletagClick}
+                        ></TagBox>
                         <ProfileBox name={name}></ProfileBox>
                     </div>
                 </div>

@@ -1,10 +1,10 @@
-.flair-box {
+.tag-box {
     margin-bottom: 2%;
     background-color: rgb(253, 253, 253);
     padding: 0;
 }
 
-.flair-list {
+.tag-list {
     display: flex;
     flex-wrap: wrap;
     list-style: none;
@@ -13,6 +13,6 @@
     /* justify-content: space-evenly; */
 }
 
-.flair-button {
+.tag-button {
     margin-top: 1%;
 }
