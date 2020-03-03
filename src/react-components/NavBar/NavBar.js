@@ -68,9 +68,14 @@ class NavBar extends Component {
                     {this.props.userType === 'admin' && (
                         <span onClick={this.onAdminClick}>Admin</span>
                     )}
-                    <IconButton onClick={this.onProfileClick} color="inherit">
-                        <AccountCircle />
-                    </IconButton>
+                    {this.props.userType !== 'admin' && (
+                        <IconButton
+                            onClick={this.onProfileClick}
+                            color="inherit"
+                        >
+                            <AccountCircle />
+                        </IconButton>
+                    )}
                     <IconButton onClick={this.onHomeClick} color="inherit">
                         <HomeIcon />
                     </IconButton>
