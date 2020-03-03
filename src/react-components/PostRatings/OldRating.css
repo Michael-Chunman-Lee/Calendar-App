@@ -1,6 +1,5 @@
 .starTable {
   width:max-content;
-  border-style:groove;
 }
 
 .starForm {
@@ -16,7 +15,6 @@
   height: 80%;
   position: relative;
   top: 12%;
-  border-style:groove;
 }
 
 .formContainer {
@@ -29,8 +27,8 @@
   text-align: left;
 }
 
-.reviewForm {
-  border-style:groove;
+.oldRatingForm {
+  width: 100%;
 }
 
 .buttonContainer {

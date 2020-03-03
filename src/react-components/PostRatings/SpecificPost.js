@@ -5,6 +5,7 @@ import Post from '../Post/Post'
 
 import RatingForm from './RatingForm'
 import OldRating from './OldRating'
+import { sourceStr } from '../../data/coursesCalendarString'
 
 export default class SpecificPost extends Component {
     constructor(props) {
@@ -18,6 +19,7 @@ export default class SpecificPost extends Component {
                     tag: 'Fitness',
                     title:
                         'My Grandfather turns the big 100 today!! Checkout his workout schedule!!',
+                    icsRawText: sourceStr
                 },
 
             ratingLabels: ["Workload", "Interest", "Timing"],

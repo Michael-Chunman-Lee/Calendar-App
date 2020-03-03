@@ -1,6 +1,5 @@
 .starTable {
   width:max-content;
-  border-style:groove;
 }
 
 .starForm {
@@ -37,9 +36,6 @@ form {
   text-align: left;
 }
 
-.reviewForm {
-  border-style:groove;
-}
 
 .buttonContainer {
   display:flex;
