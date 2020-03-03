@@ -24,6 +24,7 @@ class Home extends Component {
                     name: 'user',
                     tag: 'Gaming',
                     title: 'Check out my pro gaming schedule',
+                    icsRawText: sourceStr
                 },
                 {
                     name: 'Robert',

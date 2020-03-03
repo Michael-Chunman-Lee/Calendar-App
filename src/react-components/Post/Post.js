@@ -11,7 +11,7 @@ export default class Post extends Component {
                 name: this.props.post.name,
                 tag: this.props.post.tag,
                 title: this.props.post.title,
-                icsRawText: this.props.icsRawText,
+                icsRawText: this.props.post.icsRawText,
             },
         }
     }
