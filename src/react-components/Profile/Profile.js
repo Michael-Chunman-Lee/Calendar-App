@@ -22,8 +22,8 @@ class Profile extends Component {
             },
             sortPosts: {
                 Top: false,
-                New: false
-            }, 
+                New: false,
+            },
             name: 'Robert',
             posts: [
                 {
@@ -41,7 +41,7 @@ class Profile extends Component {
                         'My Grandfather turns the big 100 today!! Checkout his workout schedule!!',
                     icsRawText: sourceStr,
                     date: new Date(2019, 11, 24, 10, 33, 30, 0),
-                    viewCount: 10
+                    viewCount: 10,
                 },
                 {
                     name: this.props.location.username,
@@ -49,7 +49,7 @@ class Profile extends Component {
                     title: 'I love UofT! Checkout my 4th year schedule!!',
                     icsRawText: sourceStr,
                     date: new Date(2016, 11, 24, 10, 33, 30, 0),
-                    viewCount: 1000000
+                    viewCount: 1000000,
                 },
             ],
         }
@@ -65,22 +65,23 @@ class Profile extends Component {
     }
 
     handleSortClick = (event, newVal) => {
-        if ((this.state.sortPosts["Top"] && newVal === "New") || (this.state.sortPosts["New"] && newVal === "Top")) return;
-        let newState = Object.assign({}, this.state);
+        if (
+            (this.state.sortPosts['Top'] && newVal === 'New') ||
+            (this.state.sortPosts['New'] && newVal === 'Top')
+        )
+            return
+        let newState = Object.assign({}, this.state)
         newState.sortPosts[newVal] = !newState.sortPosts[newVal]
-        if (newState.sortPosts["Top"]) {
-            newState.posts.sort((a,b) => b.viewCount - a.viewCount)
-        } else if (newState.sortPosts["New"]) {
-            newState.posts.sort((a,b) => b.date - a.date);
+        if (newState.sortPosts['Top']) {
+            newState.posts.sort((a, b) => b.viewCount - a.viewCount)
+        } else if (newState.sortPosts['New']) {
+            newState.posts.sort((a, b) => b.date - a.date)
         }
         this.setState(newState)
     }
-    onPostClick = (e) => {
-        this.props.history.push("../specificPost/*")
-    }
 
     checkSortClicked = () => {
-        return (this.state.sortPosts["Top"] || this.state.sortPosts["New"])
+        return this.state.sortPosts['Top'] || this.state.sortPosts['New']
     }
 
     render() {
@@ -105,7 +106,10 @@ class Profile extends Component {
                 <div className="content">
                     <div className="middle-content">
                         <div className="filter-toolbar">
-                            <SortBox sortPosts={this.state.sortPosts} handleSortClick={this.handleSortClick}/>
+                            <SortBox
+                                sortPosts={this.state.sortPosts}
+                                handleSortClick={this.handleSortClick}
+                            />
                         </div>
                         {
                             //Will need API calls to get posts based on filter
@@ -113,7 +117,8 @@ class Profile extends Component {
                         <div className="posts">
                             {this.state.posts.map(
                                 (post, i) =>
-                                this.checkSortClicked() && (filterTags.includes(post.tag) ||
+                                    this.checkSortClicked() &&
+                                    (filterTags.includes(post.tag) ||
                                         filterTags.length === 0) && (
                                         <Post
                                             username={
@@ -124,14 +129,14 @@ class Profile extends Component {
                                             }
                                             key={i}
                                             post={{
-                                                name: this.props.location.username,
+                                                name: this.props.location
+                                                    .username,
                                                 tag: post.tag,
                                                 title: post.title,
                                                 icsRawText: post.icsRawText,
                                                 viewCount: post.viewCount,
-                                                date: post.date
+                                                date: post.date,
                                             }}
-                                            onPostClick={this.onPostClick}
                                         ></Post>
                                     )
                             )}
@@ -149,7 +154,7 @@ class Profile extends Component {
                                         pathname: '../uploadPost',
                                         name: this.props.location.username,
                                         userType: this.props.location.userType,
-                                        username: this.props.location.username
+                                        username: this.props.location.username,
                                     })
                                 }}
                             >

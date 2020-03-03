@@ -14,21 +14,29 @@ class Post extends Component {
                 title: this.props.post.title,
                 icsRawText: this.props.post.icsRawText,
                 viewCount: this.props.post.viewCount,
-                date: this.props.post.date
+                date: this.props.post.date,
             },
         }
     }
 
-    onDeleteClick = () => {
+    onDeleteClick = e => {
         // This will be an API call that will remove the post from the
         // database
         this.setState({ post: undefined })
+        e.stopPropagation()
+    }
+    onPostClick = e => {
+        this.props.history.push({
+            pathname: '../specificPost/*',
+            userType: this.props.location.userType,
+            username: this.props.location.username,
+        })
     }
 
     render() {
         return (
             (this.state.post && (
-                <div className="post-container" onClick={this.props.onPostClick}>
+                <div className="post-container" onClick={this.onPostClick}>
                     {(this.props.username === this.state.post.name ||
                         this.props.userType === 'admin') && (
                         <span className="post-del-button">
@@ -44,7 +52,10 @@ class Post extends Component {
                             View count: {this.state.post.viewCount}
                         </span>
                         <span className="post-tag">
-                            Date posted: {this.state.post.date.toISOString().substring(0,10)}
+                            Date posted:{' '}
+                            {this.state.post.date
+                                .toISOString()
+                                .substring(0, 10)}
                         </span>
                     </div>
 

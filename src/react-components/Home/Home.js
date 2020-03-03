@@ -14,7 +14,7 @@ class Home extends Component {
 
         //This will represent the currently signed in user data
         this.state = {
-            searchQuery : "",
+            searchQuery: '',
             tags: {
                 Fitness: false,
                 Gaming: false,
@@ -23,8 +23,8 @@ class Home extends Component {
             },
             sortPosts: {
                 Top: false,
-                New: false
-            },        
+                New: false,
+            },
             //This will be filled via an api call
             posts: [
                 {
@@ -42,7 +42,7 @@ class Home extends Component {
                         'My Grandfather turns the big 100 today!! Checkout his workout schedule!!',
                     icsRawText: sourceStr,
                     date: new Date(2019, 11, 24, 10, 33, 30, 0),
-                    viewCount: 10
+                    viewCount: 10,
                 },
                 {
                     name: 'Robert 2',
@@ -50,7 +50,7 @@ class Home extends Component {
                     title: 'I love UofT! Checkout my 4th year schedule!!',
                     icsRawText: sourceStr,
                     date: new Date(2016, 11, 24, 10, 33, 30, 0),
-                    viewCount: 1000000
+                    viewCount: 1000000,
                 },
             ],
         }
@@ -59,18 +59,20 @@ class Home extends Component {
         }
     }
 
-    onPostClick = (e) => {
-        this.props.history.push("../specificPost/*")
-    }
-
     updateSearchQuery = searchBarText => {
-        this.setState({ searchQuery: searchBarText}) 
+        this.setState({ searchQuery: searchBarText })
     }
 
     postPassesSearchQuery = post => {
-        return this.state.searchQuery === "" ||
-            post.name.toLowerCase().includes(this.state.searchQuery.toLowerCase()) ||
-            post.title.toLowerCase().includes(this.state.searchQuery.toLowerCase())
+        return (
+            this.state.searchQuery === '' ||
+            post.name
+                .toLowerCase()
+                .includes(this.state.searchQuery.toLowerCase()) ||
+            post.title
+                .toLowerCase()
+                .includes(this.state.searchQuery.toLowerCase())
+        )
     }
 
     handletagClick = (event, newVal) => {
@@ -80,23 +82,26 @@ class Home extends Component {
     }
 
     handleSortClick = (event, newVal) => {
-        if ((this.state.sortPosts["Top"] && newVal === "New") || (this.state.sortPosts["New"] && newVal === "Top")) return;
-        let newState = Object.assign({}, this.state);
+        if (
+            (this.state.sortPosts['Top'] && newVal === 'New') ||
+            (this.state.sortPosts['New'] && newVal === 'Top')
+        )
+            return
+        let newState = Object.assign({}, this.state)
         newState.sortPosts[newVal] = !newState.sortPosts[newVal]
-        if (newState.sortPosts["Top"]) {
-            newState.posts.sort((a,b) => b.viewCount - a.viewCount)
-        } else if (newState.sortPosts["New"]) {
-            newState.posts.sort((a,b) => b.date - a.date);
+        if (newState.sortPosts['Top']) {
+            newState.posts.sort((a, b) => b.viewCount - a.viewCount)
+        } else if (newState.sortPosts['New']) {
+            newState.posts.sort((a, b) => b.date - a.date)
         }
         this.setState(newState)
     }
 
     checkSortClicked = () => {
-        return (this.state.sortPosts["Top"] || this.state.sortPosts["New"])
+        return this.state.sortPosts['Top'] || this.state.sortPosts['New']
     }
 
     render() {
-
         let filterTags = []
         Object.keys(this.state.tags).map(
             k => this.state.tags[k] && filterTags.push(k)
@@ -112,17 +117,20 @@ class Home extends Component {
                 <div className="home-content">
                     <div className="home-middle-content">
                         <div className="home-filter-toolbar">
-                            <SortBox sortPosts={this.state.sortPosts} handleSortClick={this.handleSortClick}/>
+                            <SortBox
+                                sortPosts={this.state.sortPosts}
+                                handleSortClick={this.handleSortClick}
+                            />
                         </div>
                         <div className="home-posts">
-                            {
-                            
-                            // This will remap when a different tag is selected
+                            {// This will remap when a different tag is selected
                             // since the removal of a post doesn't actually modify a database
                             // the same state is re-used
                             this.state.posts.map(
                                 (post, i) =>
-                                    this.checkSortClicked() && this.postPassesSearchQuery(post) && (filterTags.includes(post.tag) ||
+                                    this.checkSortClicked() &&
+                                    this.postPassesSearchQuery(post) &&
+                                    (filterTags.includes(post.tag) ||
                                         filterTags.length === 0) && (
                                         <Post
                                             username={
@@ -133,7 +141,6 @@ class Home extends Component {
                                             }
                                             key={i}
                                             post={post}
-                                            onPostClick={this.onPostClick}
                                         ></Post>
                                     )
                             )}
