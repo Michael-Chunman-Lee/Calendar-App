@@ -75,6 +75,9 @@ class Profile extends Component {
         }
         this.setState(newState)
     }
+    onPostClick = (e) => {
+        this.props.history.push("../specificPost/*")
+    }
 
     checkSortClicked = () => {
         return (this.state.sortPosts["Top"] || this.state.sortPosts["New"])
@@ -128,6 +131,7 @@ class Profile extends Component {
                                                 viewCount: post.viewCount,
                                                 date: post.date
                                             }}
+                                            onPostClick={this.onPostClick}
                                         ></Post>
                                     )
                             )}

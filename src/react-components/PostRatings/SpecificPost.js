@@ -19,7 +19,9 @@ export default class SpecificPost extends Component {
                     tag: 'Fitness',
                     title:
                         'My Grandfather turns the big 100 today!! Checkout his workout schedule!!',
-                    icsRawText: sourceStr
+                    icsRawText: sourceStr,
+                    date: new Date(2019, 11, 24, 10, 33, 30, 0),
+                    viewCount: 10
                 },
 
             ratingLabels: ["Workload", "Interest", "Timing"],
@@ -35,6 +37,10 @@ export default class SpecificPost extends Component {
         }
     }
 
+    onPostClick = (e) => {
+        return;
+    }
+    
     submithandler() {
 
    
@@ -75,7 +81,7 @@ export default class SpecificPost extends Component {
                 <div className="content">
                     <div className="middle-content">
                         <div className="posts">
-                            <Post post={this.state.post}></Post>
+                            <Post post={this.state.post} onPostClick={this.postClick}></Post>
                         </div>
 
                         <RatingForm ratingLabels={this.state.ratingLabels} submithandler={this.submithandler.bind(this)}></RatingForm>

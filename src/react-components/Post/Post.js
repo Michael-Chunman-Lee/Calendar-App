@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import './Post.css'
 import ScheduleCalendar from '../Calendar/Calendar'
 import { MdClose } from 'react-icons/md'
-export default class Post extends Component {
+import { withRouter } from 'react-router-dom'
+class Post extends Component {
     constructor(props) {
         super(props)
 
@@ -27,7 +28,7 @@ export default class Post extends Component {
     render() {
         return (
             (this.state.post && (
-                <div className="post-container">
+                <div className="post-container" onClick={this.props.onPostClick}>
                     {(this.props.username === this.state.post.name ||
                         this.props.userType === 'admin') && (
                         <span className="post-del-button">
@@ -60,3 +61,5 @@ export default class Post extends Component {
         )
     }
 }
+
+export default withRouter(Post)

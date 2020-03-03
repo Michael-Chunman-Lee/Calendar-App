@@ -59,6 +59,10 @@ class Home extends Component {
         }
     }
 
+    onPostClick = (e) => {
+        this.props.history.push("../specificPost/*")
+    }
+
     updateSearchQuery = searchBarText => {
         this.setState({ searchQuery: searchBarText}) 
     }
@@ -129,6 +133,7 @@ class Home extends Component {
                                             }
                                             key={i}
                                             post={post}
+                                            onPostClick={this.onPostClick}
                                         ></Post>
                                     )
                             )}
