@@ -17,7 +17,6 @@ import { SnackbarContent } from "@material-ui/core";
 class UploadPost extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props.location.username)
     this.state = {
       title: "",
       tag: "Fitness",

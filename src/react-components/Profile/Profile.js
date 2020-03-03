@@ -73,7 +73,6 @@ class Profile extends Component {
         } else if (newState.sortPosts["New"]) {
             newState.posts.sort((a,b) => b.date - a.date);
         }
-        console.log(newState.posts)
         this.setState(newState)
     }
 
