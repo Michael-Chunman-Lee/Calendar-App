@@ -52,7 +52,10 @@ class Profile extends Component {
         )
         return (
             <div className="main-div">
-                <NavBar name={this.state.name}></NavBar>
+                <NavBar
+                    username={this.props.location.username}
+                    userType={this.props.location.userType}
+                ></NavBar>
                 <div className="content">
                     <div className="middle-content">
                         <div className="filter-toolbar">
@@ -67,7 +70,16 @@ class Profile extends Component {
                                 (post, i) =>
                                     (filterTags.includes(post.tag) ||
                                         filterTags.length === 0) && (
-                                        <Post key={i} post={post}></Post>
+                                        <Post
+                                            username={
+                                                this.props.location.username
+                                            }
+                                            userType={
+                                                this.props.location.userType
+                                            }
+                                            key={i}
+                                            post={post}
+                                        ></Post>
                                     )
                             )}
                         </div>
@@ -91,7 +103,9 @@ class Profile extends Component {
                             flairs={this.state.flairs}
                             handleFlairClick={this.handleFlairClick}
                         ></FlairBox>
-                        <ProfileBox name={this.state.name}></ProfileBox>
+                        <ProfileBox
+                            name={this.props.location.username}
+                        ></ProfileBox>
                     </div>
                 </div>
             </div>

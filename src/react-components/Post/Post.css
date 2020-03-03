@@ -22,3 +22,8 @@
     display: flex;
     justify-content: space-between;
 }
+
+.post-del-button {
+    margin-bottom: 1%;
+    float: right;
+}
