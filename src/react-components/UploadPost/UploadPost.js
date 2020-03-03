@@ -24,7 +24,8 @@ class UploadPost extends Component {
             fileName: "Drag and drop your schedule here, or click to select your schedule",
             icsRawText: null,
             open: false,
-            name: this.props.location.name
+            name: this.props.location.name,
+            errorMessage: ""
         }
     }
 
@@ -59,16 +60,14 @@ class UploadPost extends Component {
 
     onPostClick = e => {
         if (this.state.icsRawText === null) {
-            this.setState({open: true});
+            this.setState({errorMessage: "You have not yet uploaded a schedule!", open: true});
+            return
+        } else if (this.state.title === "") {
+            this.setState({errorMessage: "You must enter a title!", open: true});
             return
         }
         //Will need to make a call to a database to store the new schedule
 
-        //In your home page, the uploadedContent will be available in this.props.location.uploadedContent
-        //If the this.props.location.uploadedContent is undefined, then this means that the user has not actually
-        //uploaded anything (i.e. redirected from login or clicked cancel on upload post page, etc...)
-        //For the icsRawText, you will need to pass it into delmar's calendar component so it can be parsed and be displayed
-        //on the calendar component
         this.props.history.push({
             pathname: "./home",
             uploadedContent: {
@@ -138,7 +137,7 @@ class UploadPost extends Component {
                     >
                         <SnackbarContent 
                             id="snackBarStyle"
-                            message="You have not yet uploaded a schedule!"
+                            message={this.state.errorMessage}
                             action={
                                 <React.Fragment>
                                     <IconButton size="small" aria-label="close" color="inherit" onClick={this.onHandleSnackBarClose}>

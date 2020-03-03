@@ -12,7 +12,7 @@ class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: "",
+            username: "",
             password: "",
             open: false,
         }
@@ -21,15 +21,23 @@ class Login extends React.Component {
 
     validateLogin = () =>{
         //Dummy data below will be replaced with calls to a server-side database api
-        if (this.state.email === "admin") {
+        if (this.state.username === "admin") {
             if (this.state.password === "admin") {
                 //Send user to admin dashboard
-                this.props.history.push("./admindashboard")
+                this.props.history.push({
+                    pathname: "./admindashboard",
+                    userType: "admin"
+                })
             } 
-        } else if (this.state.email === "user") {
+
+        } else if (this.state.username === "user") {
             if (this.state.password === "user") {
                 //Send user to user dashboard
-                this.props.history.push("./home")
+
+                this.props.history.push({
+                    pathname: "./home",
+                    userType: "user"
+                })
             }
         } else {
             this.setState({open: true});
@@ -61,11 +69,11 @@ class Login extends React.Component {
 
                     <input 
                         className="loginInput"
-                        name="Email"
-                        placeholder="Email"
+                        name="username"
+                        placeholder="Username"
                         type="text"
                         onChange={e => {
-                            this.setState({email: e.target.value});
+                            this.setState({username: e.target.value});
                         }}
                     />
                     <br/> <br/>
