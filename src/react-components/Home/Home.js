@@ -5,7 +5,7 @@ import Post from '../Post/Post'
 import ProfileBox from '../ProfileBox/ProfileBox'
 import FlairBox from '../FlairBox/FlairBox'
 import { withRouter } from 'react-router-dom'
-import {sourceStr} from '../../data/coursesCalendarString';
+import { sourceStr } from '../../data/coursesCalendarString'
 
 class Home extends Component {
     constructor(props) {
@@ -19,25 +19,26 @@ class Home extends Component {
                 School: false,
                 Food: false,
             },
+            //This will be filled via an api call
             posts: [
                 {
                     name: 'user',
                     tag: 'Gaming',
                     title: 'Check out my pro gaming schedule',
-                    icsRawText: sourceStr
+                    icsRawText: sourceStr,
                 },
                 {
                     name: 'Robert',
                     tag: 'Fitness',
                     title:
                         'My Grandfather turns the big 100 today!! Checkout his workout schedule!!',
-                    icsRawText: sourceStr
+                    icsRawText: sourceStr,
                 },
                 {
                     name: 'Robert 2',
                     tag: 'School',
                     title: 'I love UofT! Checkout my 4th year schedule!!',
-                    icsRawText: sourceStr
+                    icsRawText: sourceStr,
                 },
             ],
         }
@@ -71,7 +72,10 @@ class Home extends Component {
                             <span> New </span>
                         </div>
                         <div className="home-posts">
-                            {this.state.posts.map(
+                            {// This will remap when a different tag is selected
+                            // since the removal of a post doesn't actually modify a database
+                            // the same state is re-used
+                            this.state.posts.map(
                                 (post, i) =>
                                     (filterTags.includes(post.tag) ||
                                         filterTags.length === 0) && (

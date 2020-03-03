@@ -17,6 +17,8 @@ export default class Post extends Component {
     }
 
     onDeleteClick = () => {
+        // This will be an API call that will remove the post from the
+        // database
         this.setState({ post: undefined })
     }
 

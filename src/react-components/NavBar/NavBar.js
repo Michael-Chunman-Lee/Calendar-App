@@ -49,7 +49,6 @@ class NavBar extends Component {
     }
 
     render() {
-        console.log(this.props.userType)
         return (
             <div className="nav">
                 <span className="title">Title</span>
