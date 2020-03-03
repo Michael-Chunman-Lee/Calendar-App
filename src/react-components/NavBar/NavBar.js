@@ -35,7 +35,9 @@ class NavBar extends Component {
     }
 
     updateSearchQuery = e => {
-        this.props.searchCallback(e.target.value)
+        if (this.props.searchCallback){
+            this.props.searchCallback(e.target.value)
+        }
         this.setState({
             searchQuery: e.target.value,
         })
@@ -53,7 +55,7 @@ class NavBar extends Component {
         return (
             <div className="nav">
                 <span className="title">Title</span>
-                <div className="search">
+                {(!this.props.noSearchBar) && (<div className="search">
                     <div className="search-icon">
                         <IconButton>
                             <SearchIcon></SearchIcon>
@@ -64,7 +66,7 @@ class NavBar extends Component {
                         onChange={this.updateSearchQuery}
                         inputProps={{ 'aria-label': 'search' }}
                     />
-                </div>
+                </div>)}
                 <span className="nav-icons">
                     {this.props.userType === 'admin' && (
                         <span onClick={this.onAdminClick}>Admin</span>

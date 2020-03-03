@@ -77,6 +77,7 @@ class AdminDashboard extends Component {
                     username={this.props.location.username}
                     userType={this.props.location.userType}
                     searchCallback={this.updateSearchQuery}
+                    noSearchBar={true}
                 ></NavBar>
                 <p className="pageHeading"> Admin Dashboard </p>
                 <div className="content">
