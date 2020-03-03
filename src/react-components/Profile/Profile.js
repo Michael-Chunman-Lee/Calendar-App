@@ -108,6 +108,8 @@ class Profile extends Component {
                                     this.props.history.push({
                                         pathname: '../uploadPost',
                                         name: this.props.location.username,
+                                        userType: this.props.location.userType,
+                                        username: this.props.location.username
                                     })
                                 }}
                             >
