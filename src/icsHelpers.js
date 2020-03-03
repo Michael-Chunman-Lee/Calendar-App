@@ -1,13 +1,12 @@
 import moment from "moment";
 import ical from 'ical';
-import {sourceStr} from './data/coursesCalendarString';
 
 export default function parseEventsFromICS(source) {
     const events = []
     // Eventually should be parsed from file on server side, since fs cant run in browser
     //const data = ical.parseFile(source)
     
-    const data = ical.parseICS(sourceStr)
+    const data = ical.parseICS(source)
     for (let k in data) {
         // Range of Dates to query against, to handle potentially infinitely recurring events
         const rangeStart = moment("2017-01-01");

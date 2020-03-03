@@ -5,6 +5,7 @@ import Post from '../Post/Post'
 import ProfileBox from '../ProfileBox/ProfileBox'
 import FlairBox from '../FlairBox/FlairBox'
 import { withRouter } from 'react-router-dom'
+import {sourceStr} from '../../data/coursesCalendarString';
 
 class Home extends Component {
     constructor(props) {
@@ -24,11 +25,13 @@ class Home extends Component {
                     tag: 'Fitness',
                     title:
                         'My Grandfather turns the big 100 today!! Checkout his workout schedule!!',
+                    icsRawText: sourceStr
                 },
                 {
                     name: 'Robert 2',
                     tag: 'School',
                     title: 'I love UofT! Checkout my 4th year schedule!!',
+                    icsRawText: sourceStr
                 },
             ],
         }

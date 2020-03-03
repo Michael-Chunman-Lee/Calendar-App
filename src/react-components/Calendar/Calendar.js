@@ -15,15 +15,11 @@ class ScheduleCalendar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            source_file: "src/data/couresCalendar.ics",
-            events: [
-              ]
+            events: parseEventsFromICS(this.props.icsRawText)
         }   
     }
 
     render() {
-        this.state.events = parseEventsFromICS(this.state.source_file)
-
         return (
             <div className="Calendar">
             <Calendar
