@@ -89,9 +89,6 @@ export default class SpecificPost extends Component {
                             )}
                         </div>
                     </div>
-                    {
-                        //Api call to get profile info (if not current user profile)
-                    }
                 </div>
 
             </div>
