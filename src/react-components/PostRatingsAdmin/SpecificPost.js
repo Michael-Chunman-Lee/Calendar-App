@@ -21,6 +21,7 @@ export default class SpecificPost extends Component {
                     tag: 'Fitness',
                     title:
                         'My Grandfather turns the big 100 today!! Checkout his workout schedule!!',
+                    icsRawText: sourceStr,
                 },
 
             ratingLabels: ["Workload", "Interest", "Timing"],
@@ -107,9 +108,6 @@ export default class SpecificPost extends Component {
                             )}
                         </div>
                     </div>
-                    {
-                        //Api call to get profile info (if not current user profile)
-                    }
                 </div>
 
             </div>
