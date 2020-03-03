@@ -11,6 +11,8 @@ class AdminDashboard extends Component {
         super(props)
 
         this.state = {
+            // This information will eventually be obtained from the backend
+            // In the meantime, we will use mock objects
             users: [
                 {
                     user: 'TheLegend76',
