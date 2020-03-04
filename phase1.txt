@@ -15,7 +15,8 @@ password: admin
 
 For the user view of the site the user can access the following features:
 - From both the home page and profile page, to view posts the user must either select the top or new button to view all posts sorted either by the top post (sorted by highest
-  view count) or by new (sorted by post date).
+  view count) or by new (sorted by post date). Note, to resort the posts (i.e. switch from sorting new posts to top posts), the user must
+  deselect the current sorted option (i.e. top or new) to select a different way to sort the posts.
 
 - The user can upload posts, in which the upload page can be accessed through a button that says "create a new schedule" from the profile view. In this view,
   the user can either select the cancel button to return to the home page or upload a post. To upload a post, the user must select one of the valid tags (i.e.
