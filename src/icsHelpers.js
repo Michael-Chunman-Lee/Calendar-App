@@ -69,9 +69,9 @@ export default function parseEventsFromICS(source) {
                 for(let i in dates) {
     
                     const date = dates[i];
-                    const curEvent = event;
+                    let curEvent = event;
                     let showRecurrence = true;
-                    const curDuration = duration;
+                    let curDuration = duration;
     
                     startDate = moment(date);
     

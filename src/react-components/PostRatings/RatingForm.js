@@ -4,12 +4,6 @@ import StarRatings from "./StarRatings";
 import Button from "@material-ui/core/Button";
 
 export default class PostRatings extends Component {
-    constructor(props) {
-        super(props);
-
-    }
-
-
 
     render() {
         console.log(this.props.ratingLabels[0]);
