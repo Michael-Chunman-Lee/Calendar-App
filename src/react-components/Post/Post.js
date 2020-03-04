@@ -26,7 +26,7 @@ class Post extends Component {
         e.stopPropagation()
     }
     onPostClick = e => {
-        if (this.props.location.userType === "admin") {
+        if (this.props.location.userType === 'admin') {
             this.props.history.push({
                 pathname: '../specificPostAdmin/*',
                 userType: this.props.location.userType,
@@ -39,7 +39,10 @@ class Post extends Component {
                 username: this.props.location.username,
             })
         }
+    }
 
+    onCalendarClick = e => {
+        e.stopPropagation()
     }
 
     render() {
@@ -71,7 +74,7 @@ class Post extends Component {
                     <div className="post-title">
                         <h2>{this.state.post.title}</h2>
                     </div>
-                    <span>
+                    <span onClick={this.onCalendarClick}>
                         <ScheduleCalendar
                             icsRawText={this.state.post.icsRawText}
                         ></ScheduleCalendar>
