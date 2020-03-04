@@ -26,7 +26,7 @@ For the user view of the site the user can access the following features:
 - The user can also select a post on the home or profile page to be redirected to the specific post view.
 
 - Users can filter posts by tags, keep in mind that, for phase 1, when a post is deleted and a tag is selected the posts are reset and as a result, deleted posts reappear.
-  This is because in the future it will be an API call that modifies the database of posts.
+  This is because the state of posts is reused, in the future it will be an API call that modifies the database of posts.
 
 - Users can also use the search bar on the top navigation bar to search for posts on the home or profile pages. As the user types in the search bar,
   only posts whose title or creator's username that contain the text in the search bar will appear, and the others fill be filtered out.
@@ -42,6 +42,7 @@ From the admin view of the site the user can access the following features:
 
 - Each post/schedule will have ratings by users of the site. The admin will be able to remove such ratings when visiting a specific post, similar to how most sites have moderation for inappropriate comments and such.
 
+- Admins can also delete a post on the homepage or a user's profile.
 
 
 
