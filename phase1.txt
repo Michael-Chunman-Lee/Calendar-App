@@ -38,7 +38,9 @@ For the user view of the site the user can access the following features:
 
 From the admin view of the site the user can access the following features:
 - The admin dashboard, which will eventually list all the users registered to the site. For each user, the admin will be able to go directly to their profile page by clicking on the user's respective row in the dashboard. Moreover, the X button beside each user is for when the admin decides to remove a user from the site.
+
 - Admins can search for specific users by username on the admin dashbaord using the search bar on the top navigation bar to search for specific users. As the admin types, only users whose usernames contain the text in the search bar wil remain visible.
+
 - Each post/schedule will have ratings by users of the site. The admin will be able to remove such ratings when visiting a specific post, similar to how most sites have moderation for inappropriate comments and such.
 
 
