@@ -19,13 +19,14 @@ const StarRating = (props) => {
               let isDisabled;
               if (props.rating) {isDisabled = true} else {isDisabled=false}
                 return (
-                    <label>
+                    <label key={i}>
                         <input type="radio" className="stars"
                                value={ratingValue}
                                disabled={isDisabled}
                                onClick={() => setRating(ratingValue)}
                         />
                         <FaStar
+                            
                             className="star"
                             color={ratingValue <= (hover || rating) ? "#00b0f0" : "#eaf6ff" }
                             size={20}
