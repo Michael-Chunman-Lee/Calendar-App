@@ -26,6 +26,7 @@ class Profile extends Component {
                 New: false,
             },
             name: 'Robert',
+            //Api call will need to be made to retrieve this data from a database
             posts: [
                 {
                     id: 0,
@@ -136,7 +137,10 @@ class Profile extends Component {
                             //Will need API calls to get posts based on filter
                         }
                         <div className="posts">
-                            {this.state.posts.map(
+                            {
+                            // This will remap when a different tag is selected
+                            // since the removal of a post doesn't actually modify a database
+                            // the same state is re-usedthis.state.posts.map(
                                 (post, i) =>
                                     this.checkSortClicked() && this.postPassesSearchQuery(post) && 
                                     (filterTags.includes(post.tag) ||

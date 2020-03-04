@@ -11,7 +11,6 @@ class Home extends Component {
     constructor(props) {
         super(props)
 
-        //This will represent the currently signed in user data
         this.state = {
             searchQuery: '',
             tags: {
@@ -24,7 +23,7 @@ class Home extends Component {
                 Top: false,
                 New: false,
             },
-            //This will be filled via an api call
+            //An Api call will be made in the future to retrieve this data from a database
             posts: [
                 {
                     id: 0,
