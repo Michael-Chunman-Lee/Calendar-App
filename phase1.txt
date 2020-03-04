@@ -42,6 +42,7 @@ From the admin view of the site the user can access the following features:
 
 - Each post/schedule will have ratings by users of the site. The admin will be able to remove such ratings when visiting a specific post, similar to how most sites have moderation for inappropriate comments and such.
 
+- Admins can also delete a post on the homepage or a user's profile.
 
 
 
