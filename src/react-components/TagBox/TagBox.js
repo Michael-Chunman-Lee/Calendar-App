@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import './TagBox.css'
 import ToggleButton from '@material-ui/lab/ToggleButton'
-import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup'
 
 export default class TagBox extends Component {
     constructor(props) {

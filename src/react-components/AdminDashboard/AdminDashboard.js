@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import NavBar from '../NavBar/NavBar'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import './AdminDashboard.css'
 
 import IconButton from '@material-ui/core/IconButton'

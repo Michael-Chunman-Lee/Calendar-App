@@ -1,5 +1,5 @@
-To use the app will require the user install the correct dependencies through npm install and to run the app the user will 
-need to execute npm start.
+To use the app will require the user install the correct dependencies through 'npm install' and to run the app the user will 
+need to execute 'npm start' from the team39 directory.
 
 The app will start up at the sign-up page and to reach the login page, click the link that says "Already a user? Login here". There is also a corresponding
 forgot password page as well (where both the sign-up page and forgot password page has the basic functionality of checking if entered passwords match or
@@ -20,21 +20,25 @@ For the user view of the site the user can access the following features:
 
 - The user can upload posts, in which the upload page can be accessed through a button that says "create a new schedule" from the profile view. In this view,
   the user can either select the cancel button to return to the home page or upload a post. To upload a post, the user must select one of the valid tags (i.e.
-  Fitness, School, Gaming, Food), enter a non-empty title and upload a post through either dragging and dropping a .ics file into the dropbox or by uploading
+  Fitness, School, Gaming, Food), enter a non-empty title and upload a post through either dragging and dropping a valid .ics file into the dropbox or by uploading
   their .ics schedule by clicking on the box. When the user has entered the correct information, clicking the post button will redirect to the home page with
-  the post now visible.
+  the post now visible. For testing purposes, a valid .ics file has been included under src/data/coursesCalendar.ics, but other valid ics files will work as well.
 
 - The user can also select a post on the home or profile page to be redirected to the specific post view.
 
-- Users can filter posts by tags, keep in mind that when a post is deleted and a tag is selected the posts are reset and as a result, deleted posts reappear.
+- Users can filter posts by tags, keep in mind that, for phase 1, when a post is deleted and a tag is selected the posts are reset and as a result, deleted posts reappear.
   This is because in the future it will be an API call that modifies the database of posts.
 
-- The user can delete their own posts (ones that have their name on the left), since all posts on the profile view are the users, they can delete all.
+- Users can also use the search bar on the top navigation bar to search for posts on the home or profile pages. As the user types in the search bar,
+  only posts whose title or creator's username that contain the text in the search bar will appear, and the others fill be filtered out.
+
+- The user can delete their own posts (ones that have their name on the left), since all posts on the profile view are the users, they can delete them all.
 
 - Users are able to view schedules created by users of the site and are able to leave a rating and additional thoughts for each of them.
 
 From the admin view of the site the user can access the following features:
 - The admin dashboard, which will eventually list all the users registered to the site. For each user, the admin will be able to go directly to their profile page by clicking on the user's respective row in the dashboard. Moreover, the X button beside each user is for when the admin decides to remove a user from the site.
+- Admins can search for specific users by username on the admin dashbaord using the search bar on the top navigation bar to search for specific users. As the admin types, only users whose usernames contain the text in the search bar wil remain visible.
 - Each post/schedule will have ratings by users of the site. The admin will be able to remove such ratings when visiting a specific post, similar to how most sites have moderation for inappropriate comments and such.
 
 

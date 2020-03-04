@@ -88,9 +88,9 @@ class SpecificPost extends Component {
                         <RatingForm ratingLabels={this.state.ratingLabels} submithandler={this.submithandler.bind(this)}></RatingForm>
 
                         <div className="oldRatingsContainer">
-                            {this.state.oldRatings.map(oldRating => {
+                            {this.state.oldRatings.map((oldRating,i) => {
                                 return (
-                                    <OldRating obj={oldRating}></OldRating>
+                                    <OldRating key={i} obj={oldRating}></OldRating>
                                 );
                             }
                             )}
