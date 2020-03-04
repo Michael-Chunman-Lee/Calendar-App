@@ -28,6 +28,7 @@ class Home extends Component {
             //This will be filled via an api call
             posts: [
                 {
+                    id: 0,
                     name: 'user',
                     tag: 'Gaming',
                     title: 'Check out my pro gaming schedule',
@@ -36,6 +37,7 @@ class Home extends Component {
                     viewCount: 20,
                 },
                 {
+                    id: 1,
                     name: 'Robert',
                     tag: 'Fitness',
                     title:
@@ -45,6 +47,7 @@ class Home extends Component {
                     viewCount: 10,
                 },
                 {
+                    id: 2,
                     name: 'Robert 2',
                     tag: 'School',
                     title: 'I love UofT! Checkout my 4th year schedule!!',
@@ -82,18 +85,18 @@ class Home extends Component {
     }
 
     handleSortClick = (event, newVal) => {
-        if (
-            (this.state.sortPosts['Top'] && newVal === 'New') ||
-            (this.state.sortPosts['New'] && newVal === 'Top')
-        )
-            return
         let newState = Object.assign({}, this.state)
         newState.sortPosts[newVal] = !newState.sortPosts[newVal]
-        if (newState.sortPosts['Top']) {
+        if (newVal === 'Top') {
             newState.posts.sort((a, b) => b.viewCount - a.viewCount)
-        } else if (newState.sortPosts['New']) {
+            newState.sortPosts[newVal] = true
+            newState.sortPosts['New'] = false
+        } else if (newVal === 'New') {
             newState.posts.sort((a, b) => b.date - a.date)
+            newState.sortPosts[newVal] = true
+            newState.sortPosts['Top'] = false
         }
+
         this.setState(newState)
     }
 
@@ -139,7 +142,7 @@ class Home extends Component {
                                             userType={
                                                 this.props.location.userType
                                             }
-                                            key={i}
+                                            key={post.id}
                                             post={post}
                                         ></Post>
                                     )
