@@ -85,7 +85,8 @@ class UploadPost extends Component {
         tag: this.state.tag,
         name: this.state.name,
         date: new Date(),
-        viewCount: 0 
+        viewCount: 0,
+        id: 4
       },
       userType: this.props.location.userType,
       username: this.props.location.username
