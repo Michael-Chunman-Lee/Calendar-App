@@ -102,9 +102,9 @@ class SpecificPostAdmin extends Component {
                         <RatingForm ratingLabels={this.state.ratingLabels} submithandler={this.submithandler.bind(this)}></RatingForm>
 
                         <div className="oldRatingsContainer">
-                            {this.state.oldRatings.map(oldRating => {
+                            {this.state.oldRatings.map((oldRating, i) => {
                                 return (
-                                    <div className="oldRatingContainer">
+                                    <div className="oldRatingContainer" key={i}>
                                         <OldRating obj={oldRating}></OldRating>
                                         <IconButton onClick={this.removeRating.bind(this, oldRating)} color="inherit" className="removeRatingButton">
                                             <CloseIcon />
