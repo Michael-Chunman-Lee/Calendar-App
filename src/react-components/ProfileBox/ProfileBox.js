@@ -6,8 +6,7 @@ import { withRouter } from 'react-router-dom'
 class ProfileBox extends Component {
     constructor(props) {
         super(props)
-        console.log(this.props)
-        console.log(this.props.location.name)
+
         this.state = {}
     }
 
