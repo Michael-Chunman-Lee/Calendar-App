@@ -137,12 +137,13 @@ class Profile extends Component {
                             //Will need API calls to get posts based on filter
                         }
                         <div className="posts">
-                            {
-                            // This will remap when a different tag is selected
+                            {// This will remap when a different tag is selected
                             // since the removal of a post doesn't actually modify a database
-                            // the same state is re-usedthis.state.posts.map(
+                            // the same state is re-used
+                            this.state.posts.map(
                                 (post, i) =>
-                                    this.checkSortClicked() && this.postPassesSearchQuery(post) && 
+                                    this.checkSortClicked() &&
+                                    this.postPassesSearchQuery(post) &&
                                     (filterTags.includes(post.tag) ||
                                         filterTags.length === 0) && (
                                         <Post
