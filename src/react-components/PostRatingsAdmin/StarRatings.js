@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import "./StarRatings.css";
 
@@ -19,7 +19,7 @@ const StarRating = (props) => {
               let isDisabled;
               if (props.rating) {isDisabled = true} else {isDisabled=false}
                 return (
-                    <label>
+                    <label key={i}>
                         <input type="radio" className="stars"
                                value={ratingValue}
                                disabled={isDisabled}

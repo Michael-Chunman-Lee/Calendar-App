@@ -19,7 +19,7 @@ export default class OldRating extends Component {
             <div className="starTable">
             <div className="criteriaHeader">Criteria:</div>
               {this.props.obj.ratingLabels.map((crit,i) => (
-                <div className="starRow">
+                <div className="starRow" key={i}>
                   <StarRatings label={crit} rating={this.props.obj.ratingValues[i]}/>
                 </div>
               ))}

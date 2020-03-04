@@ -8,8 +8,10 @@ import OldRating from './OldRating'
 
 import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close';
+import { sourceStr } from '../../data/coursesCalendarString'
+import { withRouter } from 'react-router-dom'
 
-export default class SpecificPost extends Component {
+class SpecificPostAdmin extends Component {
     constructor(props) {
         super(props)
 
@@ -22,6 +24,8 @@ export default class SpecificPost extends Component {
                     title:
                         'My Grandfather turns the big 100 today!! Checkout his workout schedule!!',
                     icsRawText: sourceStr,
+                    date: new Date(2019, 11, 24, 10, 33, 30, 0),
+                    viewCount: 10
                 },
 
             ratingLabels: ["Workload", "Interest", "Timing"],
@@ -81,22 +85,26 @@ export default class SpecificPost extends Component {
 
     }
 
+    onPostClick = (e) => {
+        return;
+    }
+    
     render() {
         return (
             <div className="main-div">
-                <NavBar name={this.state.name}></NavBar>
+                <NavBar name={this.state.name} username={this.props.location.username} userType={this.props.location.userType}></NavBar>
                 <div className="content">
                     <div className="middle-content">
                         <div className="posts">
-                            <Post post={this.state.post}></Post>
+                            <Post post={this.state.post} onPostClick={this.onPostClick}></Post>
                         </div>
 
                         <RatingForm ratingLabels={this.state.ratingLabels} submithandler={this.submithandler.bind(this)}></RatingForm>
 
                         <div className="oldRatingsContainer">
-                            {this.state.oldRatings.map(oldRating => {
+                            {this.state.oldRatings.map((oldRating, i) => {
                                 return (
-                                    <div className="oldRatingContainer">
+                                    <div className="oldRatingContainer" key={i}>
                                         <OldRating obj={oldRating}></OldRating>
                                         <IconButton onClick={this.removeRating.bind(this, oldRating)} color="inherit" className="removeRatingButton">
                                             <CloseIcon />
@@ -114,3 +122,5 @@ export default class SpecificPost extends Component {
         )
     }
 }
+
+export default withRouter(SpecificPostAdmin)

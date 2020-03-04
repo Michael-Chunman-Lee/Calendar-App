@@ -14,6 +14,7 @@ class Profile extends Component {
         super(props)
 
         this.state = {
+            searchQuery: '',
             tags: {
                 Fitness: false,
                 Gaming: false,
@@ -61,6 +62,22 @@ class Profile extends Component {
         }
     }
 
+    updateSearchQuery = searchBarText => {
+        this.setState({ searchQuery: searchBarText })
+    }
+
+    postPassesSearchQuery = post => {
+        return (
+            this.state.searchQuery === '' ||
+            post.name
+                .toLowerCase()
+                .includes(this.state.searchQuery.toLowerCase()) ||
+            post.title
+                .toLowerCase()
+                .includes(this.state.searchQuery.toLowerCase())
+        )
+    }
+
     handletagClick = (event, newVal) => {
         let newState = Object.assign({}, this.state)
         newState.tags[newVal] = !newState.tags[newVal]
@@ -105,6 +122,7 @@ class Profile extends Component {
                 <NavBar
                     username={this.props.location.username}
                     userType={this.props.location.userType}
+                    searchCallback={this.updateSearchQuery}
                 ></NavBar>
                 <div className="content">
                     <div className="middle-content">
@@ -120,7 +138,7 @@ class Profile extends Component {
                         <div className="posts">
                             {this.state.posts.map(
                                 (post, i) =>
-                                    this.checkSortClicked() &&
+                                    this.checkSortClicked() && this.postPassesSearchQuery(post) && 
                                     (filterTags.includes(post.tag) ||
                                         filterTags.length === 0) && (
                                         <Post
