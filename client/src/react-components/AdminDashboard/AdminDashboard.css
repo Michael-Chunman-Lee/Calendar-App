@@ -1,0 +1,85 @@
+#userTable {
+    font-family: lucida sans unicode, lucida grande, Sans-Serif;
+    font-size: 100%;
+    width: 70%;
+    text-align: left;
+    border-collapse: separate;
+    border-spacing: 0px 10px;
+    
+}
+
+#userTable th {
+    font-size: 100%;
+    font-weight: 400;
+    background: rgb(234, 246, 255);
+    color: #0;
+    padding: 1%;
+}
+
+#userTable tr:hover .removeUserCell {
+    background-color:rgb(200, 200, 200);
+}
+
+#userTable tr:hover .btn{
+    height:100%;
+    width:100%;
+      background-color: rgb(200, 200, 200);
+      border: none;
+      color: white;
+      padding-left:4%;
+      text-align: left;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      outline:none;
+}
+
+.pageHeading {
+    font-size:200%;
+    font-weight:700;
+    color: rgb(160,160,158);
+}
+
+.removeUserButton {
+    transform:scale(1.8);
+}
+
+.btn {
+    height:100%;
+    width:100%;
+      background-color: rgb(160, 160, 158);
+      border: none;
+      color: white;
+      padding-left:4%;
+      text-align: left;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      outline:none;
+}
+
+.usernameCell {
+    padding: 0;
+    width:20%;
+}
+
+.emailCell {
+    padding:0;
+    width:30%;
+}
+
+.dateCreatedCell {
+    padding:0;
+    width:50%;
+}
+
+.removeUserCell {
+    background-color:rgb(160, 160, 158);
+}
+
+.cellForm {
+    height: 100%;
+}
+
+
+

@@ -1,0 +1,68 @@
+.upload-div {
+    overflow: auto;
+    position: relative;
+    background-color: rgb(226, 224, 224);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.upload-content {
+    display: block;
+    height: 100%;
+    justify-content: center;
+}
+
+.titleBar{
+    width: 100%;
+    border-bottom-style: solid;
+    border-color: white;
+    border-width: 1px;
+    height: 30px;
+}
+
+.text {
+    font-size: 20px;
+    padding: 10px;
+}
+
+.tagBar {
+    text-align: left;
+    margin-left: 80px;
+}
+
+.tagForm {
+    width: 200px;
+    text-align: center
+}
+
+.postUpload {
+    background-color: white;
+    margin-left: 80px;
+    width: 90%;
+    height: 80%;
+    justify-content: left;
+}
+
+.titleField {
+    width: 900px;
+}
+
+.iCalDrop {
+    margin-left: 230px;
+    padding: 130px;
+    font-size: 20px;
+    width: 660px;
+    border-width: 1px;
+    border-color: rgb(102, 102, 102);
+    border-style: solid;
+    border-radius: 5px;
+}
+
+#uploadButton {
+    background-color: #01A9DB;
+}
+
+#snackBarStyle {
+    background-color: #d62400;
+}

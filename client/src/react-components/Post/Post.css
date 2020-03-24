@@ -1,0 +1,30 @@
+.post-container {
+    margin-top: 1%;
+    margin-left: auto;
+    margin-right: auto;
+    height: inherit;
+    margin-bottom: 1%;
+    background-color: rgb(253, 253, 253);
+    padding: 3%;
+    z-index: -1;
+}
+.post-title {
+    text-align: left;
+}
+.post-tag {
+    font-size: 120%;
+    float: right;
+}
+.posted-by {
+    color: gray;
+    font-size: 120%;
+}
+.post-headers {
+    display: flex;
+    justify-content: space-between;
+}
+
+.post-del-button {
+    margin-bottom: 1%;
+    float: right;
+}

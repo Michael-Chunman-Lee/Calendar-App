@@ -1,0 +1,13 @@
+.profile-box {
+    height: 100%;
+    width: 100%;
+    min-width: 100%;
+    min-height: 100%;
+    background-color: rgb(253, 253, 253);
+    font-size: 150%;
+}
+
+.profile-pic {
+    height: 60%;
+    width: 100%;
+}
