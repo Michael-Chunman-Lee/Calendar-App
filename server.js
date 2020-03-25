@@ -39,7 +39,7 @@ app.post("/users/login", (req, res) => {
             req.session.user = user._id;
             req.session.username = user.username;
             req.session.isAdmin = user.isAdmin;
-            res.status(200).send({ currentUser: user.username, isAdmin: user.isAdmin });
+            res.send({ currentUser: user.username, isAdmin: user.isAdmin });
         })
         .catch(error => {
             res.status(400).send(error)
