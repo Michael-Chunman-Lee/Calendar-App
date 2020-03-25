@@ -6,12 +6,13 @@ import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import { SnackbarContent } from "@material-ui/core";
+import {newPassword} from "../../actions/user"
 
 class ForgotPassword extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: "",
+            username: "",
             oldPassword: "",
             newPassword: "",
             confirmPassword: "",
@@ -22,7 +23,7 @@ class ForgotPassword extends React.Component {
     
     validateForm = () =>{
         //Dummy data below will be replaced with calls to a server-side database api
-         if (this.state.oldPassword === "" || this.state.newPassword === "" || this.state.confirmPassword === "" || this.state.username === "" || this.state.email === "") {
+         if (this.state.oldPassword === "" || this.state.newPassword === "" || this.state.confirmPassword === "" || this.state.username === "") {
             this.setState({errorMessage: "One or more of the fields are empty!", open: true});
         } else if (this.state.newPassword !== this.state.confirmPassword) {
             this.setState({errorMessage: "Passwords do not match!", open: true});
@@ -45,6 +46,7 @@ class ForgotPassword extends React.Component {
     }
 
     render() {
+        const {app} = this.props
 
         return (
             <div className="forgotPassword">
@@ -56,11 +58,11 @@ class ForgotPassword extends React.Component {
 
                     <input 
                         className="forgotPasswordInput"
-                        name="Email"
-                        placeholder="Email"
+                        name="Username"
+                        placeholder="Username"
                         type="text"
                         onChange={e => {
-                            this.setState({email: e.target.value});
+                            this.setState({username: e.target.value});
                         }}
                     />
                     <br/><br/>
@@ -122,7 +124,7 @@ class ForgotPassword extends React.Component {
                         }/>
                     </Snackbar>
 
-                    <Button id="forgotPasswordButton" onClick={this.onButtonClick}> 
+                    <Button id="forgotPasswordButton" onClick={() => newPassword(this, app)}> 
                         Done
                     </Button>
 

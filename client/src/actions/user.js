@@ -17,6 +17,39 @@ export const readCookie = (app) => {
         });
 };
 
+export const newPassword = (newPasswordComp, app)  => {
+
+    const {username, newPassword, oldPassword, confirmPassword} = newPasswordComp.state
+
+    if (oldPassword === "" || newPassword === "" || confirmPassword === "" || username === "") {
+        newPasswordComp.setState({errorMessage: "One or more of the fields are empty!", open: true})
+        return;
+    } else if (newPassword !== oldPassword) {
+        newPasswordComp.setState({errorMessage: "Passwords do not match!", open: true})
+        return;
+    }
+    
+    const request = new Request(`/users/${username}/${oldPassword}/${newPassword}`, {
+        method: "patch",
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    })
+
+    fetch(request).then(res => {
+        if (res.status === 200) {
+            return res.json
+        }
+    }).then( json => {
+        if (json !== undefined) {
+            newPasswordComp.props.history.push("/login")
+        }
+    }).catch(error => {
+        console.log(error)
+    }) 
+}
+
 // A function to send a POST request with the user signing up
 export const signup = (signupComp, app) => {
     const request = new Request("/users", {

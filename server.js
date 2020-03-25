@@ -101,6 +101,23 @@ app.post("/users", (req, res) => {
     );
 });
 
+app.patch("/users/:username/:password/:newPassword", (req, res) => {
+    const username = req.params.username
+    const password = req.params.password
+    const newPassword = req.params.newPassword
+
+    User.findByUsernamePassword(username, password).then(user => {
+        user.password = newPassword
+        user.save().then(user => {
+            res.send(user)
+        }, error => {
+            res.status(400).send(error)
+        })
+    }).catch(error => {
+        res.status(400).send(error)
+    })
+})
+
 /** Calendar routes below */
 
 
