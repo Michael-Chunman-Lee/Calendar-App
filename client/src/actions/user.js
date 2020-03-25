@@ -29,8 +29,9 @@ export const newPassword = (newPasswordComp, app)  => {
         return;
     }
     
-    const request = new Request(`/users/${username}/${oldPassword}/${newPassword}`, {
+    const request = new Request(`/users/${username}`, {
         method: "patch",
+        body: JSON.stringify(newPasswordComp.state),
         headers: {
             Accept: "application/json, text/plain, */*",
             "Content-Type": "application/json"
@@ -52,6 +53,16 @@ export const newPassword = (newPasswordComp, app)  => {
 
 // A function to send a POST request with the user signing up
 export const signup = (signupComp, app) => {
+    const {password, confirmPassword, username, email} = signupComp.state
+
+    if (password === "" || confirmPassword === "" || username === "" || email === "") {
+        signupComp.setState({errorMessage: "One or more of the fields are empty!", open: true})
+        return;
+    } else if (password !== confirmPassword) {
+        signupComp.setState({errorMessage: "Passwords do not match!", open: true})
+        return;
+    }
+    
     const request = new Request("/users", {
         method: "post",
         body: JSON.stringify(signupComp.state),

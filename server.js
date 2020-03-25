@@ -73,15 +73,6 @@ app.get("/users/check-session", (req, res) => {
 
 /** User routes below **/
 app.post("/users", (req, res) => {
-    if (req.body.password === "" || req.body.confirmPassword === "" || req.body.username === "" || req.body.email === "") {
-        res.statusMessage = "One or more of the fields are empty!"
-        res.status(400).send(); 
-        return;
-    } else if (req.body.password !== req.body.confirmPassword) {
-        res.statusMessage = "Passwords do not match!"
-        res.status(400).send();
-        return;
-    }
 
     const user = new User({
         email: req.body.email,
@@ -101,10 +92,10 @@ app.post("/users", (req, res) => {
     );
 });
 
-app.patch("/users/:username/:password/:newPassword", (req, res) => {
+app.patch("/users/:username", (req, res) => {
     const username = req.params.username
-    const password = req.params.password
-    const newPassword = req.params.newPassword
+    const password = req.body.password
+    const newPassword = req.body.newPassword
 
     User.findByUsernamePassword(username, password).then(user => {
         user.password = newPassword
