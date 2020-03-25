@@ -60,6 +60,7 @@ class Login extends React.Component {
     }
 
     render() {
+        const {app} = this.props
 
         return (
             <div className="login">

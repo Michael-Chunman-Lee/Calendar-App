@@ -11,45 +11,96 @@ import Profile from './react-components/Profile/Profile'
 import UploadPost from './react-components/UploadPost/UploadPost'
 import SpecificPost from './react-components/PostRatings/SpecificPost'
 import SpecificPostAdmin from './react-components/PostRatingsAdmin/SpecificPost'
+import {readCookie} from "./actions/user"
+
 class App extends React.Component {
+
+    constructor(props) {
+        super(props)
+        readCookie(this)
+    }
+
+    state = {
+        currentUser: null, 
+        isAdmin: false 
+    }
+
     render() {
+        const {currentUser, isAdmin} = this.state
+
         return (
-            <div className="App">
-                <BrowserRouter>
-                    <Switch>
-                        <Route exact path="/" render={() => <Signup />} />
-                        <Route exact path="/login" render={() => <Login />} />
-                        <Route
-                            exact
-                            path="/forgotPassword"
-                            render={() => <ForgotPassword />}
-                        />
-                        <Route exact path="/home" render={() => <Home />} />
-                        <Route
-                            exact
-                            path="/admindashboard"
-                            render={() => <AdminDashboard />}
-                        />
-                        <Route
-                            exact
-                            path="/user/*"
-                            render={() => <Profile />}
-                        />
-                        <Route
-                            exact path="/uploadPost"
-                            render={() => <UploadPost />}
-                        />
-                        <Route
-                            exact path="/specificPost/*"
-                            render={() => <SpecificPost />}
-                        />
-                        <Route
-                            exact path="/specificPostAdmin/*"
-                            render={() => <SpecificPostAdmin />}
-                        />
-                    </Switch>
-                </BrowserRouter>
-            </div>
+            <BrowserRouter>
+                <Switch>
+                    <Route 
+                        exact path={["/", "/admindashboard", "/home"]}
+                        render = {({history}) => (
+                            <div className="App">
+                                {!currentUser ? <Signup history={history} app={this}/> : 
+                                !isAdmin ? <Home history={history} app={this}/> : <AdminDashboard history={history} app={this}/>}
+                            </div>
+                        )}
+                    />
+
+                    <Route 
+                        exact path="/login" 
+                        render={({history}) => (
+                            <div className="App">
+                                {!currentUser ? <Login history={history} app={this}/> : 
+                                !isAdmin ? <Home history={history} app={this}/> : <AdminDashboard history={history} app={this}/>}
+                            </div>
+                        )}
+                    />
+
+                    <Route
+                        exact path="/forgotPassword"
+                        render={({history}) => (
+                            <div className="App">
+                                {!currentUser ? <ForgotPassword history={history} app={this}/> : 
+                                !isAdmin ? <Home history={history} app={this}/> : <AdminDashboard history={history} app={this}/>}
+                            </div>
+                        )}
+                    />
+
+                    <Route
+                        exact path="/user/*"
+                        render={({history}) => (
+                            <div className="App">
+                                {!currentUser ? <Signup history={history} app={this}/> : <Profile history={history} app={this}/>}
+                            </div>
+                        )}
+                    />
+
+                    <Route
+                        exact path="/uploadPost"
+                        render={({history}) => (
+                            <div className="App">
+                                {!currentUser ? <Signup history={history} app={this}/> : <UploadPost history={history} app={this}/>}
+                            </div>
+                        )}
+                    />
+
+                    <Route
+                        exact path="/specificPost/*"
+                        render={({history}) => (
+                            <div className="App">
+                                {!currentUser ? <Signup history={history} app={this}/> : <SpecificPost history={history} app={this}/>}
+                            </div>
+                        )}                           
+                    />
+
+                    <Route
+                        exact path="/specificPostAdmin/*"
+                        render={({history}) => (
+                            <div className="App">
+                                {!currentUser ? <Signup history={history} app={this}/> : 
+                                !isAdmin ? <SpecificPost history={history} app={this}/> : <SpecificPostAdmin history={history} app={this}/>}
+                            </div>
+                        )}   
+                    />
+
+                    <Route render={() => <div>404 not found</div>}/>
+                </Switch>
+            </BrowserRouter>
         )
     }
 }
