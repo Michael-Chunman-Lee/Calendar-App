@@ -6,6 +6,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import { SnackbarContent } from "@material-ui/core";
+import {signup} from "../../actions/user"
 
 class Signup extends React.Component {
     constructor(props) {
@@ -18,19 +19,7 @@ class Signup extends React.Component {
             errorMessage: "",
             open: false
         }
-    }
-
-    validateSignup = () =>{
-        //Dummy data below will be replaced with calls to a server-side database api
-         if (this.state.password === "" || this.state.confirmPassword === "" || this.state.username === "" || this.state.email === "") {
-            this.setState({errorMessage: "One or more of the fields are empty!", open: true});
-        } else if (this.state.username === "user" || this.state.username === "admin") {
-            this.setState({errorMessage: "Username already taken!", open: true});
-        } else if (this.state.password !== this.state.confirmPassword) {
-            this.setState({errorMessage: "Passwords do not match!", open: true});
-        } else if (this.state.password === this.state.confirmPassword) {
-            this.props.history.push("./login")
-        }
+        this.props.history.push("/")
     }
 
     onSignupClick = e => {
@@ -47,6 +36,7 @@ class Signup extends React.Component {
     }
 
     render() {
+        const {app} = this.props
 
         return (
             <div className="signup">
@@ -121,7 +111,7 @@ class Signup extends React.Component {
                         }/>
                     </Snackbar>
                     
-                    <Button id="signupButton" onClick={this.onSignupClick}> 
+                    <Button id="signupButton" onClick={() => signup(this, app)}> 
                         Done
                     </Button>
                     <br/><br/><br/><br/>

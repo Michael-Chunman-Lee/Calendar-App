@@ -1,6 +1,4 @@
 "use strict";
-const log = console.log;
-
 const express = require("express");
 const app = express();
 
@@ -33,18 +31,17 @@ app.use(
 
 // A route to login and create a session
 app.post("/users/login", (req, res) => {
-    const email = req.body.email;
+    const username = req.body.username;
     const password = req.body.password;
 
-    log(email, password);
-    User.findByEmailPassword(email, password)
+    User.findByUsernamePassword(username, password)
         .then(user => {
             req.session.user = user._id;
-            req.session.email = user.email;
-            res.send({ currentUser: user.email });
+            req.session.username = user.username;
+            res.status(200).send({ currentUser: user.username, isAdmin: user.isAdmin });
         })
         .catch(error => {
-            res.status(400).send()
+            res.status(400).send(error)
         });
 });
 
@@ -75,11 +72,21 @@ app.get("/users/check-session", (req, res) => {
 
 /** User routes below **/
 app.post("/users", (req, res) => {
-    log(req.body);
+    if (req.body.password === "" || req.body.confirmPassword === "" || req.body.username === "" || req.body.email === "") {
+        res.statusMessage = "One or more of the fields are empty!"
+        res.status(400).send(); 
+        return;
+    } else if (req.body.password !== req.body.confirmPassword) {
+        res.statusMessage = "Passwords do not match!"
+        res.status(400).send();
+        return;
+    }
 
     const user = new User({
         email: req.body.email,
-        password: req.body.password
+        username: req.body.username,
+        password: req.body.password,
+        isAdmin: false
     });
 
     user.save().then(
@@ -87,6 +94,7 @@ app.post("/users", (req, res) => {
             res.send(user);
         },
         error => {
+            res.statusMessage = "Username or email already taken!"
             res.status(400).send(error); // 400 for bad request
         }
     );
@@ -107,5 +115,5 @@ app.get("*", (req, res) => {
 // Express server listening...
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
-    log(`Listening on port ${port}...`);
+    console.log(`Listening on port ${port}...`);
 });

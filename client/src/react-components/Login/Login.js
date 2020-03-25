@@ -6,7 +6,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import { SnackbarContent } from "@material-ui/core";
-
+import {login} from "../../actions/user"
 
 class Login extends React.Component {
     constructor(props) {
@@ -16,6 +16,7 @@ class Login extends React.Component {
             password: "",
             open: false,
         }
+        this.props.history.push("/login")
 
     }
 
@@ -116,7 +117,7 @@ class Login extends React.Component {
                         }/>
                     </Snackbar>
                     
-                    <Button id="loginButton" onClick={this.onLoginClick}> 
+                    <Button id="loginButton" onClick={() => login(this, app)}> 
                         Done
                     </Button>
                     <br/><br/><br/>
