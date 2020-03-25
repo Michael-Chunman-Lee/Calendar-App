@@ -13,5 +13,5 @@ const CalendarSchema = new mongoose.Schema({
 })
 
 // make a model using the Calendar schema
-const User = mongoose.model('Calendar', CalendarSchema)
+const Calendar = mongoose.model('Calendar', CalendarSchema)
 module.exports = { Calendar }
