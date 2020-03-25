@@ -103,16 +103,18 @@ class Home extends Component {
     }
 
     render() {
+        const { app } = this.props;
         let filterTags = []
+
         Object.keys(this.state.tags).map(
             k => this.state.tags[k] && filterTags.push(k)
         )
 
+
         return (
             <div className="home-main-div">
                 <NavBar
-                    username={this.props.location.username}
-                    userType={this.props.location.userType}
+                    app={app}
                     searchCallback={this.updateSearchQuery}
                 ></NavBar>
                 <div className="home-content">
@@ -134,12 +136,7 @@ class Home extends Component {
                                     (filterTags.includes(post.tag) ||
                                         filterTags.length === 0) && (
                                         <Post
-                                            username={
-                                                this.props.location.username
-                                            }
-                                            userType={
-                                                this.props.location.userType
-                                            }
+                                            app={app}
                                             key={post.id}
                                             post={post}
                                         ></Post>

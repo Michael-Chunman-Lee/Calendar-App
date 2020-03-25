@@ -30,7 +30,7 @@ class Profile extends Component {
             posts: [
                 {
                     id: 0,
-                    name: this.props.location.username,
+                    name: this.props.app.currentUser,
                     tag: 'Gaming',
                     title: 'Check out my pro gaming schedule',
                     icsRawText: sourceStr,
@@ -39,7 +39,7 @@ class Profile extends Component {
                 },
                 {
                     id: 1,
-                    name: this.props.location.username,
+                    name: this.props.app.currentUser,
                     tag: 'Fitness',
                     title:
                         'My Grandfather turns the big 100 today!! Checkout his workout schedule!!',
@@ -49,7 +49,7 @@ class Profile extends Component {
                 },
                 {
                     id: 2,
-                    name: this.props.location.username,
+                    name: this.props.app.currentUser,
                     tag: 'School',
                     title: 'I love UofT! Checkout my 4th year schedule!!',
                     icsRawText: sourceStr,
@@ -110,19 +110,18 @@ class Profile extends Component {
         Object.keys(this.state.tags).map(
             k => this.state.tags[k] && filterTags.push(k)
         )
-
+        const {app} = this.props
         let name
         if (this.props.location.profilename) {
             name = this.props.location.profilename
         } else {
-            name = this.props.location.username
+            name = this.props.app.currentUser
         }
 
         return (
             <div className="main-div">
                 <NavBar
-                    username={this.props.location.username}
-                    userType={this.props.location.userType}
+                    app={app}
                     searchCallback={this.updateSearchQuery}
                 ></NavBar>
                 <div className="content">
@@ -147,16 +146,10 @@ class Profile extends Component {
                                     (filterTags.includes(post.tag) ||
                                         filterTags.length === 0) && (
                                         <Post
-                                            username={
-                                                this.props.location.username
-                                            }
-                                            userType={
-                                                this.props.location.userType
-                                            }
+                                            app={app}
                                             key={post.id}
                                             post={{
-                                                name: this.props.location
-                                                    .username,
+                                                name: app.state.currentUser,
                                                 tag: post.tag,
                                                 title: post.title,
                                                 icsRawText: post.icsRawText,
@@ -172,15 +165,13 @@ class Profile extends Component {
                         //Api call to get profile info (if not current user profile)
                     }
                     <div className="right-content">
-                        {this.props.location.username === name && (
+                        {app.state.currentUser === name && (
                             <Button
                                 id="createScheduleButton"
                                 onClick={e => {
                                     this.props.history.push({
                                         pathname: '../uploadPost',
-                                        name: this.props.location.username,
-                                        userType: this.props.location.userType,
-                                        username: this.props.location.username,
+                                        app: this.props.app
                                     })
                                 }}
                             >

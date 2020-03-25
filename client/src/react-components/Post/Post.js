@@ -29,14 +29,12 @@ class Post extends Component {
         if (this.props.location.userType === 'admin') {
             this.props.history.push({
                 pathname: '../specificPostAdmin/*',
-                userType: this.props.location.userType,
-                username: this.props.location.username,
+                app: this.props.app
             })
         } else {
             this.props.history.push({
                 pathname: '../specificPost/*',
-                userType: this.props.location.userType,
-                username: this.props.location.username,
+                app: this.props.app
             })
         }
     }
@@ -46,11 +44,12 @@ class Post extends Component {
     }
 
     render() {
+        const {app, post} = this.props
         return (
             (this.state.post && (
                 <div className="post-container" onClick={this.onPostClick}>
-                    {(this.props.username === this.state.post.name ||
-                        this.props.userType === 'admin') && (
+                    {(app.state.currentUser === this.state.post.name ||
+                        app.state.isAdmin) && (
                         <span className="post-del-button">
                             <MdClose onClick={this.onDeleteClick}></MdClose>
                         </span>

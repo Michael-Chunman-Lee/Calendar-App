@@ -20,17 +20,15 @@ class NavBar extends Component {
         e.preventDefault()
         //Redirect to page
         this.props.history.push({
-            pathname: '/user/' + this.props.username,
-            userType: this.props.userType,
-            username: this.props.username,
+            pathname: '/user/' + this.props.app.state.currentUser,
+            app: this.props.app
         })
     }
     onHomeClick = e => {
         e.preventDefault()
         this.props.history.push({
             pathname: '/home',
-            userType: this.props.userType,
-            username: this.props.username,
+            app: this.props.app
         })
     }
 
@@ -46,16 +44,16 @@ class NavBar extends Component {
         e.preventDefault()
         this.props.history.push({
             pathname: '/admindashboard',
-            userType: this.props.userType,
-            username: this.props.username,
+            app: this.props.app
         })
     }
 
     render() {
+        const { app, searchCallback, noSearchBar } = this.props
         return (
             <div className="nav">
                 <span className="title">Title</span>
-                {(!this.props.noSearchBar) && (<div className="search">
+                {(!noSearchBar) && (<div className="search">
                     <div className="search-icon">
                         <IconButton>
                             <SearchIcon></SearchIcon>
@@ -68,10 +66,10 @@ class NavBar extends Component {
                     />
                 </div>)}
                 <span className="nav-icons">
-                    {this.props.userType === 'admin' && (
+                    {app.state.isAdmin && (
                         <span onClick={this.onAdminClick}>Admin</span>
                     )}
-                    {this.props.userType !== 'admin' && (
+                    {!app.state.isAdmin && (
                         <IconButton
                             onClick={this.onProfileClick}
                             color="inherit"
