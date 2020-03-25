@@ -38,6 +38,7 @@ app.post("/users/login", (req, res) => {
         .then(user => {
             req.session.user = user._id;
             req.session.username = user.username;
+            req.session.isAdmin = user.isAdmin;
             res.status(200).send({ currentUser: user.username, isAdmin: user.isAdmin });
         })
         .catch(error => {
@@ -59,7 +60,7 @@ app.get("/users/logout", (req, res) => {
 // A route to check if a use is logged in on the session cookie
 app.get("/users/check-session", (req, res) => {
     if (req.session.user) {
-        res.send({ currentUser: req.session.email });
+        res.send({ currentUser: req.session.username, isAdmin: req.session.isAdmin });
     } else {
         res.status(401).send();
     }

@@ -22,11 +22,6 @@ class Signup extends React.Component {
         this.props.history.push("/")
     }
 
-    onSignupClick = e => {
-        e.preventDefault();
-        this.validateSignup();
-    }
-
     handleClose = (e, reason) => {
         if (reason === 'clickaway') {
             return;

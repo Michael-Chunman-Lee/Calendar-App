@@ -59,6 +59,8 @@ export const login = (loginComp, app) => {
         .then(res => {
             if (res.status === 200) {
                 return res.json();
+            } else {
+                loginComp.setState({open: true})
             }
         })
         .then(json => {

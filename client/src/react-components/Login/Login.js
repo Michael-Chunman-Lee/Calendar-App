@@ -19,39 +19,7 @@ class Login extends React.Component {
         this.props.history.push("/login")
 
     }
-
-    validateLogin = () =>{
-        //Dummy data below will be replaced with calls to a server-side database api
-        if (this.state.username === "admin") {
-            if (this.state.password === "admin") {
-                //Send user to admin dashboard
-                this.props.history.push({
-                    pathname: "./admindashboard",
-                    userType: "admin",
-                    username: "admin"
-                })
-            } 
-
-        } else if (this.state.username === "user") {
-            if (this.state.password === "user") {
-                //Send user to user dashboard
-
-                this.props.history.push({
-                    pathname: "./home",
-                    userType: "user",
-                    username: "user"
-                })
-            }
-        } else {
-            this.setState({open: true});
-        }
-    }
-
-    onLoginClick = e => {
-        e.preventDefault();
-        this.validateLogin();
-    }
-
+    
     handleClose = (e, reason) => {
         if (reason === 'clickaway') {
             return;
