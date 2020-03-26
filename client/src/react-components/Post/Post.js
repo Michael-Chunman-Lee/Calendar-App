@@ -12,7 +12,7 @@ class Post extends Component {
         this.state = {
             post: {
                 _id: this.props.post._id,
-                name: this.props.post.name,
+                username: this.props.post.username,
                 tag: this.props.post.tag,
                 title: this.props.post.title,
                 events: this.props.post.events,
@@ -53,7 +53,7 @@ class Post extends Component {
         return (
             (this.state.post && (
                 <div className="post-container" onClick={this.onPostClick}>
-                    {(app.state.currentUser === this.state.post.name ||
+                    {(app.state.currentUser === this.state.post.username ||
                         app.state.isAdmin) && (
                         <span className="post-del-button">
                             <MdClose onClick={this.onDeleteClick}></MdClose>
@@ -61,7 +61,7 @@ class Post extends Component {
                     )}
                     <div className="post-headers">
                         <span className="posted-by">
-                            {this.state.post.name}
+                            {this.state.post.username}
                         </span>
                         <span className="post-tag">{this.state.post.tag}</span>
                         <span className="post-tag">
