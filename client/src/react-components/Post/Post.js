@@ -29,12 +29,10 @@ class Post extends Component {
         if (this.props.app.state.isAdmin) {
             this.props.history.push({
                 pathname: '../specificPostAdmin/*',
-                app: this.props.app
             })
         } else {
             this.props.history.push({
                 pathname: '../specificPost/*',
-                app: this.props.app
             })
         }
     }
