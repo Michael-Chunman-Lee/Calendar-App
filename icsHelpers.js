@@ -1,7 +1,7 @@
-import moment from "moment";
-import ical from 'ical';
+const moment = require("moment");
+const ical = require('ical');
 
-export default function parseEventsFromICS(source) {
+function parseEventsFromICS(source) {
     const events = []
     // Eventually should be parsed from file on server side, since fs cant run in browser
     //const data = ical.parseFile(source)
@@ -123,3 +123,5 @@ export default function parseEventsFromICS(source) {
     }
     return events
 }
+
+module.exports = {parseEventsFromICS: parseEventsFromICS}

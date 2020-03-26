@@ -13,7 +13,7 @@ import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import { SnackbarContent } from "@material-ui/core";
-
+import {uploadPost} from "../../actions/post"
 class UploadPost extends Component {
   constructor(props) {
     super(props);
@@ -24,7 +24,7 @@ class UploadPost extends Component {
         "Drag and drop your schedule here, or click to select your schedule",
       icsRawText: null,
       open: false,
-      errorMessage: ""
+      errorMessage: "",
     };
     this.props.history.push("/uploadPost")
   }
@@ -72,20 +72,7 @@ class UploadPost extends Component {
       return;
     }
     //Will need to make a call to a database to store the new schedule
-    /*
-    this.props.history.push({
-      pathname: "./home",
-      uploadedContent: {
-        title: this.state.title,
-        icsRawText: this.state.icsRawText,
-        tag: this.state.tag,
-        name: this.state.name,
-        date: new Date(),
-        viewCount: 0,
-        id: 4
-      },
-    });
-    */
+    uploadPost(this, this.props.app)
   };
 
   onTitleFieldChange = e => {

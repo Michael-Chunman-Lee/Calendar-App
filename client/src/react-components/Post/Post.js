@@ -12,7 +12,7 @@ class Post extends Component {
                 name: this.props.post.name,
                 tag: this.props.post.tag,
                 title: this.props.post.title,
-                icsRawText: this.props.post.icsRawText,
+                events: this.props.post.events,
                 viewCount: this.props.post.viewCount,
                 date: this.props.post.date,
             },
@@ -73,7 +73,7 @@ class Post extends Component {
                     </div>
                     <span onClick={this.onCalendarClick}>
                         <ScheduleCalendar
-                            icsRawText={this.state.post.icsRawText}
+                            events={this.state.post.events}
                         ></ScheduleCalendar>
                     </span>
                 </div>

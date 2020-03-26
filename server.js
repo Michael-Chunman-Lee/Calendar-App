@@ -6,9 +6,12 @@ const { mongoose } = require("./db/mongoose");
 mongoose.set('useFindAndModify', false); 
 
 const { User } = require("./models/user");
+
 const { Post } = require("./models/post")
+
 const { ObjectID } = require("mongodb");
 
+const { parseEventsFromICS } = require("./icsHelpers")
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 
@@ -123,6 +126,18 @@ app.delete("/users/:username", (req, res) => {
     })
 })
 
+<<<<<<< HEAD
+/** Post routes below */
+app.post("/posts", (req, res) => {
+    const post = new Post({
+        name: req.body.user,
+        tag: req.body.tag,
+        title: req.body.title,
+        viewCount: 0,
+        date: new Date(),
+        events: parseEventsFromICS(req.body.icsRawText)
+    });
+=======
 /** Post Routes */
 app.patch("/posts/increment/:id", (req, res) =>{
     const id = req.params.id
@@ -150,8 +165,8 @@ app.patch("/posts/increment/:id", (req, res) =>{
 })
 app.patch("/posts/add-rating/:id", (req, res) =>{
     const id = req.params.id
-    const {name, comment, labels, ratings} = req.body
-    const body = {name, comment, labels, ratings}
+    const {username,  additionalComment, criteriaLabels, criteriaRatings} = req.body
+    const body = {username,  additionalComment, criteriaLabels, criteriaRatings}
     if (!ObjectID.isValid(id)) {
 		res.status(404).send()
 		return;
@@ -169,7 +184,18 @@ app.patch("/posts/add-rating/:id", (req, res) =>{
 })
 
 /** Calendar routes below */
+>>>>>>> 04e6d02ebd5510d1c79f529ebcb81a9c60d8981a
 
+    post.save().then(
+        post => {
+            res.send(post);
+        },
+        error => {
+            res.statusMessage = "Failed to create post"
+            res.status(400).send(error); // 400 for bad request
+        }
+    );
+})
 
 /*** Webpage routes below **********************************/
 // Serve the build
