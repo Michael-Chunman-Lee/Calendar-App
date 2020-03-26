@@ -88,10 +88,10 @@ class App extends React.Component {
                     />
 
                     <Route
-                        exact path="/specificPost/*"
-                        render={({history}) => (
+                        exact path="/specificPost/:id"
+                        render={({history, match}) => (
                             <div className="App">
-                                {!currentUser ? <Signup history={history} app={this}/> : <SpecificPost history={history} app={this}/>}
+                                {!currentUser ? <Signup history={history} app={this}/> : <SpecificPost history={history} app={this} postId={match.params.id}/>}
                             </div>
                         )}                           
                     />
