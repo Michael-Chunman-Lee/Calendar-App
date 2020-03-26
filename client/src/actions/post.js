@@ -31,7 +31,6 @@ export const uploadPost = (uploadPostComp, app) => {
 export const incrementPost = (postID) => {
     fetch(`/posts/increment/${postID}`,{
         method: "PATCH",
-        body: JSON.stringify(postComp.state),
         headers: {'Accept': "application/json, text/plain, */*",
         "Content-Type": "application/json"}
     }).catch(error => {
