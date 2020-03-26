@@ -8,7 +8,7 @@ import TagBox from '../TagBox/TagBox'
 import Button from '@material-ui/core/Button'
 import { sourceStr } from '../../data/coursesCalendarString'
 import SortBox from '../SortBox/SortBox'
-
+import {getPosts } from '../../actions/post'
 class Profile extends Component {
     constructor(props) {
         super(props)
