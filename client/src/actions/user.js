@@ -39,12 +39,10 @@ export const newPassword = (newPasswordComp, app)  => {
             return res.text()
         }
     }).then( json => {
-        console.log(json)
         if (json !== undefined) {
             newPasswordComp.props.history.push("/login")
         }
     }).catch(error => {
-        console.log(`/users/${username}`)
         console.log(error)
     }) 
 }
