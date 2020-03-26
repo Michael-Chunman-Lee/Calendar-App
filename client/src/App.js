@@ -21,7 +21,7 @@ class App extends React.Component {
 
     state = {
         currentUser: null, 
-        isAdmin: true,
+        isAdmin: false,
         userID: null
     }
 
