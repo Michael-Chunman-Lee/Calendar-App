@@ -60,8 +60,13 @@ class Home extends Component {
         }
         this.props.history.push("/home")
 
+        
+    }
+
+    componentDidMount(){
         getPosts(this)
     }
+
 
     updateSearchQuery = searchBarText => {
         this.setState({ searchQuery: searchBarText })
