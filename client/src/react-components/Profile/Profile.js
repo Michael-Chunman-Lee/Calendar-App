@@ -26,36 +26,7 @@ class Profile extends Component {
                 New: false,
             },
             //Api call will need to be made to retrieve this data from a database
-            posts: [
-                {
-                    id: 0,
-                    name: this.props.app.state.currentUser,
-                    tag: 'Gaming',
-                    title: 'Check out my pro gaming schedule',
-                    icsRawText: sourceStr,
-                    date: new Date(2018, 11, 24, 10, 33, 30, 0),
-                    viewCount: 20,
-                },
-                {
-                    id: 1,
-                    name: this.props.app.state.currentUser,
-                    tag: 'Fitness',
-                    title:
-                        'My Grandfather turns the big 100 today!! Checkout his workout schedule!!',
-                    icsRawText: sourceStr,
-                    date: new Date(2019, 11, 24, 10, 33, 30, 0),
-                    viewCount: 10,
-                },
-                {
-                    id: 2,
-                    name: this.props.app.state.currentUser,
-                    tag: 'School',
-                    title: 'I love UofT! Checkout my 4th year schedule!!',
-                    icsRawText: sourceStr,
-                    date: new Date(2016, 11, 24, 10, 33, 30, 0),
-                    viewCount: 1000000,
-                },
-            ],
+            posts: [],
         }
         // if (this.props.location.uploadedContent) {
         //     this.state.posts.push(this.props.location.uploadedContent)
@@ -67,8 +38,12 @@ class Profile extends Component {
             this.name = this.props.app.state.currentUser
         }
         // getPosts(this)
-        getPostsByName(this, this.name)
+        // getPostsByName(this, this.name)
         
+    }
+
+    componentDidMount(){
+        getPostsByName(this, this.name)
     }
 
     updateSearchQuery = searchBarText => {
@@ -120,7 +95,6 @@ class Profile extends Component {
         )
         const {app, history, profileName} = this.props
         
-
         return (
             <div className="main-div">
                 <NavBar
@@ -151,16 +125,9 @@ class Profile extends Component {
                                         filterTags.length === 0) && (
                                         <Post
                                             app={app}
-                                            key={post.id}
+                                            key={post._id}
                                             history={history}
-                                            post={{
-                                                name: app.state.currentUser,
-                                                tag: post.tag,
-                                                title: post.title,
-                                                icsRawText: post.icsRawText,
-                                                viewCount: post.viewCount,
-                                                date: post.date,
-                                            }}
+                                            post={post}
                                         ></Post>
                                     )
                             )}
