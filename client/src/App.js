@@ -20,9 +20,9 @@ class App extends React.Component {
     }
 
     state = {
-        currentUser: "asdasd", 
+        currentUser: null, 
         isAdmin: true,
-        userID: "asdsa"
+        userID: null
     }
 
     render() {
