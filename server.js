@@ -108,6 +108,21 @@ app.patch("/users/:username", (req, res) => {
     })
 })
 
+// WILL NEED TO CHECK IF ADMIN
+app.delete("/users/:username", (req, res) => { 
+    const username = req.params.username;
+    
+    User.findOneAndRemove({ username: username }).then(user => {
+        if (!user) {
+            res.status(404).send()
+        } else {
+            res.send(student)
+        }
+    }).catch(error => {
+        res.status(400).send(error)
+    })
+})
+
 /** Calendar routes below */
 
 
