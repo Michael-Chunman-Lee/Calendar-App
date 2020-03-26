@@ -21,14 +21,12 @@ class NavBar extends Component {
         //Redirect to page
         this.props.history.push({
             pathname: '/user/' + this.props.app.state.currentUser,
-            app: this.props.app
         })
     }
     onHomeClick = e => {
         e.preventDefault()
         this.props.history.push({
             pathname: '/home',
-            app: this.props.app
         })
     }
 
@@ -44,7 +42,6 @@ class NavBar extends Component {
         e.preventDefault()
         this.props.history.push({
             pathname: '/admindashboard',
-            app: this.props.app
         })
     }
 

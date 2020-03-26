@@ -103,7 +103,7 @@ class Home extends Component {
     }
 
     render() {
-        const { app } = this.props;
+        const { app, history } = this.props;
         let filterTags = []
 
         Object.keys(this.state.tags).map(
@@ -115,6 +115,7 @@ class Home extends Component {
             <div className="home-main-div">
                 <NavBar
                     app={app}
+                    history={history}
                     searchCallback={this.updateSearchQuery}
                 ></NavBar>
                 <div className="home-content">
@@ -137,6 +138,7 @@ class Home extends Component {
                                         filterTags.length === 0) && (
                                         <Post
                                             app={app}
+                                            history={history}
                                             key={post.id}
                                             post={post}
                                         ></Post>

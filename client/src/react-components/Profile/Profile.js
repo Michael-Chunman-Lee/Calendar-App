@@ -110,7 +110,7 @@ class Profile extends Component {
         Object.keys(this.state.tags).map(
             k => this.state.tags[k] && filterTags.push(k)
         )
-        const {app} = this.props
+        const {app, history} = this.props
         let name
         if (this.props.location.profilename) {
             name = this.props.location.profilename
@@ -122,6 +122,7 @@ class Profile extends Component {
             <div className="main-div">
                 <NavBar
                     app={app}
+                    history={history}
                     searchCallback={this.updateSearchQuery}
                 ></NavBar>
                 <div className="content">
@@ -148,6 +149,7 @@ class Profile extends Component {
                                         <Post
                                             app={app}
                                             key={post.id}
+                                            history={history}
                                             post={{
                                                 name: app.state.currentUser,
                                                 tag: post.tag,

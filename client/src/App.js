@@ -32,21 +32,29 @@ class App extends React.Component {
             <BrowserRouter>
                 <Switch>
                     <Route 
-                        exact path={["/", "/admindashboard", "/home"]}
+                        exact path={["/", "/login", "/home"]}
                         render={({history}) => (
                             <div className="App">
-                                {!currentUser ? <Signup history={history} app={this}/> : 
-                                !isAdmin ? <Home history={history} app={this}/> : <AdminDashboard history={history} app={this}/>}
+                                {!currentUser ? <Login history={history} app={this}/> : <Home history={history} app={this}/>}
                             </div>
                         )}
                     />
 
                     <Route 
-                        exact path="/login" 
+                        exact path="/signup" 
+                        render={({history}) => (
+                            <div className="App">
+                                {!currentUser ? <Signup history={history} app={this}/> : <Home history={history} app={this}/>}
+                            </div>
+                        )}
+                    />
+
+                    <Route 
+                        exact path="/admindashboard" 
                         render={({history}) => (
                             <div className="App">
                                 {!currentUser ? <Login history={history} app={this}/> : 
-                                !isAdmin ? <Home history={history} app={this}/> : <AdminDashboard history={history} app={this}/>}
+                                !isAdmin ? <Home history={history} app={this}/> : <AdminDashboard app={this} history={history}/>}
                             </div>
                         )}
                     />
@@ -55,8 +63,7 @@ class App extends React.Component {
                         exact path="/forgotPassword"
                         render={({history}) => (
                             <div className="App">
-                                {!currentUser ? <ForgotPassword history={history} app={this}/> : 
-                                !isAdmin ? <Home history={history} app={this}/> : <AdminDashboard history={history} app={this}/>}
+                                {!currentUser ? <ForgotPassword history={history} app={this}/> : <Home history={history} app={this}/>}
                             </div>
                         )}
                     />

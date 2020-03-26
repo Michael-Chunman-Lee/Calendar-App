@@ -51,9 +51,7 @@ class AdminDashboard extends Component {
     redirectToUser(user) {
         this.props.history.push({
             pathname: './user/' + user.user,
-            username: 'admin',
             profilename: user.user,
-            userType: 'admin',
         })
     }
 
@@ -70,12 +68,12 @@ class AdminDashboard extends Component {
     render() {
         // We have a list of objects meant to represent each user, eventually, this data will be
         // extracted from our backend
-
+        const {app, history} = this.props
         return (
             <div className="main-div">
                 <NavBar
-                    username={this.props.location.username}
-                    userType={this.props.location.userType}
+                    app={app}
+                    history={history}
                     searchCallback={this.updateSearchQuery}
                     noSearchBar={true}
                 ></NavBar>
