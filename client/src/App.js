@@ -10,7 +10,6 @@ import AdminDashboard from './react-components/AdminDashboard/AdminDashboard'
 import Profile from './react-components/Profile/Profile'
 import UploadPost from './react-components/UploadPost/UploadPost'
 import SpecificPost from './react-components/PostRatings/SpecificPost'
-import SpecificPostAdmin from './react-components/PostRatingsAdmin/SpecificPost'
 import {readCookie} from "./actions/user"
 
 class App extends React.Component {
