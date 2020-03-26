@@ -7,11 +7,11 @@ const RatingSchema = new mongoose.Schema({
     },
     additionalComment: {
         type: String,
-    }
+    },
     criteriaLabels: {
         type: [String],
         required: true
-    }
+    },
     criteriaRatings: {
         type: [Number],
         required: true
