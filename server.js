@@ -126,7 +126,6 @@ app.delete("/users/:username", (req, res) => {
     })
 })
 
-<<<<<<< HEAD
 /** Post routes below */
 app.post("/posts", (req, res) => {
     const post = new Post({
@@ -137,8 +136,18 @@ app.post("/posts", (req, res) => {
         date: new Date(),
         events: parseEventsFromICS(req.body.icsRawText)
     });
-=======
-/** Post Routes */
+
+    post.save().then(
+        post => {
+            res.send(post);
+        },
+        error => {
+            res.statusMessage = "Failed to create post"
+            res.status(400).send(error); // 400 for bad request
+        }
+    );
+})
+
 app.patch("/posts/increment/:id", (req, res) =>{
     const id = req.params.id
 
@@ -184,18 +193,6 @@ app.patch("/posts/add-rating/:id", (req, res) =>{
 })
 
 /** Calendar routes below */
->>>>>>> 04e6d02ebd5510d1c79f529ebcb81a9c60d8981a
-
-    post.save().then(
-        post => {
-            res.send(post);
-        },
-        error => {
-            res.statusMessage = "Failed to create post"
-            res.status(400).send(error); // 400 for bad request
-        }
-    );
-})
 
 /*** Webpage routes below **********************************/
 // Serve the build
