@@ -147,7 +147,7 @@ app.get('/posts', (req, res) => {
 	})
 })
 
-app.get('/posts/:id', (req, res) => {
+app.get('/posts/id/:id', (req, res) => {
     const id = req.params.id
 
 	if (!ObjectID.isValid(id)) {
@@ -230,6 +230,57 @@ app.post("/posts/add-rating/:id", (req, res) =>{
 	}).catch((err) => {
 		res.status(400).send(err)
 	})
+})
+
+app.get("/posts/username/:username", (req, res) => {
+    const username = req.params.username
+    Post.find({username: username}).then(posts => {
+		res.send({posts})
+	}, err => {
+		res.status(500).send(err)
+	})
+})
+
+app.delete("/posts/:id", (req, res) => {
+    const id = req.params.id
+    const { _id } = req.body
+
+    if (!ObjectID.isValid(id)) {
+		res.status(404).send()
+		return;
+	}
+
+    if (!ObjectID.isValid(_id)) {
+		res.status(404).send()
+		return;
+	}
+
+    Post.findById(id).then( post => {
+        User.find({username: post.username}).then(user => {
+            if (user._id !== _id){
+                User.findById(_id).then(userDeleting => {
+                    if (userDeleting.isAdmin){
+                        post.remove().then(result =>{
+                            res.send(result)
+                        }, err => {
+                            res.status(400).send(err)
+                        })
+                    }
+                    else{
+                        res.status(404).send()
+                    }
+                })
+            }else{
+                post.remove().then(result =>{
+                    res.send(result)
+                }, err => {
+                    res.status(400).send(err)
+                })
+            }
+        }, err => {
+            res.status(500).send(err)
+        })
+    })
 })
 
 /** Calendar routes below */

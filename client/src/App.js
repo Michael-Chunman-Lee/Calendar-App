@@ -21,9 +21,9 @@ class App extends React.Component {
     }
 
     state = {
-        currentUser: null, 
-        isAdmin: false,
-        userID: null
+        currentUser: "asdasd", 
+        isAdmin: true,
+        userID: "asdsa"
     }
 
     render() {
@@ -70,10 +70,10 @@ class App extends React.Component {
                     />
 
                     <Route
-                        exact path="/user/*"
-                        render={({history}) => (
+                        exact path="/user/:profileName"
+                        render={(props) => (
                             <div className="App">
-                                {!currentUser ? <Signup history={history} app={this}/> : <Profile history={history} app={this}/>}
+                                {!currentUser ? <Signup history={props.history} app={this}/> : <Profile history={props.history} app={this} profileName={props.match.params.profileName}/>}
                             </div>
                         )}
                     />
@@ -88,23 +88,14 @@ class App extends React.Component {
                     />
 
                     <Route
-                        exact path="/specificPost/*"
-                        render={({history}) => (
+                        exact path="/specificPost/:id"
+                        render={({history, match}) => (
                             <div className="App">
-                                {!currentUser ? <Signup history={history} app={this}/> : <SpecificPost history={history} app={this}/>}
+                                {!currentUser ? <Signup history={history} app={this}/> : <SpecificPost history={history} app={this} postId={match.params.id}/>}
                             </div>
                         )}                           
                     />
 
-                    <Route
-                        exact path="/specificPostAdmin/*"
-                        render={({history}) => (
-                            <div className="App">
-                                {!currentUser ? <Signup history={history} app={this}/> : 
-                                !isAdmin ? <SpecificPost history={history} app={this}/> : <SpecificPostAdmin history={history} app={this}/>}
-                            </div>
-                        )}   
-                    />
 
                     <Route render={() => <div>404 not found</div>}/>
                 </Switch>
