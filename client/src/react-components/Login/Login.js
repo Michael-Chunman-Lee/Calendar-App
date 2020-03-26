@@ -61,7 +61,7 @@ class Login extends React.Component {
                     />
                     <br/>
                     
-                    <Link to={"forgotPassword"} className="linkStyle">Change password?</Link> 
+                    <Link to={"forgotPassword"} className="linkStyle">Reset password?</Link> 
                     <br/><br/>
 
                     <Snackbar
