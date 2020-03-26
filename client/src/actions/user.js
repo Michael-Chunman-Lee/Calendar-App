@@ -19,34 +19,32 @@ export const readCookie = (app) => {
 
 export const newPassword = (newPasswordComp, app)  => {
 
-    const {username, newPassword, oldPassword, confirmPassword} = newPasswordComp.state
+    const {username, oldPassword, newPassword, confirmPassword} = newPasswordComp.state
 
     if (oldPassword === "" || newPassword === "" || confirmPassword === "" || username === "") {
         newPasswordComp.setState({errorMessage: "One or more of the fields are empty!", open: true})
         return;
-    } else if (newPassword !== oldPassword) {
+    } else if (newPassword !== confirmPassword) {
         newPasswordComp.setState({errorMessage: "Passwords do not match!", open: true})
         return;
     }
-    
-    const request = new Request(`/users/${username}`, {
-        method: "patch",
-        body: JSON.stringify(newPasswordComp.state),
-        headers: {
-            Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json"
-        }
-    })
 
-    fetch(request).then(res => {
+    fetch(`/users/${username}`,{
+        method: "PATCH",
+        body: JSON.stringify(newPasswordComp.state),
+        headers: {'Accept': "application/json, text/plain, */*",
+        "Content-Type": "application/json"}
+    } ).then(res => {
         if (res.status === 200) {
-            return res.json
+            return res.text()
         }
     }).then( json => {
+        console.log(json)
         if (json !== undefined) {
             newPasswordComp.props.history.push("/login")
         }
     }).catch(error => {
+        console.log(`/users/${username}`)
         console.log(error)
     }) 
 }

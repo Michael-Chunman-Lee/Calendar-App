@@ -94,13 +94,12 @@ app.post("/users", (req, res) => {
 
 app.patch("/users/:username", (req, res) => {
     const username = req.params.username
-    const password = req.body.password
+    const password = req.body.oldPassword
     const newPassword = req.body.newPassword
-
     User.findByUsernamePassword(username, password).then(user => {
         user.password = newPassword
         user.save().then(user => {
-            res.send(user)
+            res.json(user)
         }, error => {
             res.status(400).send(error)
         })
@@ -122,7 +121,7 @@ app.get("*", (req, res) => {
 
 /*************************************************/
 // Express server listening...
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 app.listen(port, () => {
     console.log(`Listening on port ${port}...`);
 });
