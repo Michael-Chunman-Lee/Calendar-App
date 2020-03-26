@@ -36,7 +36,37 @@ class AdminDashboard extends Component {
                     created: '01/20/2020',
                 },
             ],
+            dbusers: [],
         }
+    }
+
+    getData() {
+        const request = new Request("/users", {
+            method: "get",
+            headers: {
+                Accept: "application/json, text/plain, */*",
+                "Content-Type": "application/json"
+            }
+        })
+
+        fetch(request)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            }
+        })
+        .then(json => {
+            if (json.users !== undefined) {
+                this.setState({ dbusers: json.users });
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }
+
+    componentDidMount()  {
+        this.getData();
     }
 
     updateSearchQuery = searchBarText => {
@@ -56,13 +86,13 @@ class AdminDashboard extends Component {
     }
 
     removeUser(user) {
-        let filteredUsers = this.state.users.filter(s => {
-            return s !== user
+        return fetch("/users/" + user.username, {
+            method: "delete"
         })
-
-        this.setState({
-            users: filteredUsers,
-        })
+        .then(response => {response.json(); this.getData()})
+        .catch(error => {
+            console.log(error);
+        });
     }
 
     render() {
@@ -84,12 +114,12 @@ class AdminDashboard extends Component {
                             <tr>
                                 <th style={{ width: '20%' }}> Username </th>
                                 <th style={{ width: '30%' }}> Email </th>
-                                <th style={{ width: '20%' }}> Created On </th>
+                                <th style={{ width: '20%' }}></th>
                                 <th style={{ width: '30%' }}></th>
                             </tr>
                         </thead>
                         <tbody>
-                            {this.state.users.map((user, i) => this.userPassesSearchQuery(user) && (
+                            {this.state.dbusers.map((user, i) => this.userPassesSearchQuery(user) && (
                                 <tr className={user.email}>
                                     <td className="usernameCell">
                                         <button
@@ -99,7 +129,7 @@ class AdminDashboard extends Component {
                                             )}
                                             className="btn"
                                         >
-                                            {user.user}
+                                            {user.username}
                                         </button>
                                     </td>
                                     <td className="emailCell">
@@ -122,7 +152,7 @@ class AdminDashboard extends Component {
                                             className="btn"
                                             type="submit"
                                         >
-                                            {user.created}
+                                            <div className="pH"> {"_"} </div>
                                         </button>
                                     </td>
 
