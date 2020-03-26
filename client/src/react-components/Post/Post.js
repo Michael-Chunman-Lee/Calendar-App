@@ -16,7 +16,7 @@ class Post extends Component {
                 title: this.props.post.title,
                 events: this.props.post.events,
                 viewCount: this.props.post.viewCount,
-                date: this.props.post.date,
+                date: new Date(this.props.post.date),
             },
         }
     }
