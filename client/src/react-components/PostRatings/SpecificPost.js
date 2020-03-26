@@ -18,15 +18,7 @@ class SpecificPost extends Component {
         this.state = {
             // This information will eventually be obtained from the backend
             // In the meantime, we will use mock objects
-            post: {
-                    name: 'Robert',
-                    tag: 'Fitness',
-                    title:
-                        'My Grandfather turns the big 100 today!! Checkout his workout schedule!!',
-                    icsRawText: sourceStr,
-                    date: new Date(2019, 11, 24, 10, 33, 30, 0),
-                    viewCount: 10
-                },
+            post: {},
 
             ratingLabels: ["Workload", "Interest", "Timing"],
 
@@ -37,8 +29,33 @@ class SpecificPost extends Component {
                     ratingValues: [1, 5, 4],
                     additionalReview: "Looks like some good stuff"
                 }
-            ]
+            ],
+            isLoading: true
         }
+    }
+
+    getData() {
+        if (this.props.location.post) {
+            this.setState({ post: this.props.location.post , isLoading: false})
+        } else {
+
+            fetch("/posts/id/" + this.props.postId)
+            .then(res => {
+                return res.json()
+            })
+            .then(json => {
+                if (json !== undefined) {
+                    this.setState({ post: json, isLoading: false });
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        }
+    }
+
+    componentDidMount() {
+        this.getData();
     }
 
     removeRating(rating) {
@@ -92,43 +109,50 @@ class SpecificPost extends Component {
             return <div></div>
         }
     }
-        
-    
-    render() {
-        
-        return (
-            <div className="main-div">
-                <NavBar name={this.state.name} app={this.props.app} history={this.props.history}></NavBar>
-                <div className="content">
-                    <div className="middle-content">
-                        <div className="posts">
-                            <Post
-                                app={this.props.app}
-                                history={this.props.history}
-                                post={this.props.location.post}
-                            ></Post>
-                        </div>
 
-                        <RatingForm ratingLabels={this.state.ratingLabels} submithandler={this.submithandler.bind(this)}></RatingForm>
+    renderAfterDisplay() {
+        if (!this.state.isLoading) {
+            return (
+                <div className="main-div">
+                    <NavBar name={this.state.name} app={this.props.app} history={this.props.history}></NavBar>
+                    <div className="content">
+                        <div className="middle-content">
+                            <div className="posts">
+                                <Post
+                                    app={this.props.app}
+                                    history={this.props.history}
+                                    post={this.props.location.post}
+                                ></Post>
+                            </div>
 
-                        <div className="oldRatingsContainer">
-                            {this.state.oldRatings.map((oldRating, i) => {
-                                return (
-                                    <div className="oldRatingContainer" key={i}>
-                                        <OldRating obj={oldRating}></OldRating>
-                                        
-                                        {this.createDeletePostButton(oldRating)}
-                                    </div>
-                                    
-                                );
-                            }
-                            )}
+                            <RatingForm ratingLabels={this.state.ratingLabels} submithandler={this.submithandler.bind(this)}></RatingForm>
+
+                            <div className="oldRatingsContainer">
+                                {this.state.oldRatings.map((oldRating, i) => {
+                                    return (
+                                        <div className="oldRatingContainer" key={i}>
+                                            <OldRating obj={oldRating}></OldRating>
+
+                                            {this.createDeletePostButton(oldRating)}
+                                        </div>
+
+                                    );
+                                }
+                                )}
+                            </div>
                         </div>
                     </div>
-                </div>
 
-            </div>
-        )
+                </div>
+            )
+        } else {
+            return (<div></div>)
+        }
+    }
+
+    
+    render() {
+        return this.renderAfterDisplay()
     }
 }
 
