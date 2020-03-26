@@ -3,7 +3,7 @@ import './Post.css'
 import ScheduleCalendar from '../Calendar/Calendar'
 import { MdClose } from 'react-icons/md'
 import { withRouter } from 'react-router-dom'
-import {incrementPost} from "../../actions/post"
+import {incrementPost, deletePost} from "../../actions/post"
 
 class Post extends Component {
     constructor(props) {
@@ -22,12 +22,13 @@ class Post extends Component {
         }
     }
 
-    onDeleteClick = e => {
-        // This will be an API call that will remove the post from the
-        // database
-        this.setState({ post: undefined })
-        e.stopPropagation()
-    }
+    // onDeleteClick = e => {
+    //     // This will be an API call that will remove the post from the
+    //     // database
+    //     deletePost(this, this.props.app)
+    //     this.setState({ post: undefined })
+    //     e.stopPropagation()
+    // }
     
     onPostClick = e => {
         incrementPost(this.props.key)
@@ -56,7 +57,7 @@ class Post extends Component {
                     {(app.state.currentUser === this.state.post.username ||
                         app.state.isAdmin) && (
                         <span className="post-del-button">
-                            <MdClose onClick={this.onDeleteClick}></MdClose>
+                            <MdClose onClick={(e) => this.props.onDeleteClick(e,this.state.post._id)}></MdClose>
                         </span>
                     )}
                     <div className="post-headers">

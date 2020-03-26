@@ -6,7 +6,7 @@ import TagBox from '../TagBox/TagBox'
 import { withRouter } from 'react-router-dom'
 import { sourceStr } from '../../data/coursesCalendarString'
 import SortBox from '../SortBox/SortBox'
-import {getPosts } from '../../actions/post'
+import {getPosts, deletePost } from '../../actions/post'
 class Home extends Component {
     constructor(props) {
         super(props)
@@ -67,6 +67,12 @@ class Home extends Component {
         getPosts(this)
     }
 
+
+    onDeleteClick = (e, id) => {
+        deletePost(id, this,this.props.app)
+        e.stopPropagation()
+    }
+    
 
     updateSearchQuery = searchBarText => {
         this.setState({ searchQuery: searchBarText })
@@ -149,6 +155,7 @@ class Home extends Component {
                                             history={history}
                                             key={post._id}
                                             post={post}
+                                            onDeleteClick={this.onDeleteClick}
                                         ></Post>
                                     )
                             )}

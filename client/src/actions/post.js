@@ -98,3 +98,22 @@ export const getPostsByName = (postsComp, username) => {
         console.log(error);
     });
 }
+
+export const deletePost = (id, postsComp, app) => {
+    const request = new Request(`/posts/${id}`, {
+        method: "delete",
+        body: JSON.stringify({_id: app.state._id}),
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    })
+
+    fetch(request)
+    .then(res => {
+        return getPosts(postsComp)
+    })
+    .catch(error => {
+        console.log(error);
+    });
+}
