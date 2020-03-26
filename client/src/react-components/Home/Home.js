@@ -58,6 +58,7 @@ class Home extends Component {
         if (this.props.location.uploadedContent) {
             this.state.posts.push(this.props.location.uploadedContent)
         }
+        this.props.history.push("/home")
     }
 
     updateSearchQuery = searchBarText => {

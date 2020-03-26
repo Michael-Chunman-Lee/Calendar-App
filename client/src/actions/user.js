@@ -76,7 +76,7 @@ export const signup = (signupComp, app) => {
         }
     }).then(json => {
         if (json !== undefined) {
-            signupComp.props.history.push("/login")
+            signupComp.props.history.push("/")
         }
     }).catch(error => {
         console.log(error)
