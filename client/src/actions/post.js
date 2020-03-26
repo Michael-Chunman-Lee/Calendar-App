@@ -68,7 +68,6 @@ export const getPosts = (postsComp) => {
     })
     .then(json => {
         if (json.posts !== undefined) {
-            console.log(json)
             postsComp.setState({ posts: json.posts});
         }
     })

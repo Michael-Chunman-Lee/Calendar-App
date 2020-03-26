@@ -119,7 +119,7 @@ class Profile extends Component {
         } else {
             name = this.props.app.state.currentUser
         }
-        console.log(name)
+
         return (
             <div className="main-div">
                 <NavBar
