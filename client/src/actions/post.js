@@ -27,3 +27,28 @@ export const uploadPost = (uploadPostComp, app) => {
         console.log(error)
     })
 }
+
+export const getPosts = (postsComp) => {
+    const request = new Request("/posts", {
+        method: "get",
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    })
+
+    fetch(request)
+    .then(res => {
+        if (res.status === 200) {
+            return res.json();
+        }
+    })
+    .then(json => {
+        if (json.posts !== undefined) {
+            postsComp.setState({ posts: json.posts});
+        }
+    })
+    .catch(error => {
+        console.log(error);
+    });
+}
