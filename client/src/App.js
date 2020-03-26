@@ -22,11 +22,12 @@ class App extends React.Component {
 
     state = {
         currentUser: null, 
-        isAdmin: false 
+        isAdmin: false,
+        userID: null
     }
 
     render() {
-        const {currentUser, isAdmin} = this.state
+        const {currentUser, isAdmin, userID} = this.state
 
         return (
             <BrowserRouter>

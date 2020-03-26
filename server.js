@@ -36,10 +36,10 @@ app.post("/users/login", (req, res) => {
 
     User.findByUsernamePassword(username, password)
         .then(user => {
-            req.session.user = user._id;
+            req.session.userID = user._id;
             req.session.username = user.username;
             req.session.isAdmin = user.isAdmin;
-            res.send({ currentUser: user.username, isAdmin: user.isAdmin });
+            res.send({ currentUser: user.username, isAdmin: user.isAdmin, userID: user._id });
         })
         .catch(error => {
             res.status(400).send(error)
@@ -60,7 +60,7 @@ app.get("/users/logout", (req, res) => {
 // A route to check if a use is logged in on the session cookie
 app.get("/users/check-session", (req, res) => {
     if (req.session.user) {
-        res.send({ currentUser: req.session.username, isAdmin: req.session.isAdmin });
+        res.send({ currentUser: req.session.username, isAdmin: req.session.isAdmin, userID: req.session.userID });
     } else {
         res.status(401).send();
     }
