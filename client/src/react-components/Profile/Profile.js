@@ -8,7 +8,7 @@ import TagBox from '../TagBox/TagBox'
 import Button from '@material-ui/core/Button'
 import { sourceStr } from '../../data/coursesCalendarString'
 import SortBox from '../SortBox/SortBox'
-import {getPosts } from '../../actions/post'
+import {getPostsByName, getPosts } from '../../actions/post'
 class Profile extends Component {
     constructor(props) {
         super(props)
@@ -25,7 +25,6 @@ class Profile extends Component {
                 Top: false,
                 New: false,
             },
-            name: 'Robert',
             //Api call will need to be made to retrieve this data from a database
             posts: [
                 {
@@ -58,11 +57,18 @@ class Profile extends Component {
                 },
             ],
         }
-        if (this.props.location.uploadedContent) {
-            this.state.posts.push(this.props.location.uploadedContent)
+        // if (this.props.location.uploadedContent) {
+        //     this.state.posts.push(this.props.location.uploadedContent)
+        // }
+        this.props.history.push("/user/" + this.props.profileName)
+        if (this.props.profileName) {
+            this.name = this.props.profileName
+        } else {
+            this.name = this.props.app.state.currentUser
         }
-        // this.props.history.push("/users/" + this.props.profileName)
-        getPosts(this)
+        // getPosts(this)
+        getPostsByName(this, this.name)
+        
     }
 
     updateSearchQuery = searchBarText => {
@@ -113,12 +119,7 @@ class Profile extends Component {
             k => this.state.tags[k] && filterTags.push(k)
         )
         const {app, history, profileName} = this.props
-        let name
-        if (profileName) {
-            name = profileName
-        } else {
-            name = app.state.currentUser
-        }
+        
 
         return (
             <div className="main-div">
@@ -169,7 +170,7 @@ class Profile extends Component {
                         //Api call to get profile info (if not current user profile)
                     }
                     <div className="right-content">
-                        {app.state.currentUser === name && (
+                        {app.state.currentUser === this.name && (
                             <Button
                                 id="createScheduleButton"
                                 onClick={e => {
@@ -184,7 +185,7 @@ class Profile extends Component {
                             tags={this.state.tags}
                             handletagClick={this.handletagClick}
                         ></TagBox>
-                        <ProfileBox name={name}></ProfileBox>
+                        <ProfileBox name={this.name}></ProfileBox>
                     </div>
                 </div>
             </div>
