@@ -5,10 +5,13 @@ import Post from '../Post/Post'
 
 import RatingForm from './RatingForm'
 import OldRating from './OldRating'
+
+import IconButton from '@material-ui/core/IconButton'
+import CloseIcon from '@material-ui/icons/Close';
 import { sourceStr } from '../../data/coursesCalendarString'
 import { withRouter } from 'react-router-dom'
 
-class SpecificPost extends Component {
+class SpecificPostAdmin extends Component {
     constructor(props) {
         super(props)
 
@@ -38,10 +41,17 @@ class SpecificPost extends Component {
         }
     }
 
-    onPostClick = (e) => {
-        return;
+    removeRating(rating) {
+        let filteredRatings = this.state.oldRatings.filter(s => {
+            return s !== rating;
+        });
+        console.log(filteredRatings);
+        this.setState({
+            oldRatings: filteredRatings
+        });
     }
-    
+
+
     submithandler() {
 
    
@@ -75,22 +85,43 @@ class SpecificPost extends Component {
 
     }
 
+    onPostClick = (e) => {
+        return;
+    }
+    
     render() {
+        
+       
+        function createDeletePostButton(oldRating) {
+            if (this.props.state.isAdmin) {
+                return <IconButton onClick={this.removeRating.bind(this, oldRating)} color="inherit"                        className="removeRatingButton">
+                                                <CloseIcon />
+                                            </IconButton>;
+            } else {
+                return <div></div>
+            }
+        }
+        
         return (
             <div className="main-div">
-                <NavBar name={this.state.name} userType={this.props.location.userType} username={this.props.location.username}></NavBar>
+                <NavBar name={this.state.name} username={this.props.location.username} userType={this.props.location.userType}></NavBar>
                 <div className="content">
                     <div className="middle-content">
                         <div className="posts">
-                            <Post post={this.state.post} onPostClick={this.postClick}></Post>
+                            <Post post={this.state.post} onPostClick={this.onPostClick}></Post>
                         </div>
 
                         <RatingForm ratingLabels={this.state.ratingLabels} submithandler={this.submithandler.bind(this)}></RatingForm>
 
                         <div className="oldRatingsContainer">
-                            {this.state.oldRatings.map((oldRating,i) => {
+                            {this.state.oldRatings.map((oldRating, i) => {
                                 return (
-                                    <OldRating key={i} obj={oldRating}></OldRating>
+                                    <div className="oldRatingContainer" key={i}>
+                                        <OldRating obj={oldRating}></OldRating>
+                                        
+                                        {createDeletePostButton(oldRating)}
+                                    </div>
+                                    
                                 );
                             }
                             )}
@@ -103,4 +134,4 @@ class SpecificPost extends Component {
     }
 }
 
-export default withRouter(SpecificPost)
+export default withRouter(SpecificPostAdmin)
