@@ -35,7 +35,7 @@ class Signup extends React.Component {
 
         return (
             <div className="signup">
-                <form className="signupForm">
+                <form className="signupForm" onKeyPress={(event) => {if (event.key === "Enter") signup(this, app)}}>
 
                     <br/>
                     <span className="signupTitle">Sign Up</span>

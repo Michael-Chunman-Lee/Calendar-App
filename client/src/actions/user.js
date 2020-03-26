@@ -101,6 +101,7 @@ export const login = (loginComp, app) => {
                 return res.json();
             } else {
                 loginComp.setState({open: true})
+                return {}
             }
         })
         .then(json => {

@@ -33,7 +33,7 @@ class Login extends React.Component {
 
         return (
             <div className="login">
-                <form className="loginForm">
+                <form className="loginForm" onKeyPress={(event) => {if (event.key === "Enter") login(this, app)}}>
 
                     <br/>
                     <span className="loginTitle">Login</span>

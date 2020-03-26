@@ -50,7 +50,7 @@ class ForgotPassword extends React.Component {
 
         return (
             <div className="forgotPassword">
-                <form className="forgotPasswordForm">
+                <form className="forgotPasswordForm" onKeyPress={(event) => {if (event.key === "Enter") newPassword(this, app)}}>
 
                     <br/>
                     <span className="forgotPasswordTitle">Reset Password</span>
