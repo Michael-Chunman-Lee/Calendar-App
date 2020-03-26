@@ -21,9 +21,9 @@ class App extends React.Component {
     }
 
     state = {
-        currentUser: null, 
-        isAdmin: false,
-        userID: null
+        currentUser: "asdasd", 
+        isAdmin: true,
+        userID: "asdsa"
     }
 
     render() {
@@ -96,15 +96,6 @@ class App extends React.Component {
                         )}                           
                     />
 
-                    <Route
-                        exact path="/specificPostAdmin/*"
-                        render={({history}) => (
-                            <div className="App">
-                                {!currentUser ? <Signup history={history} app={this}/> : 
-                                !isAdmin ? <SpecificPost history={history} app={this}/> : <SpecificPostAdmin history={history} app={this}/>}
-                            </div>
-                        )}   
-                    />
 
                     <Route render={() => <div>404 not found</div>}/>
                 </Switch>
