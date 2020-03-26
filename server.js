@@ -6,7 +6,7 @@ const { mongoose } = require("./db/mongoose");
 mongoose.set('useFindAndModify', false); 
 
 const { User } = require("./models/user");
-
+const { Post } = require("./models/post")
 const { ObjectID } = require("mongodb");
 
 const bodyParser = require("body-parser");
@@ -121,6 +121,51 @@ app.delete("/users/:username", (req, res) => {
     }).catch(error => {
         res.status(400).send(error)
     })
+})
+
+/** Post Routes */
+app.patch("/posts/increment/:id", (req, res) =>{
+    const id = req.params.id
+
+    if (!ObjectID.isValid(id)) {
+		res.status(404).send()
+		return;
+	}
+
+    Post.findOne({ _id: id }).then( post =>{
+        if (!post){
+            res.status(404).send()
+        }else{
+            post.viewCount++
+            post.save().then(result =>{
+				res.send(result)
+			}, err => {
+				res.status(400).send(err)
+			})
+        }
+    }).catch(err => {
+        res.status(400).send(err)
+    })
+
+})
+app.patch("/posts/add-rating/:id", (req, res) =>{
+    const id = req.params.id
+    const {name, comment, labels, ratings} = req.body
+    const body = {name, comment, labels, ratings}
+    if (!ObjectID.isValid(id)) {
+		res.status(404).send()
+		return;
+	}
+
+	Post.findByIdAndUpdate(id, {$addToSet: {reservations: body}}, {new: true}).then((result) => {
+		if (!result) {
+			res.status(404).send()
+		} else {   
+			res.send(result)
+		}
+	}).catch((err) => {
+		res.status(400).send(err)
+	})
 })
 
 /** Calendar routes below */
