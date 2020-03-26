@@ -127,6 +127,33 @@ app.delete("/users/:username", (req, res) => {
 })
 
 /** Post routes below */
+app.get('/posts', (req, res) => {
+	Post.find().then(posts => {
+		res.send({posts})
+	}, err => {
+		res.status(500).send(err)
+	})
+})
+
+app.get('/posts/:id', (req, res) => {
+    const id = req.params.id
+
+	if (!ObjectID.isValid(id)) {
+		res.status(404).send()
+		return;
+	}
+
+	Post.findOne({_id: id}).then(post => {
+		if (!post) {
+			res.status(404).send() 
+		} else {
+			res.send(post)
+		}
+	}).catch((err) => {
+		res.status(500).send(err)
+	})
+})
+
 app.post("/posts", (req, res) => {
     const post = new Post({
         name: req.body.user,
