@@ -1,0 +1,54 @@
+const mongoose = require('mongoose')
+
+const EventSchema = new mongoose.Schema({
+    title: {
+        type: String,
+    },
+    start: {
+        type: Date,
+        required: true
+    },
+    end: {
+        type: Date,
+        required: true
+    },
+    allDay: {
+        type: Boolean,
+        required: true
+    }
+});
+
+const PostSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
+        minlength: 1,
+        unique: false,
+    },
+	tag: {
+		type: String,
+		required: true,
+		minlength: 1,
+		trim: true,
+	}, 
+	title: {
+		type: String,
+		required: true,
+		minlength: 1
+    },
+    viewCount: {
+        type: Number,
+        required: true
+    },
+    date: {
+        type: Date,
+        required: true
+    },
+    events: {
+        type: [EventSchema]
+    }
+})
+
+// make a model using the Post schema
+const User = mongoose.model('Post', PostSchema)
+module.exports = { Post }
