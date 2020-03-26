@@ -11,6 +11,7 @@ class Post extends Component {
 
         this.state = {
             post: {
+                _id: this.props.post._id,
                 name: this.props.post.name,
                 tag: this.props.post.tag,
                 title: this.props.post.title,
@@ -33,10 +34,12 @@ class Post extends Component {
         if (this.props.app.state.isAdmin) {
             this.props.history.push({
                 pathname: '../specificPostAdmin/*',
+                post: this.props.post
             })
         } else {
             this.props.history.push({
                 pathname: '../specificPost/*',
+                post: this.props.post
             })
         }
     }

@@ -142,7 +142,7 @@ class Home extends Component {
                                         <Post
                                             app={app}
                                             history={history}
-                                            key={post.id}
+                                            key={post._id}
                                             post={post}
                                         ></Post>
                                     )
