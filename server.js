@@ -148,6 +148,7 @@ app.post("/posts", (req, res) => {
     );
 })
 
+/** Post Routes */
 app.patch("/posts/increment/:id", (req, res) =>{
     const id = req.params.id
 
@@ -181,7 +182,7 @@ app.patch("/posts/add-rating/:id", (req, res) =>{
 		return;
 	}
 
-	Post.findByIdAndUpdate(id, {$addToSet: {reservations: body}}, {new: true}).then((result) => {
+	Post.findByIdAndUpdate(id, {$addToSet: {ratings: body}}, {new: true}).then((result) => {
 		if (!result) {
 			res.status(404).send()
 		} else {   
