@@ -30,7 +30,7 @@ class Profile extends Component {
             posts: [
                 {
                     id: 0,
-                    name: this.props.app.currentUser,
+                    name: this.props.app.state.currentUser,
                     tag: 'Gaming',
                     title: 'Check out my pro gaming schedule',
                     icsRawText: sourceStr,
@@ -39,7 +39,7 @@ class Profile extends Component {
                 },
                 {
                     id: 1,
-                    name: this.props.app.currentUser,
+                    name: this.props.app.state.currentUser,
                     tag: 'Fitness',
                     title:
                         'My Grandfather turns the big 100 today!! Checkout his workout schedule!!',
@@ -49,7 +49,7 @@ class Profile extends Component {
                 },
                 {
                     id: 2,
-                    name: this.props.app.currentUser,
+                    name: this.props.app.state.currentUser,
                     tag: 'School',
                     title: 'I love UofT! Checkout my 4th year schedule!!',
                     icsRawText: sourceStr,
@@ -115,9 +115,9 @@ class Profile extends Component {
         if (this.props.location.profilename) {
             name = this.props.location.profilename
         } else {
-            name = this.props.app.currentUser
+            name = this.props.app.state.currentUser
         }
-
+        console.log(name)
         return (
             <div className="main-div">
                 <NavBar
