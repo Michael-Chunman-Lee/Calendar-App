@@ -90,7 +90,7 @@ class Login extends React.Component {
                     </Button>
                     <br/><br/><br/>
                     
-                    <Link to={""} className="linkStyle">Not yet a user? Sign up here</Link> 
+                    <Link to={"/signup"} className="linkStyle">Not yet a user? Sign up here</Link> 
                     <br/>
 
                 </form>

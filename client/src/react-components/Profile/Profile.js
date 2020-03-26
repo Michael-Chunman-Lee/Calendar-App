@@ -171,10 +171,7 @@ class Profile extends Component {
                             <Button
                                 id="createScheduleButton"
                                 onClick={e => {
-                                    this.props.history.push({
-                                        pathname: '../uploadPost',
-                                        app: this.props.app
-                                    })
+                                    this.props.history.push('../uploadPost')
                                 }}
                             >
                                 Create a new schedule

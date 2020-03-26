@@ -19,7 +19,7 @@ class Signup extends React.Component {
             errorMessage: "",
             open: false
         }
-        this.props.history.push("/")
+        this.props.history.push("/signup")
     }
 
     handleClose = (e, reason) => {

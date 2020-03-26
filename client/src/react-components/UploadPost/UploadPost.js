@@ -24,9 +24,9 @@ class UploadPost extends Component {
         "Drag and drop your schedule here, or click to select your schedule",
       icsRawText: null,
       open: false,
-      name: this.props.location.username,
       errorMessage: ""
     };
+    this.props.history.push("/uploadPost")
   }
 
   setTag = e => {
@@ -57,11 +57,7 @@ class UploadPost extends Component {
   };
 
   onCloseClick = e => {
-    this.props.history.push({
-      pathname: "./home",
-      userType: this.props.location.userType,
-      username: this.props.username
-    });
+    this.props.history.push("./home");
   };
 
   onPostClick = e => {
@@ -76,7 +72,7 @@ class UploadPost extends Component {
       return;
     }
     //Will need to make a call to a database to store the new schedule
-
+    /*
     this.props.history.push({
       pathname: "./home",
       uploadedContent: {
@@ -88,9 +84,8 @@ class UploadPost extends Component {
         viewCount: 0,
         id: 4
       },
-      userType: this.props.location.userType,
-      username: this.props.location.username
     });
+    */
   };
 
   onTitleFieldChange = e => {
@@ -98,11 +93,13 @@ class UploadPost extends Component {
   };
 
   render() {
+    const {app, history} = this.props
+
     return (
       <div className="upload-div">
         <NavBar
-          username={this.props.location.username}
-          userType={this.props.location.userType}
+          app={app}
+          history={history}
         ></NavBar>
         <div className="upload-content">
           <div className="titleBar">
