@@ -26,7 +26,7 @@ class Post extends Component {
         e.stopPropagation()
     }
     onPostClick = e => {
-        if (this.props.location.userType === 'admin') {
+        if (this.props.app.state.isAdmin) {
             this.props.history.push({
                 pathname: '../specificPostAdmin/*',
                 app: this.props.app
