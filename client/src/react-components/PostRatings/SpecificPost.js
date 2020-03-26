@@ -45,7 +45,6 @@ class SpecificPost extends Component {
         let filteredRatings = this.state.oldRatings.filter(s => {
             return s !== rating;
         });
-        console.log(filteredRatings);
         this.setState({
             oldRatings: filteredRatings
         });
@@ -55,19 +54,15 @@ class SpecificPost extends Component {
     submithandler() {
 
    
-        let test = document.getElementsByClassName("Workload0")[0].innerText
-        console.log(test);
 
         let newUsername = "Robert";   // Depending on how username is stored, we will get it from there, this would require processing the login and retrieving its username
         let newRatingLabels = this.state.ratingLabels;
         let newRatingValues = []
         for (let i = 0; i < this.state.ratingLabels.length; i++) {
             let label = this.state.ratingLabels[i];
-            console.log(document.getElementsByClassName(label + i)[0])
             newRatingValues.push(parseInt(document.getElementsByClassName(label + i)[0].innerText))
         }
         let newAddtionalReview = document.getElementsByClassName("inputFormAddtionalReview")[0].value;
-        console.log(newRatingValues);
 
 
         let newRating = {
@@ -77,7 +72,6 @@ class SpecificPost extends Component {
             additionalReview: newAddtionalReview
         }
 
-        console.log(newRating);
 
         this.setState({
             oldRatings: this.state.oldRatings.concat(newRating)
@@ -90,7 +84,6 @@ class SpecificPost extends Component {
     }
     
     createDeletePostButton(oldRating) {
-        console.log(this)
         if (this.props.app.state.isAdmin) {
             return <IconButton onClick={this.removeRating.bind(oldRating)} color="inherit"                        className="removeRatingButton">
                                             <CloseIcon />
