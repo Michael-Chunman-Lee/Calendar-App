@@ -7,8 +7,11 @@ mongoose.set('useFindAndModify', false);
 
 const { User } = require("./models/user");
 
+const { Post } = require("./models/post")
+
 const { ObjectID } = require("mongodb");
 
+const { parseEventsFromICS } = require("./icsHelpers")
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 
@@ -123,8 +126,27 @@ app.delete("/users/:username", (req, res) => {
     })
 })
 
-/** Calendar routes below */
+/** Post routes below */
+app.post("/posts", (req, res) => {
+    const post = new Post({
+        name: req.body.user,
+        tag: req.body.tag,
+        title: req.body.title,
+        viewCount: 0,
+        date: new Date(),
+        events: parseEventsFromICS(req.body.icsRawText)
+    });
 
+    post.save().then(
+        post => {
+            res.send(post);
+        },
+        error => {
+            res.statusMessage = "Failed to create post"
+            res.status(400).send(error); // 400 for bad request
+        }
+    );
+})
 
 /*** Webpage routes below **********************************/
 // Serve the build

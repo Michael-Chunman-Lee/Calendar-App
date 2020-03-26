@@ -5,7 +5,6 @@ import {
     momentLocalizer,
   } from 'react-big-calendar';
 import moment from "moment";
-import parseEventsFromICS from "../../icsHelpers"
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "./Calendar.css";
 const localizer = momentLocalizer(moment)
@@ -15,7 +14,7 @@ class ScheduleCalendar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            events: parseEventsFromICS(this.props.icsRawText)
+            events: this.props.events
         }   
     }
 
