@@ -150,8 +150,8 @@ app.patch("/posts/increment/:id", (req, res) =>{
 })
 app.patch("/posts/add-rating/:id", (req, res) =>{
     const id = req.params.id
-    const {name, comment, labels, ratings} = req.body
-    const body = {name, comment, labels, ratings}
+    const {username,  additionalComment, criteriaLabels, criteriaRatings} = req.body
+    const body = {username,  additionalComment, criteriaLabels, criteriaRatings}
     if (!ObjectID.isValid(id)) {
 		res.status(404).send()
 		return;
