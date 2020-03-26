@@ -28,6 +28,29 @@ export const uploadPost = (uploadPostComp, app) => {
     })
 }
 
+export const incrementPost = (postID) => {
+    fetch(`/posts/increment/${postID}`,{
+        method: "PATCH",
+        headers: {'Accept': "application/json, text/plain, */*",
+        "Content-Type": "application/json"}
+    }).catch(error => {
+        console.log(error)
+    }) 
+}
+
+export const getSpecificPost = (postID) => {
+    fetch('/posts/postID').then(res => {
+        if (res.status === 200) {
+            return res.json()
+        }
+    }).then (json => {
+        if (json.post !== undefined) {
+            //Not sure what is purpose of this
+            return json.post
+        }
+    })
+}
+
 export const getPosts = (postsComp) => {
     const request = new Request("/posts", {
         method: "get",

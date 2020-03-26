@@ -3,6 +3,8 @@ import './Post.css'
 import ScheduleCalendar from '../Calendar/Calendar'
 import { MdClose } from 'react-icons/md'
 import { withRouter } from 'react-router-dom'
+import {incrementPost} from "../../actions/post"
+
 class Post extends Component {
     constructor(props) {
         super(props)
@@ -25,7 +27,9 @@ class Post extends Component {
         this.setState({ post: undefined })
         e.stopPropagation()
     }
+    
     onPostClick = e => {
+        incrementPost(this.props.key)
         if (this.props.app.state.isAdmin) {
             this.props.history.push({
                 pathname: '../specificPostAdmin/*',
