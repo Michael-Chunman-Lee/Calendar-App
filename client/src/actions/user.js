@@ -121,7 +121,6 @@ export const logout = (app) => {
         .then(res => {
             app.setState({
                 currentUser: null,
-                message: { type: "", body: "" },
                 isAdmin: false
             });
         })

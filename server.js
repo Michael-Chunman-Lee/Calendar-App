@@ -126,6 +126,7 @@ app.delete("/users/:username", (req, res) => {
     })
 })
 
+<<<<<<< HEAD
 /** Post routes below */
 app.post("/posts", (req, res) => {
     const post = new Post({
@@ -136,6 +137,54 @@ app.post("/posts", (req, res) => {
         date: new Date(),
         events: parseEventsFromICS(req.body.icsRawText)
     });
+=======
+/** Post Routes */
+app.patch("/posts/increment/:id", (req, res) =>{
+    const id = req.params.id
+
+    if (!ObjectID.isValid(id)) {
+		res.status(404).send()
+		return;
+	}
+
+    Post.findOne({ _id: id }).then( post =>{
+        if (!post){
+            res.status(404).send()
+        }else{
+            post.viewCount++
+            post.save().then(result =>{
+				res.send(result)
+			}, err => {
+				res.status(400).send(err)
+			})
+        }
+    }).catch(err => {
+        res.status(400).send(err)
+    })
+
+})
+app.patch("/posts/add-rating/:id", (req, res) =>{
+    const id = req.params.id
+    const {username,  additionalComment, criteriaLabels, criteriaRatings} = req.body
+    const body = {username,  additionalComment, criteriaLabels, criteriaRatings}
+    if (!ObjectID.isValid(id)) {
+		res.status(404).send()
+		return;
+	}
+
+	Post.findByIdAndUpdate(id, {$addToSet: {reservations: body}}, {new: true}).then((result) => {
+		if (!result) {
+			res.status(404).send()
+		} else {   
+			res.send(result)
+		}
+	}).catch((err) => {
+		res.status(400).send(err)
+	})
+})
+
+/** Calendar routes below */
+>>>>>>> 04e6d02ebd5510d1c79f529ebcb81a9c60d8981a
 
     post.save().then(
         post => {
