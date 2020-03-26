@@ -147,7 +147,7 @@ app.get('/posts', (req, res) => {
 	})
 })
 
-app.get('/posts/:id', (req, res) => {
+app.get('/posts/id/:id', (req, res) => {
     const id = req.params.id
 
 	if (!ObjectID.isValid(id)) {
@@ -229,6 +229,15 @@ app.post("/posts/add-rating/:id", (req, res) =>{
 		}
 	}).catch((err) => {
 		res.status(400).send(err)
+	})
+})
+
+app.get("/posts/username/:username", (req, res) => {
+    const username = req.params.username
+    Post.find({username: username}).then(posts => {
+		res.send({posts})
+	}, err => {
+		res.status(500).send(err)
 	})
 })
 
