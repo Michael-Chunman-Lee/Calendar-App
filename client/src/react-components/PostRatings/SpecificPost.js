@@ -11,7 +11,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import { sourceStr } from '../../data/coursesCalendarString'
 import { withRouter } from 'react-router-dom'
 
-class SpecificPostAdmin extends Component {
+class SpecificPost extends Component {
     constructor(props) {
         super(props)
 
@@ -134,4 +134,4 @@ class SpecificPostAdmin extends Component {
     }
 }
 
-export default withRouter(SpecificPostAdmin)
+export default withRouter(SpecificPost)
