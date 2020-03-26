@@ -61,6 +61,7 @@ class Profile extends Component {
         if (this.props.location.uploadedContent) {
             this.state.posts.push(this.props.location.uploadedContent)
         }
+        this.props.history.push("/users/" + this.props.app.state.currentUser)
     }
 
     updateSearchQuery = searchBarText => {
