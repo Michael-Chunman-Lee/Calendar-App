@@ -32,17 +32,10 @@ class Post extends Component {
     
     onPostClick = e => {
         incrementPost(this.props.key)
-        if (this.props.app.state.isAdmin) {
-            this.props.history.push({
-                pathname: '../specificPostAdmin/' + this.props.post._id,
-                post: this.props.post
-            })
-        } else {
             this.props.history.push({
                 pathname: '../specificPost/' + this.props.post._id,
                 post: this.props.post
             })
-        }
     }
 
     onCalendarClick = e => {
