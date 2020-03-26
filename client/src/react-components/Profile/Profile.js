@@ -8,7 +8,7 @@ import TagBox from '../TagBox/TagBox'
 import Button from '@material-ui/core/Button'
 import { sourceStr } from '../../data/coursesCalendarString'
 import SortBox from '../SortBox/SortBox'
-import {getPostsByName, getPosts } from '../../actions/post'
+import {getPostsByName, deletePost } from '../../actions/post'
 class Profile extends Component {
     constructor(props) {
         super(props)
@@ -44,6 +44,11 @@ class Profile extends Component {
 
     componentDidMount(){
         getPostsByName(this, this.name)
+    }
+
+    onDeleteClick = (e, id) => {
+        deletePost(id, this,this.props.app)
+        e.stopPropagation()
     }
 
     updateSearchQuery = searchBarText => {
@@ -94,7 +99,7 @@ class Profile extends Component {
             k => this.state.tags[k] && filterTags.push(k)
         )
         const {app, history, profileName} = this.props
-        
+
         return (
             <div className="main-div">
                 <NavBar
@@ -127,6 +132,7 @@ class Profile extends Component {
                                             app={app}
                                             key={post._id}
                                             history={history}
+                                            onDeleteClick={this.onDeleteClick}
                                             post={post}
                                         ></Post>
                                     )

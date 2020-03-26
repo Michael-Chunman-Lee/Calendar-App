@@ -245,37 +245,21 @@ app.delete("/posts/:id", (req, res) => {
     const id = req.params.id
     const { _id } = req.body
 
-    if (!ObjectID.isValid(id)) {
-		res.status(404).send()
-		return;
-	}
-
-    if (!ObjectID.isValid(_id)) {
-		res.status(404).send()
-		return;
-	}
-
     Post.findById(id).then( post => {
         User.find({username: post.username}).then(user => {
             if (user._id !== _id){
                 User.findById(_id).then(userDeleting => {
                     if (userDeleting.isAdmin){
-                        post.remove().then(result =>{
-                            res.send(result)
-                        }, err => {
-                            res.status(400).send(err)
-                        })
+                        post.remove()
+                        res.status(200).send()
                     }
                     else{
                         res.status(404).send()
                     }
                 })
             }else{
-                post.remove().then(result =>{
-                    res.send(result)
-                }, err => {
-                    res.status(400).send(err)
-                })
+                post.remove()
+                res.status(200).send()
             }
         }, err => {
             res.status(500).send(err)
