@@ -5,7 +5,9 @@ import { withRouter } from 'react-router-dom'
 import HomeIcon from '@material-ui/icons/Home'
 import SearchIcon from '@material-ui/icons/Search'
 import InputBase from '@material-ui/core/InputBase'
+import MeetingRoomIcon from '@material-ui/icons/MeetingRoom'
 import './NavBar.css'
+import {logout} from "../../actions/user"
 
 class NavBar extends Component {
     constructor(props) {
@@ -76,6 +78,9 @@ class NavBar extends Component {
                     )}
                     <IconButton onClick={this.onHomeClick} color="inherit">
                         <HomeIcon />
+                    </IconButton>
+                    <IconButton onClick={() => logout(app)} color="inherit">
+                        <MeetingRoomIcon/>
                     </IconButton>
                 </span>
             </div>

@@ -1,5 +1,23 @@
 const mongoose = require('mongoose')
 
+const RatingSchema = new mongoose.Schema({
+    username: {
+        type: String,
+        required: true
+    },
+    additionalComment: {
+        type: String,
+    }
+    criteriaLabels: {
+        type: [String],
+        required: true
+    }
+    criteriaRatings: {
+        type: [Number],
+        required: true
+    }
+})
+
 const EventSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -46,6 +64,9 @@ const PostSchema = new mongoose.Schema({
     },
     events: {
         type: [EventSchema]
+    },
+    ratings: {
+        type: [RatingSchema]
     }
 })
 
