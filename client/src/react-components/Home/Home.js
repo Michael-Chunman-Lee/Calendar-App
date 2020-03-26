@@ -6,7 +6,7 @@ import TagBox from '../TagBox/TagBox'
 import { withRouter } from 'react-router-dom'
 import { sourceStr } from '../../data/coursesCalendarString'
 import SortBox from '../SortBox/SortBox'
-
+import {getPosts } from '../../actions/post'
 class Home extends Component {
     constructor(props) {
         super(props)
@@ -59,6 +59,8 @@ class Home extends Component {
             this.state.posts.push(this.props.location.uploadedContent)
         }
         this.props.history.push("/home")
+
+        getPosts(this)
     }
 
     updateSearchQuery = searchBarText => {

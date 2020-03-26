@@ -168,7 +168,7 @@ app.get('/posts/:id', (req, res) => {
 
 app.post("/posts", (req, res) => {
     const post = new Post({
-        name: req.body.user,
+        username: req.body.username,
         tag: req.body.tag,
         title: req.body.title,
         viewCount: 0,
@@ -212,7 +212,7 @@ app.patch("/posts/increment/:id", (req, res) =>{
     })
 
 })
-app.patch("/posts/add-rating/:id", (req, res) =>{
+app.post("/posts/add-rating/:id", (req, res) =>{
     const id = req.params.id
     const {username,  additionalComment, criteriaLabels, criteriaRatings} = req.body
     const body = {username,  additionalComment, criteriaLabels, criteriaRatings}

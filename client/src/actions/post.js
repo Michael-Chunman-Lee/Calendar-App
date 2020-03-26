@@ -6,7 +6,7 @@ export const uploadPost = (uploadPostComp, app) => {
     
     const request = new Request("/posts", {
         method: "post",
-        body: JSON.stringify({title: title, tag: tag, user: app.state.currentUser, icsRawText: icsRawText}),
+        body: JSON.stringify({title: title, tag: tag, username: app.state.currentUser, icsRawText: icsRawText}),
         headers: {
             Accept: "application/json, text/plain, */*",
             "Content-Type": "application/json"
@@ -68,6 +68,7 @@ export const getPosts = (postsComp) => {
     })
     .then(json => {
         if (json.posts !== undefined) {
+            console.log(json)
             postsComp.setState({ posts: json.posts});
         }
     })

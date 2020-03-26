@@ -30,14 +30,14 @@ const EventSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
-    allDay: {
+    "allDay?": {
         type: Boolean,
         required: true
     }
 });
 
 const PostSchema = new mongoose.Schema({
-    name: {
+    username: {
         type: String,
         required: true,
         minlength: 1,
