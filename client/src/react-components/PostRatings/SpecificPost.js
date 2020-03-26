@@ -89,26 +89,31 @@ class SpecificPost extends Component {
         return;
     }
     
-    render() {
-        
-       
-        function createDeletePostButton(oldRating) {
-            if (this.props.state.isAdmin) {
-                return <IconButton onClick={this.removeRating.bind(this, oldRating)} color="inherit"                        className="removeRatingButton">
-                                                <CloseIcon />
-                                            </IconButton>;
-            } else {
-                return <div></div>
-            }
+    createDeletePostButton(oldRating) {
+        console.log(this)
+        if (this.props.app.state.isAdmin) {
+            return <IconButton onClick={this.removeRating.bind(oldRating)} color="inherit"                        className="removeRatingButton">
+                                            <CloseIcon />
+                                        </IconButton>;
+        } else {
+            return <div></div>
         }
+    }
+        
+    
+    render() {
         
         return (
             <div className="main-div">
-                <NavBar name={this.state.name} username={this.props.location.username} userType={this.props.location.userType}></NavBar>
+                <NavBar name={this.state.name} app={this.props.app} history={this.props.history}></NavBar>
                 <div className="content">
                     <div className="middle-content">
                         <div className="posts">
-                            <Post post={this.state.post} onPostClick={this.onPostClick}></Post>
+                            <Post
+                                app={this.props.app}
+                                history={this.props.history}
+                                post={this.props.location.post}
+                            ></Post>
                         </div>
 
                         <RatingForm ratingLabels={this.state.ratingLabels} submithandler={this.submithandler.bind(this)}></RatingForm>
@@ -119,7 +124,7 @@ class SpecificPost extends Component {
                                     <div className="oldRatingContainer" key={i}>
                                         <OldRating obj={oldRating}></OldRating>
                                         
-                                        {createDeletePostButton(oldRating)}
+                                        {this.createDeletePostButton(oldRating)}
                                     </div>
                                     
                                 );
