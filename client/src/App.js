@@ -70,10 +70,10 @@ class App extends React.Component {
                     />
 
                     <Route
-                        exact path="/user/*"
-                        render={({history}) => (
+                        exact path="/user/:profileName"
+                        render={(props) => (
                             <div className="App">
-                                {!currentUser ? <Signup history={history} app={this}/> : <Profile history={history} app={this}/>}
+                                {!currentUser ? <Signup history={props.history} app={this}/> : <Profile history={props.history} app={this} profileName={props.match.params.profileName}/>}
                             </div>
                         )}
                     />

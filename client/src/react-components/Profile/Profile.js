@@ -61,7 +61,7 @@ class Profile extends Component {
         if (this.props.location.uploadedContent) {
             this.state.posts.push(this.props.location.uploadedContent)
         }
-        this.props.history.push("/users/" + this.props.app.state.currentUser)
+        // this.props.history.push("/users/" + this.props.profileName)
         getPosts(this)
     }
 
@@ -112,12 +112,12 @@ class Profile extends Component {
         Object.keys(this.state.tags).map(
             k => this.state.tags[k] && filterTags.push(k)
         )
-        const {app, history} = this.props
+        const {app, history, profileName} = this.props
         let name
-        if (this.props.location.profilename) {
-            name = this.props.location.profilename
+        if (profileName) {
+            name = profileName
         } else {
-            name = this.props.app.state.currentUser
+            name = app.state.currentUser
         }
 
         return (
