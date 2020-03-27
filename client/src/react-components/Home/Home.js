@@ -20,40 +20,11 @@ class Home extends Component {
                 Food: false,
             },
             sortPosts: {
-                Top: false,
+                Top: true,
                 New: false,
             },
             //An Api call will be made in the future to retrieve this data from a database
-            posts: [
-                {
-                    id: 0,
-                    name: 'user',
-                    tag: 'Gaming',
-                    title: 'Check out my pro gaming schedule',
-                    icsRawText: sourceStr,
-                    date: new Date(2018, 11, 24, 10, 33, 30, 0),
-                    viewCount: 20,
-                },
-                {
-                    id: 1,
-                    name: 'Robert',
-                    tag: 'Fitness',
-                    title:
-                        'My Grandfather turns the big 100 today!! Checkout his workout schedule!!',
-                    icsRawText: sourceStr,
-                    date: new Date(2019, 11, 24, 10, 33, 30, 0),
-                    viewCount: 10,
-                },
-                {
-                    id: 2,
-                    name: 'Robert 2',
-                    tag: 'School',
-                    title: 'I love UofT! Checkout my 4th year schedule!!',
-                    icsRawText: sourceStr,
-                    date: new Date(2016, 11, 24, 10, 33, 30, 0),
-                    viewCount: 1000000,
-                },
-            ],
+            posts: [],
         }
         if (this.props.location.uploadedContent) {
             this.state.posts.push(this.props.location.uploadedContent)
