@@ -78,10 +78,12 @@ class SpecificPost extends Component {
     removeRating(rating) {
         console.log('/posts/delete-rating/' + this.state.post._id)
         console.log(rating)
-        
+        console.log(this.props.app.state.userID)
         return fetch('/posts/delete-rating/' + this.state.post._id, {
             method: 'delete',
-            body: JSON.stringify(rating)
+            headers: {'Accept': "application/json, text/plain, */*",
+                    "Content-Type": "application/json"},
+            body: { userid: this.props.app.state.userID , rating: JSON.stringify(rating)}
         })
         .then(response => response.json())
         .then(json => console.log(json))
