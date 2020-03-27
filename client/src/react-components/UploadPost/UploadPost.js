@@ -135,7 +135,6 @@ class UploadPost extends Component {
               )}
             </Dropzone>
             <br />
-            <br />
 
             <Button onClick={this.onCloseClick}>Cancel</Button>
             <Button onClick={this.onPostClick} id="uploadButton">
