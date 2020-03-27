@@ -112,10 +112,10 @@ app.patch("/users/:username", (req, res) => {
 })
 
 // WILL NEED TO CHECK IF ADMIN
-app.delete("/users/:username", (req, res) => { 
-    const username = req.params.username;
+app.delete("/users/:id", (req, res) => { 
+    const id = req.params.id;
     
-    User.findOneAndDelete({ username: username }).then(user => {
+    User.findByIdAndDelete(id).then(user => {
         if (!user) {
             console.log("404")
             res.status(404).send()
@@ -241,9 +241,7 @@ app.get("/posts/username/:username", (req, res) => {
 	})
 })
 
-app.delete("/posts/delete-rating/:id", (req, res) => { 
-    console.log("body")
-    console.log(req.body)
+app.delete("/posts/delete-rating/:id", (req, res) => {
     const id = req.params.id
     const userid = req.body.userid
     const {_id, username,  additionalComment, criteriaLabels, criteriaRatings} = req.body.rating

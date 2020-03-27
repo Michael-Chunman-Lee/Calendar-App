@@ -41,6 +41,7 @@ class AdminDashboard extends Component {
     }
 
     getData() {
+        console.log(this)
         const request = new Request("/users", {
             method: "get",
             headers: {
@@ -86,7 +87,7 @@ class AdminDashboard extends Component {
     }
 
     removeUser(user) {
-        return fetch("/users/" + user.username, {
+        return fetch("/users/" + user._id, {
             method: "delete"
         })
         .then(response => {response.json(); this.getData()})
@@ -162,6 +163,7 @@ class AdminDashboard extends Component {
                                                 this,
                                                 user
                                             )}
+                                            disabled={user.isAdmin}
                                             color="inherit"
                                             className="removeUserButton"
                                         >
