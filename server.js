@@ -241,6 +241,26 @@ app.get("/posts/username/:username", (req, res) => {
 	})
 })
 
+app.delete("/posts/delete-rating/:id", (req, res) => { 
+    const id = req.params.id
+    const {username,  additionalComment, criteriaLabels, criteriaRatings} = req.body
+    const body = {username,  additionalComment, criteriaLabels, criteriaRatings}
+    if (!ObjectID.isValid(id)) {
+		res.status(404).send()
+		return;
+	}
+    
+	Post.findByIdAndUpdate(id, {$pull: {ratings: body}}, {new: true}).then((result) => {
+		if (!result) {
+			res.status(404).send()
+		} else {   
+			res.send(result)
+		}
+	}).catch((err) => {
+		res.status(400).send(err)
+	})
+})
+
 app.delete("/posts/:id", (req, res) => {
     const id = req.params.id
     const { _id } = req.body
