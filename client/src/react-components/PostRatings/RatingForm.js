@@ -6,7 +6,6 @@ import Button from "@material-ui/core/Button";
 export default class PostRatings extends Component {
 
     render() {
-        console.log(this.props.criteriaLabels[0]);
         return (
             <div className="reviewForm">
                 <div className="leaveARating">Leave a Rating!</div>
