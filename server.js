@@ -245,7 +245,6 @@ app.delete("/posts/delete-rating/:id", (req, res) => {
     const id = req.params.id
     const {_id, username,  additionalComment, criteriaLabels, criteriaRatings} = req.body
     const body = {_id, username,  additionalComment, criteriaLabels, criteriaRatings}
-    
     if (!ObjectID.isValid(id)) {
 		res.status(404).send()
 		return;
