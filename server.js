@@ -242,6 +242,7 @@ app.get("/posts/username/:username", (req, res) => {
 })
 
 app.delete("/posts/delete-rating/:id", (req, res) => { 
+    console.log("body")
     console.log(req.body)
     const id = req.params.id
     const userid = req.body.userid

@@ -76,17 +76,13 @@ class SpecificPost extends Component {
     }
 
     removeRating(rating) {
-        console.log('/posts/delete-rating/' + this.state.post._id)
-        console.log(rating)
-        console.log(this.props.app.state.userID)
         return fetch('/posts/delete-rating/' + this.state.post._id, {
             method: 'delete',
             headers: {'Accept': "application/json, text/plain, */*",
-                    "Content-Type": "application/json"},
-            body: { userid: this.props.app.state.userID , rating: JSON.stringify(rating)}
+                "Content-Type": "application/json"},
+            body: JSON.stringify({ userid: this.props.app.state.userID , rating: rating})
         })
-        .then(response => response.json())
-        .then(json => console.log(json))
+        .then(response => this.componentDidMount())
         .catch(error => {
             console.log(error);
         });
@@ -102,7 +98,7 @@ class SpecificPost extends Component {
 
    
 
-        let newUsername = "Robert";   // Depending on how username is stored, we will get it from there, this would require processing the login and retrieving its username
+        let newUsername = this.props.app.state.currentUser
         let newcriteriaLabels = this.state.criteriaLabels;
         let newcriteriaRatings = []
         for (let i = 0; i < this.state.criteriaLabels.length; i++) {
@@ -120,9 +116,16 @@ class SpecificPost extends Component {
         }
 
 
-        this.setState({
-            oldRatings: this.state.oldRatings.concat(newRating)
+        return fetch('/posts/add-rating/' + this.state.post._id, {
+            method: 'post',
+            headers: {'Accept': "application/json, text/plain, */*",
+                "Content-Type": "application/json"},
+            body: JSON.stringify(newRating)
         })
+        .then(response => this.componentDidMount())
+        .catch(error => {
+            console.log(error);
+        });
 
     }
 
