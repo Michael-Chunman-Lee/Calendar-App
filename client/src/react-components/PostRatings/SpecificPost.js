@@ -10,7 +10,7 @@ import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close';
 import { sourceStr } from '../../data/coursesCalendarString'
 import { withRouter } from 'react-router-dom'
-
+import { deletePost } from '../../actions/post'
 class SpecificPost extends Component {
     constructor(props) {
         super(props)
@@ -90,6 +90,11 @@ class SpecificPost extends Component {
         });
     }
 
+    onPostDeleteClick = (e, id) => {
+        deletePost(id, this,this.props.app)
+        e.stopPropagation()
+        this.props.history.push("/home")
+    }
 
     submithandler() {
 
@@ -145,6 +150,7 @@ class SpecificPost extends Component {
                                     app={this.props.app}
                                     history={this.props.history}
                                     post={this.state.post}
+                                    onDeleteClick={this.onPostDeleteClick}
                                 ></Post>
                             </div>
 
