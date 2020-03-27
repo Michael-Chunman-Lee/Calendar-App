@@ -20,23 +20,39 @@ class SpecificPost extends Component {
             // In the meantime, we will use mock objects
             post: {},
 
-            ratingLabels: ["Workload", "Interest", "Timing"],
+            criteriaLabels: ["Workload", "Interest", "Timing"],
 
             oldRatings: [
                 {
-                    ratingUsername: "TheLegend76",
-                    ratingLabels: ["Workload", "Interest", "Timing"],
-                    ratingValues: [1, 5, 4],
-                    additionalReview: "Looks like some good stuff"
+                    username: "TheLegend76",
+                    criteriaLabels: ["Workload", "Interest", "Timing"],
+                    criteriaRatings: [1, 5, 4],
+                    additionalComment: "Looks like some good stuff"
                 }
             ],
-            isLoading: true
+            isCalendarLoading: true,
+            isRatingsLoading: true
         }
     }
 
-    getData() {
+    getCommentsData() {
+        fetch("/posts/id/" + this.props.postId)
+        .then(res => {
+            return res.json()
+        })
+        .then(json => {
+            if (json !== undefined) {
+                this.setState({ oldRatings: json.ratings, isRatingsLoading: false });
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }
+
+    getCalendarData() {
         if (this.props.location.post) {
-            this.setState({ post: this.props.location.post , isLoading: false})
+            this.setState({ post: this.props.location.post , isCalendarLoading: false})
         } else {
 
             fetch("/posts/id/" + this.props.postId)
@@ -45,7 +61,7 @@ class SpecificPost extends Component {
             })
             .then(json => {
                 if (json !== undefined) {
-                    this.setState({ post: json, isLoading: false });
+                    this.setState({ post: json, isCalendarLoading: false });
                 }
             })
             .catch(error => {
@@ -55,15 +71,22 @@ class SpecificPost extends Component {
     }
 
     componentDidMount() {
-        this.getData();
+        this.getCalendarData();
+        this.getCommentsData();
     }
 
     removeRating(rating) {
-        let filteredRatings = this.state.oldRatings.filter(s => {
-            return s !== rating;
-        });
-        this.setState({
-            oldRatings: filteredRatings
+        console.log('/posts/delete-rating/' + this.state.post._id)
+        console.log(rating)
+        
+        return fetch('/posts/delete-rating/' + this.state.post._id, {
+            method: 'delete',
+            body: JSON.stringify(rating)
+        })
+        .then(response => response.json())
+        .then(json => console.log(json))
+        .catch(error => {
+            console.log(error);
         });
     }
 
@@ -73,20 +96,20 @@ class SpecificPost extends Component {
    
 
         let newUsername = "Robert";   // Depending on how username is stored, we will get it from there, this would require processing the login and retrieving its username
-        let newRatingLabels = this.state.ratingLabels;
-        let newRatingValues = []
-        for (let i = 0; i < this.state.ratingLabels.length; i++) {
-            let label = this.state.ratingLabels[i];
-            newRatingValues.push(parseInt(document.getElementsByClassName(label + i)[0].innerText))
+        let newcriteriaLabels = this.state.criteriaLabels;
+        let newcriteriaRatings = []
+        for (let i = 0; i < this.state.criteriaLabels.length; i++) {
+            let label = this.state.criteriaLabels[i];
+            newcriteriaRatings.push(parseInt(document.getElementsByClassName(label + i)[0].innerText))
         }
         let newAddtionalReview = document.getElementsByClassName("inputFormAddtionalReview")[0].value;
 
 
         let newRating = {
-            ratingUsername: newUsername,
-            ratingLabels: newRatingLabels,
-            ratingValues: newRatingValues,
-            additionalReview: newAddtionalReview
+            username: newUsername,
+            criteriaLabels: newcriteriaLabels,
+            criteriaRatings: newcriteriaRatings,
+            additionalComment: newAddtionalReview
         }
 
 
@@ -102,7 +125,7 @@ class SpecificPost extends Component {
     
     createDeletePostButton(oldRating) {
         if (this.props.app.state.isAdmin) {
-            return <IconButton onClick={this.removeRating.bind(oldRating)} color="inherit"                        className="removeRatingButton">
+            return <IconButton onClick={() => this.removeRating(oldRating)} color="inherit"                        className="removeRatingButton">
                                             <CloseIcon />
                                         </IconButton>;
         } else {
@@ -111,7 +134,7 @@ class SpecificPost extends Component {
     }
 
     renderAfterDisplay() {
-        if (!this.state.isLoading) {
+        if (!this.state.isCalendarLoading && !this.state.isRatingsLoading) {
             return (
                 <div className="main-div">
                     <NavBar name={this.state.name} app={this.props.app} history={this.props.history}></NavBar>
@@ -121,11 +144,11 @@ class SpecificPost extends Component {
                                 <Post
                                     app={this.props.app}
                                     history={this.props.history}
-                                    post={this.props.location.post}
+                                    post={this.state.post}
                                 ></Post>
                             </div>
 
-                            <RatingForm ratingLabels={this.state.ratingLabels} submithandler={this.submithandler.bind(this)}></RatingForm>
+                            <RatingForm criteriaLabels={this.state.criteriaLabels} submithandler={this.submithandler.bind(this)}></RatingForm>
 
                             <div className="oldRatingsContainer">
                                 {this.state.oldRatings.map((oldRating, i) => {

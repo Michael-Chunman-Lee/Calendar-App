@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 export default class PostRatings extends Component {
 
     render() {
-        console.log(this.props.ratingLabels[0]);
+        console.log(this.props.criteriaLabels[0]);
         return (
             <div className="reviewForm">
                 <div className="leaveARating">Leave a Rating!</div>
@@ -14,7 +14,7 @@ export default class PostRatings extends Component {
                     <div className="starForm">
                         <div className="starTable">
                             <div className="criteriaHeader">Criteria:</div>
-                            {this.props.ratingLabels.map((crit, i) => (
+                            {this.props.criteriaLabels.map((crit, i) => (
                                 <div key={i} className={"starRow" + i}>
                                     <StarRatings label={crit} index={i}/>
                                 </div>
