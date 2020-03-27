@@ -22,7 +22,7 @@ class Profile extends Component {
                 Food: false,
             },
             sortPosts: {
-                Top: false,
+                Top: true,
                 New: false,
             },
             //Api call will need to be made to retrieve this data from a database
