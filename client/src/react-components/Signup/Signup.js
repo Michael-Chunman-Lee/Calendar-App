@@ -18,7 +18,7 @@ class Signup extends React.Component {
             password: "",
             confirmPassword: "",
             errorMessage: "",
-            uploadMessage: "Upload a valid profile image",
+            uploadMessage: "Drag and drop a valid profile image",
             open: false,
             curFile: undefined
         }
