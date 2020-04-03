@@ -49,17 +49,29 @@ export const newPassword = (newPasswordComp, app)  => {
 
 // A function to send a POST request with the user signing up
 export const signup = (signupComp, app) => {
-    const {password, confirmPassword, username, email} = signupComp.state
+    const {password, confirmPassword, username, email, curFile} = signupComp.state
 
-    if (password === "" || confirmPassword === "" || username === "" || email === "") {
+    if (password === "" || confirmPassword === "" || username === "" || email === "" || curFile === undefined) {
         signupComp.setState({errorMessage: "One or more of the fields are empty!", open: true})
         return;
     } else if (password !== confirmPassword) {
         signupComp.setState({errorMessage: "Passwords do not match!", open: true})
         return;
+    } else if (curFile === undefined) {
+        signupComp.setState({errorMessage: "Did not upload an image!", open: true})
+        return;
     }
     
     const request = new Request("/users", {
+        method: "post",
+        body: JSON.stringify(signupComp.state),
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    })
+
+    const imageRequest = new Request("/images", {
         method: "post",
         body: JSON.stringify(signupComp.state),
         headers: {
@@ -77,6 +89,14 @@ export const signup = (signupComp, app) => {
     }).then(json => {
         if (json !== undefined) {
             signupComp.props.history.push("/")
+        }
+    }).catch(error => {
+        console.log(error)
+    })
+
+    fetch(imageRequest).then(res => {
+        if (res.status === 200) {
+            return res.json()
         }
     }).catch(error => {
         console.log(error)

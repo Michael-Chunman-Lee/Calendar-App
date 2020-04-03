@@ -7,6 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import { SnackbarContent } from "@material-ui/core";
 import {signup} from "../../actions/user"
+import Dropzone from "react-dropzone";
 
 class Signup extends React.Component {
     constructor(props) {
@@ -17,7 +18,9 @@ class Signup extends React.Component {
             password: "",
             confirmPassword: "",
             errorMessage: "",
-            open: false
+            uploadMessage: "Upload a valid profile image",
+            open: false,
+            curFile: undefined
         }
         this.props.history.push("/signup")
     }
@@ -28,6 +31,13 @@ class Signup extends React.Component {
         }
 
         this.setState({open: false});
+    }
+    onDrop = files => {
+        const reader = new FileReader()
+        reader.readAsDataURL(files[0])
+        reader.onload = () => {
+            this.setState({curFile: reader.result, uploadMessage: "File uploaded"})
+        }
     }
 
     render() {
@@ -105,7 +115,21 @@ class Signup extends React.Component {
                                 </React.Fragment>
                         }/>
                     </Snackbar>
-                    
+
+                    <Dropzone onDrop={this.onDrop} accept="image/jpeg, image/png">
+                        {({ getRootProps, getInputProps }) => (
+                            <section>
+                                <div {...getRootProps({ id: "iCalDrop" })}>
+                                    <input {...getInputProps()} />
+                                        <p>
+                                            {this.state.uploadMessage}
+                                        </p>
+                                </div>
+                            </section>
+                        )}
+                    </Dropzone>  
+                    <br/>
+
                     <Button id="signupButton" onClick={() => signup(this, app)}> 
                         Done
                     </Button>

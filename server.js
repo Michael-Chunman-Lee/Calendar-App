@@ -9,6 +9,8 @@ const { User } = require("./models/user");
 
 const { Post } = require("./models/post")
 
+const { Image } = require("./models/image")
+
 const { ObjectID } = require("mongodb");
 
 const { parseEventsFromICS } = require("./icsHelpers")
@@ -18,7 +20,20 @@ app.use(bodyParser.json());
 const session = require("express-session");
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const multipart = require('connect-multiparty')
+const multipartMiddleware = multipart()
+
+const cloudinary = require('cloudinary')
+cloudinary.config({
+    cloud_name: "dwhjaxqzl",
+    api_key: "158346197952723",
+    api_secret: "KjoKyD8vQGmkVC4EhyiPjOxQ0OE"
+})
+
 /*** Session handling **************************************/
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }));
+
 // Create a session cookie
 app.use(
     session({
@@ -297,7 +312,56 @@ app.delete("/posts/:id", (req, res) => {
     })
 })
 
-/** Calendar routes below */
+/** Image API routes below */
+app.post("/images", multipartMiddleware, (req, res) => {
+
+    cloudinary.uploader.upload(
+        req.body.curFile,
+        function (result) {
+            var img = new Image({
+                image_id: result.public_id,
+                image_url: result.url,
+                username: req.body.username,
+            })
+
+            img.save().then(
+                saveRes => {
+                    res.send(saveRes)
+                }, error => {
+                    res.status(400).send(error)
+                }
+            )
+        }
+    )
+})
+
+app.get("/images/:username", (req, res) => {
+    const username = req.params.username
+    User.findOne({username: username}).then(image => {
+        if (!image) {
+            res.status(404).send()
+        } else {
+            res.send(image)
+        }
+    })
+})
+
+app.patch("/images/:imageID", (req, res) => {
+    const imageID = req.params.imageID
+
+    cloudinary.uploader.destroy(imageID, function (result) {
+
+        Image.findOneAndRemove({image_id: imageID}).then(img => {
+            if (!img) {
+                res.status(404).send()
+            } else {
+                res.send(img)
+            }
+        }).catch(error => {
+            res.status(500).send()
+        })
+    })
+})
 
 /*** Webpage routes below **********************************/
 // Serve the build
