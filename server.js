@@ -337,7 +337,7 @@ app.post("/images", multipartMiddleware, (req, res) => {
 
 app.get("/images/:username", (req, res) => {
     const username = req.params.username
-    User.findOne({username: username}).then(image => {
+    Image.findOne({username: username}).then(image => {
         if (!image) {
             res.status(404).send()
         } else {

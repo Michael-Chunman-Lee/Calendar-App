@@ -9,6 +9,9 @@ import Button from '@material-ui/core/Button'
 import { sourceStr } from '../../data/coursesCalendarString'
 import SortBox from '../SortBox/SortBox'
 import {getPostsByName, deletePost } from '../../actions/post'
+import Dropzone from "react-dropzone";
+import { getImage } from '../../actions/image'
+
 class Profile extends Component {
     constructor(props) {
         super(props)
@@ -27,6 +30,8 @@ class Profile extends Component {
             },
             //Api call will need to be made to retrieve this data from a database
             posts: [],
+            image_url: "",
+            uploadMessage: "Drag or drop a new profile picture"
         }
         // if (this.props.location.uploadedContent) {
         //     this.state.posts.push(this.props.location.uploadedContent)
@@ -44,6 +49,7 @@ class Profile extends Component {
 
     componentDidMount(){
         getPostsByName(this, this.name)
+        getImage(this, this.name)
     }
 
     onDeleteClick = (e, id) => {
@@ -152,13 +158,35 @@ class Profile extends Component {
                             >
                                 Create a new schedule
                             </Button>
+                            
+                            
                         )}
-
+                        <br/><br/>
+                        <Dropzone onDrop={this.onDrop} accept="image/jpeg, image/png">
+                            {({ getRootProps, getInputProps }) => (
+                                <section>
+                                    <div {...getRootProps({ id: "iCalDrop" })}>
+                                        <input {...getInputProps()} />
+                                            <p>
+                                                {this.state.uploadMessage}
+                                            </p>
+                                    </div>
+                                </section>
+                            )}
+                        </Dropzone>  
+                        <Button
+                                id="uploadPicButton"
+                                onClick={e => {
+                                    console.log("TEMPS")
+                                }}
+                            >
+                                Change profile pic
+                        </Button>
                         <TagBox
                             tags={this.state.tags}
                             handletagClick={this.handletagClick}
                         ></TagBox>
-                        <ProfileBox name={this.name}></ProfileBox>
+                        <ProfileBox image_url={this.state.image_url} name={this.name}></ProfileBox>
                     </div>
                 </div>
             </div>
