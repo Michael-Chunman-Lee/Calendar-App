@@ -76,6 +76,8 @@ class SpecificPost extends Component {
     }
 
     removeRating(rating) {
+        console.log(this.props.app.state.userID)
+        console.log(rating)
         return fetch('/posts/delete-rating/' + this.state.post._id, {
             method: 'delete',
             headers: {'Accept': "application/json, text/plain, */*",
@@ -134,7 +136,7 @@ class SpecificPost extends Component {
     }
     
     createDeletePostButton(oldRating) {
-        if (this.props.app.state.isAdmin) {
+        if (this.props.app.state.isAdmin || this.props.app.state.currentUser == oldRating.username) {
             return <IconButton onClick={() => this.removeRating(oldRating)} color="inherit"                        className="removeRatingButton">
                                             <CloseIcon />
                                         </IconButton>;
@@ -166,7 +168,6 @@ class SpecificPost extends Component {
                                     return (
                                         <div className="oldRatingContainer" key={i}>
                                             <OldRating obj={oldRating}></OldRating>
-
                                             {this.createDeletePostButton(oldRating)}
                                         </div>
 

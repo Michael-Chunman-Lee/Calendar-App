@@ -12,7 +12,7 @@ export default class PostRatings extends Component {
                 <div className="formContainer">
                     <div className="starForm">
                         <div className="starTable">
-                            <div className="criteriaHeader">Criteria:</div>
+                            <div className="ratingCriteriaHeader">Criteria:</div>
                             {this.props.criteriaLabels.map((crit, i) => (
                                 <div key={i} className={"starRow" + i}>
                                     <StarRatings label={crit} index={i}/>
@@ -23,7 +23,7 @@ export default class PostRatings extends Component {
 
                     <div className="inputForm">
                         <form>
-                            <textarea className="inputFormAddtionalReview" defaultValue="Anything you would like to add?"></textarea>
+                            <textarea className="inputFormAddtionalReview" maxLength="100" placeholder="Anything you would like to add? Note: Maximum of 100 characters"></textarea>
                         </form>
                     </div>
                 </div>

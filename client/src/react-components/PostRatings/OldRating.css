@@ -1,15 +1,24 @@
-.starTable {
-  width:max-content;
-}
-
-.starForm {
-  width: 30%;
-}
-
 .criteriaHeader {
   text-align: left;
+  padding-left: 20px;
 }
 
+.oldReviewForm{
+   width: 100%;
+}
+
+.reviewerUsername {
+    font-size:150%;
+    padding-left: 20px;
+    text-align: left;
+}
+
+.additionalCommentText {
+    margin-left: 40px;
+    text-align:left;
+    width: 400px;
+    word-wrap: break-word;
+}
 
 .oldReview {
   height: 80%;
@@ -17,24 +26,23 @@
   top: 12%;
 }
 
-.formContainer {
-  margin-left: 20px;
-  display:flex;
-}
-
 .leaveARating {
   margin-left: 20px;
   text-align: left;
+}
+
+.oldRatingsContainer {
+    margin-bottom: 5%;
+    width: 100%;
 }
 
 .oldRatingForm {
   width: 100%;
 }
 
-.buttonContainer {
-  display:flex;
-  justify-content:flex-end;
-  margin-top: 1%;
-  margin-right: 10%;
-  margin-bottom: 1%;
+.oldRatingContainer {
+    display: flex;
+    background-color: white;
+    padding-bottom: 10px;
+    margin-top:5px;
 }

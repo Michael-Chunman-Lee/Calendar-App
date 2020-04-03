@@ -90,7 +90,7 @@ class AdminDashboard extends Component {
         return fetch("/users/" + user._id, {
             method: "delete"
         })
-        .then(response => {response.json(); this.getData()})
+        .then(response => {this.getData()})
         .catch(error => {
             console.log(error);
         });

@@ -34,21 +34,6 @@
     justify-content: center;
 }
 
-
-.oldRatingsContainer {
-    margin-bottom: 5%;
-    width: 100%;
-}
-
-.oldRatingContainer {
-    display: flex;
-    border-style: groove;
-}
-
-.reviewForm {
-    border-style:groove;
-}
-
 .removeRatingButton {
     width:5%
 }
