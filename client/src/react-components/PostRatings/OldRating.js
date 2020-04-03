@@ -12,12 +12,13 @@ export default class OldRating extends Component {
 
   render() {
     return (
-      <div className="reviewForm">
+      <div className="oldReviewForm">
         <div className="reviewerUsername">{this.props.obj.username}</div>
+        <div className="criteriaHeader">Criteria:</div>
         <div className="formContainer">
           <div className="starForm">
             <div className="starTable">
-            <div className="criteriaHeader">Criteria:</div>
+            
               {this.props.obj.criteriaLabels.map((crit,i) => (
                 <div className="starRow" key={i}>
                   <StarRatings label={crit} rating={this.props.obj.criteriaRatings[i]}/>

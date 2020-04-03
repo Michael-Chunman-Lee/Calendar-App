@@ -6,8 +6,13 @@
   width: 30%;
 }
 
-.criteriaHeader {
-  text-align: left;
+.ratingCriteriaHeader {
+  text-align: left; 
+}
+
+.reviewForm {
+  background-color: white;
+  height: 23%;
 }
 
 .inputForm {
@@ -32,6 +37,7 @@ form {
 }
 
 .leaveARating {
+  font-size: 150%;
   margin-left: 20px;
   text-align: left;
 }

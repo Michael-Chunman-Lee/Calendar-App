@@ -36,7 +36,7 @@ const StarRating = (props) => {
                     </label>
                 );
             })}
-                <span className={props.label + props.index}>{rating}</span>
+                <span className={props.label + props.index} hidden>{rating}</span>
           </div>
         </div>
     );
