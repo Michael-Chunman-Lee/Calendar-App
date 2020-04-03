@@ -81,7 +81,7 @@ class AdminDashboard extends Component {
 
     redirectToUser(user) {
         this.props.history.push({
-            pathname: './user/' + user.user,
+            pathname: './user/' + user.username,
             profilename: user.user,
         })
     }
