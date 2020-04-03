@@ -172,24 +172,29 @@ class Profile extends Component {
                             
                         )}
                         <br/><br/>
-                        <Dropzone onDrop={this.onDrop} accept="image/jpeg, image/png">
-                            {({ getRootProps, getInputProps }) => (
-                                <section>
-                                    <div {...getRootProps({ id: "profileiCalDrop" })}>
-                                        <input {...getInputProps()} />
-                                            <p>
-                                                {this.state.uploadMessage}
-                                            </p>
-                                    </div>
-                                </section>
-                            )}
-                        </Dropzone>  
-                        <Button
+                        {app.state.currentUser === this.name && (
+                            <Dropzone onDrop={this.onDrop} accept="image/jpeg, image/png">
+                                {({ getRootProps, getInputProps }) => (
+                                    <section>
+                                        <div {...getRootProps({ id: "profileiCalDrop" })}>
+                                            <input {...getInputProps()} />
+                                                <p>
+                                                    {this.state.uploadMessage}
+                                                </p>
+                                        </div>
+                                    </section>
+                                )}
+                            </Dropzone>
+                        )}
+                        {app.state.currentUser === this.name && (
+                            <Button
                                 id="uploadPicButton"
                                 onClick={() => newImage(this, this.name)}
                             >
                                 Change profile pic
-                        </Button>
+                            </Button>
+                        )}
+
                         <TagBox
                             tags={this.state.tags}
                             handletagClick={this.handletagClick}
