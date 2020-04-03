@@ -119,7 +119,7 @@ class Signup extends React.Component {
                     <Dropzone onDrop={this.onDrop} accept="image/jpeg, image/png">
                         {({ getRootProps, getInputProps }) => (
                             <section>
-                                <div {...getRootProps({ id: "iCalDrop" })}>
+                                <div {...getRootProps({ id: "signUpiCalDrop" })}>
                                     <input {...getInputProps()} />
                                         <p>
                                             {this.state.uploadMessage}

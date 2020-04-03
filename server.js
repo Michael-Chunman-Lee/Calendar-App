@@ -349,18 +349,25 @@ app.get("/images/:username", (req, res) => {
 app.patch("/images/:imageID", (req, res) => {
     const imageID = req.params.imageID
 
-    cloudinary.uploader.destroy(imageID, function (result) {
-
-        Image.findOneAndRemove({image_id: imageID}).then(img => {
-            if (!img) {
-                res.status(404).send()
-            } else {
-                res.send(img)
-            }
-        }).catch(error => {
-            res.status(500).send()
-        })
-    })
+    cloudinary.uploader.destroy(imageID)
+    cloudinary.uploader.upload(
+        req.body.curFile,
+        function (result) {
+            Image.findOne({username: req.body.username}).then(image => {
+                if (!image) {
+                    res.status(404).send()
+                } else {
+                    image.image_id = result.public_id
+                    image.image_url = result.url
+                    image.save().then(saveRes => {
+                        res.send(saveRes)
+                    }, error => {
+                        res.status(400).send(error)
+                    })
+                }
+            })
+        }
+    )
 })
 
 /*** Webpage routes below **********************************/

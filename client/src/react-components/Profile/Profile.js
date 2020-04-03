@@ -10,7 +10,7 @@ import { sourceStr } from '../../data/coursesCalendarString'
 import SortBox from '../SortBox/SortBox'
 import {getPostsByName, deletePost } from '../../actions/post'
 import Dropzone from "react-dropzone";
-import { getImage } from '../../actions/image'
+import { getImage, newImage } from '../../actions/image'
 
 class Profile extends Component {
     constructor(props) {
@@ -31,6 +31,8 @@ class Profile extends Component {
             //Api call will need to be made to retrieve this data from a database
             posts: [],
             image_url: "",
+            image_id: "",
+            curFile: undefined,
             uploadMessage: "Drag or drop a new profile picture"
         }
         // if (this.props.location.uploadedContent) {
@@ -59,6 +61,14 @@ class Profile extends Component {
 
     updateSearchQuery = searchBarText => {
         this.setState({ searchQuery: searchBarText })
+    }
+
+    onDrop = files => {
+        const reader = new FileReader()
+        reader.readAsDataURL(files[0])
+        reader.onload = () => {
+            this.setState({curFile: reader.result, uploadMessage: "File uploaded"})
+        }
     }
 
     postPassesSearchQuery = post => {
@@ -165,7 +175,7 @@ class Profile extends Component {
                         <Dropzone onDrop={this.onDrop} accept="image/jpeg, image/png">
                             {({ getRootProps, getInputProps }) => (
                                 <section>
-                                    <div {...getRootProps({ id: "iCalDrop" })}>
+                                    <div {...getRootProps({ id: "profileiCalDrop" })}>
                                         <input {...getInputProps()} />
                                             <p>
                                                 {this.state.uploadMessage}
@@ -176,9 +186,7 @@ class Profile extends Component {
                         </Dropzone>  
                         <Button
                                 id="uploadPicButton"
-                                onClick={e => {
-                                    console.log("TEMPS")
-                                }}
+                                onClick={() => newImage(this, this.name)}
                             >
                                 Change profile pic
                         </Button>
