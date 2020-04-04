@@ -21,7 +21,7 @@ class Profile extends Component {
                 Fitness: false,
                 Gaming: false,
                 School: false,
-                Food: false,
+                Work: false
             },
             sortPosts: {
                 Top: true,

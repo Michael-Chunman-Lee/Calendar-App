@@ -104,7 +104,7 @@ class UploadPost extends Component {
                 <MenuItem value="Fitness">Fitness</MenuItem>
                 <MenuItem value="School">School</MenuItem>
                 <MenuItem value="Gaming">Gaming</MenuItem>
-                <MenuItem value="Food">Food</MenuItem>
+                <MenuItem value="Work">Food</MenuItem>
               </Select>
               <FormHelperText>Required</FormHelperText>
             </FormControl>
