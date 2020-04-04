@@ -85,7 +85,7 @@ class Profile extends Component {
     postPassesSearchQuery = post => {
         return (
             this.state.searchQuery === '' ||
-            post.name
+            post.username
                 .toLowerCase()
                 .includes(this.state.searchQuery.toLowerCase()) ||
             post.title
