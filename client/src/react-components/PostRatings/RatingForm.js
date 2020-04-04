@@ -32,6 +32,7 @@ export default class PostRatings extends Component {
                         variant="contained"
                         color="primary"
                         onClick={this.props.submithandler}
+                        disabled={this.props.cantRate}
                     >
                         Rate it!
           </Button>

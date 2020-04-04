@@ -227,10 +227,33 @@ app.patch("/posts/increment/:id", (req, res) =>{
     })
 
 })
+
+app.delete("/posts/delete-rating/:id", (req, res) => {
+    const id = req.params.id
+    const {username,  additionalComment, criteriaLabels, criteriaRatings} = req.body.rating
+    const body = {username,  additionalComment, criteriaLabels, criteriaRatings}
+    if (!ObjectID.isValid(id)) {
+        console.log("here")
+		res.status(404).send()
+		return;
+	}
+
+	Post.findByIdAndUpdate(id, {$pull: {ratings: body}}, {new: true}).then((result) => {
+		if (!result) {
+			res.status(404).send()
+		} else {   
+			res.send(result)
+		}
+	}).catch((err) => {
+		res.status(400).send(err)
+	})
+})
+
 app.post("/posts/add-rating/:id", (req, res) =>{
     const id = req.params.id
     const {username,  additionalComment, criteriaLabels, criteriaRatings} = req.body
     const body = {username,  additionalComment, criteriaLabels, criteriaRatings}
+
     if (!ObjectID.isValid(id)) {
 		res.status(404).send()
 		return;
@@ -256,35 +279,7 @@ app.get("/posts/username/:username", (req, res) => {
 	})
 })
 
-app.delete("/posts/delete-rating/:id", (req, res) => {
-    const id = req.params.id
-    const userid = req.body.userid
-    const {_id, username,  additionalComment, criteriaLabels, criteriaRatings} = req.body.rating
-    const body = {_id, username,  additionalComment, criteriaLabels, criteriaRatings}
-    
-    
-    
-    if (!ObjectID.isValid(id)) {
-		res.status(404).send()
-		return;
-	}
-    
-    User.findById(userid).then(user => {
-        if (user.isAdmin) {
-            Post.findByIdAndUpdate(id, {$pull: {ratings: body}}, {new: true}).then((result) => {
-                if (!result) {
-                    res.status(404).send()
-                } else {   
-                    res.send(result)
-                }
-            }).catch((err) => {
-                res.status(400).send(err)
-            })
-        } else {
-            res.status(404).send()
-        }
-    })
-})
+
 
 app.delete("/posts/:id", (req, res) => {
     const id = req.params.id

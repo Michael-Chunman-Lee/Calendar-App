@@ -76,8 +76,6 @@ class SpecificPost extends Component {
     }
 
     removeRating(rating) {
-        console.log(this.props.app.state.userID)
-        console.log(rating)
         return fetch('/posts/delete-rating/' + this.state.post._id, {
             method: 'delete',
             headers: {'Accept': "application/json, text/plain, */*",
@@ -144,6 +142,11 @@ class SpecificPost extends Component {
             return <div></div>
         }
     }
+    
+    checkIfRated() {
+        console.log(this.state.oldRatings.filter(obj => obj.username == this.props.app.state.currentUser).length > 0)
+        return this.state.oldRatings.filter(obj => obj.username == this.props.app.state.currentUser).length > 0;
+    }
 
     renderAfterDisplay() {
         if (!this.state.isCalendarLoading && !this.state.isRatingsLoading) {
@@ -162,7 +165,7 @@ class SpecificPost extends Component {
                                 ></Post>
                             </div>
 
-                            <RatingForm criteriaLabels={this.state.criteriaLabels} submithandler={this.submithandler.bind(this)}></RatingForm>
+                            <RatingForm cantRate={this.checkIfRated()} criteriaLabels={this.state.criteriaLabels} submithandler={this.submithandler.bind(this)}></RatingForm>
 
                             <div className="oldRatingsContainer">
                                 {this.state.oldRatings.map((oldRating, i) => {
