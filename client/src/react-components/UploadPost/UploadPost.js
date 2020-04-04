@@ -26,7 +26,7 @@ class UploadPost extends Component {
       open: false,
       errorMessage: "",
     };
-    this.props.history.push("/uploadPost")
+    //this.props.history.push("/uploadPost")
   }
 
   setTag = e => {
