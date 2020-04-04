@@ -4,7 +4,6 @@ import './Home.css'
 import Post from '../Post/Post'
 import TagBox from '../TagBox/TagBox'
 import { withRouter } from 'react-router-dom'
-import { sourceStr } from '../../data/coursesCalendarString'
 import SortBox from '../SortBox/SortBox'
 import {getPosts, deletePost } from '../../actions/post'
 class Home extends Component {

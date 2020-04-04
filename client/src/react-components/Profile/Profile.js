@@ -6,7 +6,6 @@ import Post from '../Post/Post'
 import ProfileBox from '../ProfileBox/ProfileBox'
 import TagBox from '../TagBox/TagBox'
 import Button from '@material-ui/core/Button'
-import { sourceStr } from '../../data/coursesCalendarString'
 import SortBox from '../SortBox/SortBox'
 import {getPostsByName, deletePost } from '../../actions/post'
 import Dropzone from "react-dropzone";
