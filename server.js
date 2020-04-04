@@ -372,9 +372,9 @@ app.patch("/images/:imageID", (req, res) => {
     )
 })
 
-app.delete("/images/:username", (req, res) => {
-    const username = req.params.username
-    Image.findOneAndDelete({username: username}).then(img => {
+app.delete("/images/:imageID", (req, res) => {
+    const imageID = req.params.imageID
+    Image.findOneAndDelete({image_id: imageID}).then(img => {
         cloudinary.uploader.destroy(img.image_id)
         res.send(img)
     })
