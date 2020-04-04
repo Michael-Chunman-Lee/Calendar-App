@@ -35,6 +35,12 @@ class SpecificPost extends Component {
         }
     }
 
+    redirectToUser = (username) => {
+        this.props.history.push({
+            pathname: '../user/' + username,
+        })
+    }
+
     getCommentsData() {
         fetch("/posts/id/" + this.props.postId)
         .then(res => {
@@ -141,7 +147,7 @@ class SpecificPost extends Component {
                                             <CloseIcon />
                                         </IconButton>;
         } else {
-            return <div></div>
+            return <div className="removeRatingButton"></div>
         }
     }
     
@@ -173,7 +179,7 @@ class SpecificPost extends Component {
                                 {this.state.oldRatings.map((oldRating, i) => {
                                     return (
                                         <div className="oldRatingContainer" key={i}>
-                                            <OldRating obj={oldRating}></OldRating>
+                                            <OldRating obj={oldRating} redirect={this.redirectToUser.bind(this, oldRating.username)}></OldRating>
                                             {this.createDeletePostButton(oldRating)}
                                         </div>
 
