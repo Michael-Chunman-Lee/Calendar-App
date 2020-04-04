@@ -145,7 +145,7 @@ class SpecificPost extends Component {
                                             <CloseIcon />
                                         </IconButton>;
         } else {
-            return <div></div>
+            return <div className="removeRatingButton"></div>
         }
     }
     
