@@ -31,12 +31,16 @@ class Post extends Component {
     // }
     
     onPostClick = e => {
-        incrementPost(this.props.post._id)
-        this.props.post.viewCount++;
-        this.props.history.push({
-            pathname: '../specificPost/' + this.props.post._id,
-            post: this.props.post
-        })
+        if (!this.props.isSpecificView) {
+            incrementPost(this.props.post._id)
+            this.props.post.viewCount++;
+            this.props.history.push({
+                pathname: '../specificPost/' + this.props.post._id,
+                post: this.props.post
+            })
+        } else {
+            this.props.history.push("../user/" + this.state.post.username)
+        }
     }
 
     onCalendarClick = e => {
