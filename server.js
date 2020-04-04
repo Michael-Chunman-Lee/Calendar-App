@@ -129,16 +129,24 @@ app.delete("/users/:id", (req, res) => {
     const id = req.params.id;
 
     User.findByIdAndDelete(id).then(user => {
-        Post.findOneAndRemove({ username: user.username }).then(posts => {
-            console.log(posts)
-            res.send(user)
+        Post.deleteMany({ username: user.username }).then(posts => {
+
+            Post.findOneAndUpdate({}, { $pull: { ratings: { username: user.username } } }).then(deleted => {
+                res.send(user)
+            })
+
         }).catch(error => {
             console.log(error)
         })
+
+
+
+
     }).catch(error => {
         console.log(error)
         res.status(400).send(error)
     })
+
 
     /*
     User.findByIdAndDelete(id).then(user => {
