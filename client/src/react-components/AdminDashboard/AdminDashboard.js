@@ -76,7 +76,7 @@ class AdminDashboard extends Component {
 
     userPassesSearchQuery = user => {
         return this.state.searchQuery === "" ||
-            user.user.toLowerCase().includes(this.state.searchQuery.toLowerCase())
+            user.username.toLowerCase().includes(this.state.searchQuery.toLowerCase())
     }
 
     redirectToUser(user) {
