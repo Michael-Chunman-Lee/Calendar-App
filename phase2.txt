@@ -1,9 +1,15 @@
-To use the app will require the user install the correct dependencies through 'npm install' and to run the app the user will 
-need to execute 'npm start' from the team39 directory.
+The deployed app is available at https://calendar-app-csc309.herokuapp.com/
 
-The app will start up at the sign-up page and to reach the login page, click the link that says "Already a user? Login here". There is also a corresponding
-forgot password page as well (where both the sign-up page and forgot password page has the basic functionality of checking if entered passwords match or
-if the fields are empty).
+Running Locally:
+To use the app will require the user install the correct dependencies through by running 'npm run setup' from the team39 directory.
+To run the app the user will need to execute 'npm build-run' from the team39 directory.
+
+The app will start up at the login page. Here, a user may log in to an existing account by entering the username and password and clicking "done".
+The user can also reset their account's password by clicking "reset password" and filling in the form.
+The user may create a new account by clicking "Not yet a user? Sign Up here" from the login page and then filling out the form.
+
+
+Two accounts have been pre-created on the deployed website for testing purposes:
 
 The user can login using the following credentials:
 username: user
@@ -13,37 +19,61 @@ If the user wants to login as the admin, they will need to enter the following c
 username: admin
 password: admin
 
+USING APP AS A REGULAR USER:
 For the user view of the site the user can access the following features:
-- From both the home page and profile page, to view posts the user must either select the top or new button to view all posts sorted either by the top post (sorted by highest
-  view count) or by new (sorted by post date). The user can then alternate between top or new to re-sort the posts.
+- Upon login, the user will land on the home page. Here, they will see a list of all the posts on the site.
+This list is sorted by "Top" by default (sorted by number of views).
+The "Top" and "New" buttons may be used to toggle the list of posts to be sorted by view count and sorted by upload date, respectively.
+On the right side of the home page, there are several "tags" toggle buttons.
+Toggling on tags will hide all posts on the home page that don't have one of the selected tags as their tag.
+Tags can be toggled off by clicking the toggle button again.
+The search bar at the top may also be used to filter the list of posts.
+Typing in the search bar will hide all posts that don't contain the search bar text in either the title of the post or the username of the post's creator.
+The search bar filters the list of posts as the user enters and removes text from the search bar, in real time. 
+The user may return to the home page at any point by clicking the home button at the top right of the screen on the nav bar.
+The user may also log out by clicking the logout button at the top right of the navbar. Logging out will redirect the user back to the login page. 
 
-- The user can upload posts, in which the upload page can be accessed through a button that says "create a new schedule" from the profile view. In this view,
-  the user can either select the cancel button to return to the home page or upload a post. To upload a post, the user must select one of the valid tags (i.e.
-  Fitness, School, Gaming, Food), enter a non-empty title and upload a post through either dragging and dropping a valid .ics file into the dropbox or by uploading
-  their .ics schedule by clicking on the box. When the user has entered the correct information, clicking the post button will redirect to the home page with
-  the post now visible. For testing purposes, a valid .ics file has been included under src/data/coursesCalendar.ics, but other valid ics files will work as well.
+A user may interact with a post in the list of posts in the following ways:
+-View the post's schedule by navigating through the calendar using calendar scroll bar and the "today", "back", "next", "month", "week", "day", and "agenda" buttons.
+-Clicking on the white area of the post (but not inside the calendar) to view that post's specific post page.
+-Clicking on the username at the top left of the post to visit the post creator's user profile page.
+-User's can delete their own posts from the home page using the "X" button on their own posts in the list.
 
-- The user can also select a post on the home or profile page to be redirected to the specific post view.
+A specific post page for a post shows the post at the top of the page, and a list of the ratings for the post underneath.
+A user can also leave their own rating for the post by hovering over and then clicking the amount of stars they wish to give for each of the criteria, and then typing their note in the textbox and clicking "RATE IT!"
+A user can delete their own ratings off of specific posts's by using the "X" button on the rating.
 
-- Users can filter posts by tags, keep in mind that, for phase 1, when a post is deleted and a tag is selected the posts are reset and as a result, deleted posts reappear.
-  This is because the state of posts is reused, in the future it will be an API call that modifies the database of posts.
+A user can visit another user's profile page by clicking their username on any post or rating they've made.
+A user profile page behaves the same as a the home page accept the user's profile image is visible on the right side of the page and only posts that have been made by the user will be visible in the list.
+Clicking posts from a user profile page will still take the user to that post's specific post page, where the ratings can be seen.
+A user can visit their own profile page by clicking their own username on a post or rating, or by using the profile button at the top right of the screen on the nav bar.
+When a user is on their own profile page, they can change their own profile picture by first uploading a new picture by clicking or dragging it into the indicated region on the right side of the screen, and then clicking the "CHANGE PROFILE PIC" button.
+A user can also create a new post from their own profile page by clicking on the "CREATE NEW SCHEDULE" button. Doing this will lead to the post creation page.
 
-- Users can also use the search bar on the top navigation bar to search for posts on the home or profile pages. As the user types in the search bar,
-  only posts whose title or creator's username that contain the text in the search bar will appear, and the others fill be filtered out.
+At the post creation page, a user must select a tag for their post using the dropdown menuat the top left.
+They may also give their post a title by entering it in the title bar.
+Then they must upload their .ics calendar file by clicking or dragging and dropping it into the indicated region.
+The user may then submit their post to the website by clicking the "POST" button, or 
+cancel their post creation by clicking the "CANCEL" button.
 
-- The user can delete their own posts (ones that have their name on the left), since all posts on the profile view are the users, they can delete them all.
-
-- Users are able to view schedules created by users of the site and are able to leave a rating and additional thoughts for each of them.
-
-From the admin view of the site the user can access the following features:
-- The admin dashboard, which will eventually list all the users registered to the site. For each user, the admin will be able to go directly to their profile page by clicking on the user's respective row in the dashboard. Moreover, the X button beside each user is for when the admin decides to remove a user from the site.
-
-- Admins can search for specific users by username on the admin dashbaord using the search bar on the top navigation bar to search for specific users. As the admin types, only users whose usernames contain the text in the search bar wil remain visible.
-
-- Each post/schedule will have ratings by users of the site. The admin will be able to remove such ratings when visiting a specific post, similar to how most sites have moderation for inappropriate comments and such.
-
-- Admins can also delete a post on the homepage or a user's profile.
-
+The main objective of the app is to allow users to gather opinions about their schedules by sharing them on the site and having other users view them on the home page and leaving ratings and feedback.
+Users can then go to their profile to view their own posts, and see the ratings and feedback provided by other users.
 
 
+USING THE APP AS THE ADMIN:
+The admin uses the app exact same way as regular users, although they have additional permissions and features available to them.
+The purpose of the admin account is to allow for management and moderation of the website, for example by removing inappropriate posts or deleting
+users.
+
+The admin has the ability to delete any other user's ratings or posts instead of only their own.
+The admin also has access to the admin dashboard by clicking the shield button at the top right of the navbar.
+On the admin dashboard, the admin will see a list of all the users on the website.
+The admin may filter the list of users by username using the search bar on the navbar.
+The admin may go to a user's profile by clicking on the user in the list.
+The admin may delete any user (except the admin account itself) by clicking the "X" button on the user in the list of users.
+Deleting a user will remove their account and all posts and ratings they've made on the app.
+
+
+
+OVERVIEW OF EXPRESS ROUTES:
 

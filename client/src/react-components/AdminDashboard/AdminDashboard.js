@@ -68,6 +68,19 @@ class AdminDashboard extends Component {
 
     componentDidMount()  {
         this.getData();
+        this.state.users.sort((a,b) => function(a, b) {
+            var nameA = a.username.toUpperCase(); // ignore upper and lowercase
+            var nameB = b.username.toUpperCase(); // ignore upper and lowercase
+            if (nameA < nameB) {
+              return -1;
+            }
+            if (nameA > nameB) {
+              return 1;
+            }
+          
+            // names must be equal
+            return 0;
+        });
     }
 
     updateSearchQuery = searchBarText => {
@@ -76,7 +89,7 @@ class AdminDashboard extends Component {
 
     userPassesSearchQuery = user => {
         return this.state.searchQuery === "" ||
-            user.user.toLowerCase().includes(this.state.searchQuery.toLowerCase())
+            user.username.toLowerCase().includes(this.state.searchQuery.toLowerCase())
     }
 
     redirectToUser(user) {
@@ -105,7 +118,6 @@ class AdminDashboard extends Component {
                     app={app}
                     history={history}
                     searchCallback={this.updateSearchQuery}
-                    noSearchBar={true}
                 ></NavBar>
                 <p className="pageHeading"> Admin Dashboard </p>
                 <div className="content">
