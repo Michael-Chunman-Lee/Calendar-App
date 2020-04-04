@@ -45,9 +45,7 @@ class Home extends Component {
     }
     
     componentDidUpdate(prevProps){
-        console.log(prevProps)
         if (prevProps.location.refresh){
-            console.log("here")
             getPosts(this)
         }
     }
