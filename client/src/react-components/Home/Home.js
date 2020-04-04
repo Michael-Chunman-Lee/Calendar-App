@@ -45,7 +45,7 @@ class Home extends Component {
     }
     
     componentDidUpdate(prevProps){
-        if (prevProps.location.pathname !== this.props.location.pathname){
+        if (this.props.location.refresh){
             getPosts(this)
         }
     }
