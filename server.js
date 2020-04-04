@@ -41,7 +41,6 @@ app.use(
         resave: false,
         saveUninitialized: false,
         cookie: {
-            expires: 60000,
             httpOnly: true
         }
     })
