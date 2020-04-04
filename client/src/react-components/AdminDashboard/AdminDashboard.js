@@ -105,7 +105,6 @@ class AdminDashboard extends Component {
                     app={app}
                     history={history}
                     searchCallback={this.updateSearchQuery}
-                    noSearchBar={true}
                 ></NavBar>
                 <p className="pageHeading"> Admin Dashboard </p>
                 <div className="content">
