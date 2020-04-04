@@ -51,7 +51,7 @@ class NavBar extends Component {
         const { app, searchCallback, noSearchBar } = this.props
         return (
             <div className="nav">
-                <span className="title">Title</span>
+                <span className="title">Calendar App</span>
                 {(!noSearchBar) && (<div className="search">
                     <div className="search-icon">
                         <IconButton>
