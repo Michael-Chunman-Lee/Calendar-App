@@ -127,6 +127,7 @@ class Home extends Component {
                                             key={post._id}
                                             post={post}
                                             onDeleteClick={this.onDeleteClick}
+                                            isSpecificView={false}
                                         ></Post>
                                     )
                             )}

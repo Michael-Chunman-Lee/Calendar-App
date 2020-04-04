@@ -158,6 +158,7 @@ class SpecificPost extends Component {
                                     history={this.props.history}
                                     post={this.state.post}
                                     onDeleteClick={this.onPostDeleteClick}
+                                    isSpecificView={true}
                                 ></Post>
                             </div>
 

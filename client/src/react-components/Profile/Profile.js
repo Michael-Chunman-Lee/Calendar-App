@@ -150,6 +150,7 @@ class Profile extends Component {
                                             history={history}
                                             onDeleteClick={this.onDeleteClick}
                                             post={post}
+                                            isSpecificView={false}
                                         ></Post>
                                     )
                             )}
