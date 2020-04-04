@@ -44,6 +44,11 @@ class Home extends Component {
         e.stopPropagation()
     }
     
+    componentDidUpdate(prevProps){
+        if (prevProps.location.pathname !== this.props.location.pathname){
+            getPosts(this)
+        }
+    }
 
     updateSearchQuery = searchBarText => {
         this.setState({ searchQuery: searchBarText })
