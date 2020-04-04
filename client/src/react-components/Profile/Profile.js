@@ -171,20 +171,21 @@ class Profile extends Component {
                             
                             
                         )}
-                        <br/><br/>
                         {app.state.currentUser === this.name && (
-                            <Dropzone onDrop={this.onDrop} accept="image/jpeg, image/png">
-                                {({ getRootProps, getInputProps }) => (
-                                    <section>
-                                        <div {...getRootProps({ id: "profileiCalDrop" })}>
-                                            <input {...getInputProps()} />
-                                                <p>
-                                                    {this.state.uploadMessage}
-                                                </p>
-                                        </div>
-                                    </section>
-                                )}
-                            </Dropzone>
+                            <div className="upload-pic-profile">
+                                <Dropzone onDrop={this.onDrop} accept="image/jpeg, image/png">
+                                    {({ getRootProps, getInputProps }) => (
+                                        <section>
+                                            <div {...getRootProps({ id: "profileiCalDrop" })}>
+                                                <input {...getInputProps()} />
+                                                    <p>
+                                                        {this.state.uploadMessage}
+                                                    </p>
+                                            </div>
+                                        </section>
+                                    )}
+                                </Dropzone>
+                            </div>
                         )}
                         {app.state.currentUser === this.name && (
                             <Button
