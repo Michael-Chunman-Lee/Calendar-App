@@ -26,7 +26,7 @@ class UploadPost extends Component {
       open: false,
       errorMessage: "",
     };
-    this.props.history.push("/uploadPost")
+    //this.props.history.push("/uploadPost")
   }
 
   setTag = e => {
@@ -104,7 +104,7 @@ class UploadPost extends Component {
                 <MenuItem value="Fitness">Fitness</MenuItem>
                 <MenuItem value="School">School</MenuItem>
                 <MenuItem value="Gaming">Gaming</MenuItem>
-                <MenuItem value="Food">Food</MenuItem>
+                <MenuItem value="Work">Food</MenuItem>
               </Select>
               <FormHelperText>Required</FormHelperText>
             </FormControl>

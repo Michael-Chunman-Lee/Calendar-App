@@ -22,7 +22,7 @@ class Signup extends React.Component {
             open: false,
             curFile: undefined
         }
-        this.props.history.push("/signup")
+        //this.props.history.push("/signup")
     }
 
     handleClose = (e, reason) => {

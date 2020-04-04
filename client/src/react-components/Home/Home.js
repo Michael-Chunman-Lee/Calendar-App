@@ -16,7 +16,7 @@ class Home extends Component {
                 Fitness: false,
                 Gaming: false,
                 School: false,
-                Food: false,
+                Work: false
             },
             sortPosts: {
                 Top: true,
@@ -28,7 +28,7 @@ class Home extends Component {
         if (this.props.location.uploadedContent) {
             this.state.posts.push(this.props.location.uploadedContent)
         }
-        this.props.history.push("/home")
+        //this.props.history.push("/home")
 
         
     }
