@@ -106,8 +106,6 @@ class Profile extends Component {
         } else if (newVal === 'New') {
             this.setState(prevState => ({posts: prevState.posts.sort((a,b) => {return new Date(b.date) - new Date(a.date)}), sortPosts: {"New": true, "Top": false}}))
         }
-
-        this.setState(newState)
     }
 
     checkSortClicked = () => {
