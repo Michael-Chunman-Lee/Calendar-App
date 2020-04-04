@@ -59,6 +59,15 @@ class Profile extends Component {
         e.stopPropagation()
     }
 
+    componentDidUpdate(prevProps, prevState){
+        let current_user = window.location.href.split("/")[4]
+        if (this.name !== current_user) {
+            this.name = current_user
+            getPostsByName(this, this.name)
+            getImage(this, this.name)
+        }
+    }
+
     updateSearchQuery = searchBarText => {
         this.setState({ searchQuery: searchBarText })
     }
