@@ -38,21 +38,21 @@
 
 .postUpload {
     background-color: white;
-    margin-left: 80px;
+    margin-left: 5vw;
     width: 90%;
     height: 80%;
     justify-content: left;
 }
 
 .titleField {
-    width: 900px;
+    width: 59vw;
 }
 
 .iCalDrop {
-    margin-left: 230px;
-    padding: 130px;
-    font-size: 20px;
-    width: 660px;
+    margin-left: 14vw;
+    padding: 10%;
+    font-size: 120%;
+    width: 50%;
     border-width: 1px;
     border-color: rgb(102, 102, 102);
     border-style: solid;
