@@ -8,7 +8,6 @@ import OldRating from './OldRating'
 
 import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close';
-import { sourceStr } from '../../data/coursesCalendarString'
 import { withRouter } from 'react-router-dom'
 import { deletePost } from '../../actions/post'
 class SpecificPost extends Component {
@@ -151,50 +150,59 @@ class SpecificPost extends Component {
         }
     }
     
+    loadMiddleContent = () => {
+        if (!this.state.isCalendarLoading && !this.state.isRatingsLoading) {
+        return (
+        <div className="middle-content">
+            <div className="posts">
+                <Post
+                    app={this.props.app}
+                    history={this.props.history}
+                    post={this.state.post}
+                    onDeleteClick={this.onPostDeleteClick}
+                    isSpecificView={true}
+                ></Post>
+            </div>
+
+            <RatingForm cantRate={this.checkIfRated()} criteriaLabels={this.state.criteriaLabels} submithandler={this.submithandler.bind(this)}></RatingForm>
+
+            <div className="oldRatingsContainer">
+                {this.state.oldRatings.map((oldRating, i) => {
+                    return (
+                        <div className="oldRatingContainer" key={i}>
+                            <OldRating obj={oldRating} redirect={this.redirectToUser.bind(this, oldRating.username)}></OldRating>
+                            {this.createDeletePostButton(oldRating)}
+                        </div>
+
+                    );
+                }
+                )}
+            </div>
+        </div>
+        )
+        }
+        
+    }
+    
     checkIfRated() {
         console.log(this.state.oldRatings.filter(obj => obj.username == this.props.app.state.currentUser).length > 0)
         return this.state.oldRatings.filter(obj => obj.username == this.props.app.state.currentUser).length > 0;
     }
 
     renderAfterDisplay() {
-        if (!this.state.isCalendarLoading && !this.state.isRatingsLoading) {
+        
             return (
                 <div className="main-div">
                     <NavBar name={this.state.name} app={this.props.app} history={this.props.history}></NavBar>
                     <div className="content">
-                        <div className="middle-content">
-                            <div className="posts">
-                                <Post
-                                    app={this.props.app}
-                                    history={this.props.history}
-                                    post={this.state.post}
-                                    onDeleteClick={this.onPostDeleteClick}
-                                    isSpecificView={true}
-                                ></Post>
-                            </div>
+                        
+                            {this.loadMiddleContent()}
 
-                            <RatingForm cantRate={this.checkIfRated()} criteriaLabels={this.state.criteriaLabels} submithandler={this.submithandler.bind(this)}></RatingForm>
-
-                            <div className="oldRatingsContainer">
-                                {this.state.oldRatings.map((oldRating, i) => {
-                                    return (
-                                        <div className="oldRatingContainer" key={i}>
-                                            <OldRating obj={oldRating} redirect={this.redirectToUser.bind(this, oldRating.username)}></OldRating>
-                                            {this.createDeletePostButton(oldRating)}
-                                        </div>
-
-                                    );
-                                }
-                                )}
-                            </div>
-                        </div>
+                        
                     </div>
 
                 </div>
             )
-        } else {
-            return (<div></div>)
-        }
     }
 
     

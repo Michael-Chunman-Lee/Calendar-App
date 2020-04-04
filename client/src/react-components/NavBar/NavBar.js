@@ -6,6 +6,7 @@ import HomeIcon from '@material-ui/icons/Home'
 import SearchIcon from '@material-ui/icons/Search'
 import InputBase from '@material-ui/core/InputBase'
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom'
+import SecurityIcon from '@material-ui/icons/Security'
 import './NavBar.css'
 import {logout} from "../../actions/user"
 
@@ -66,16 +67,16 @@ class NavBar extends Component {
                 </div>)}
                 <span className="nav-icons">
                     {app.state.isAdmin && (
-                        <span onClick={this.onAdminClick}>Admin</span>
-                    )}
-                    {!app.state.isAdmin && (
-                        <IconButton
-                            onClick={this.onProfileClick}
-                            color="inherit"
-                        >
-                            <AccountCircle />
+                        <IconButton onClick={this.onAdminClick} color="inherit">
+                            <SecurityIcon></SecurityIcon>
                         </IconButton>
                     )}
+                    <IconButton
+                        onClick={this.onProfileClick}
+                        color="inherit"
+                    >
+                        <AccountCircle />
+                    </IconButton>
                     <IconButton onClick={this.onHomeClick} color="inherit">
                         <HomeIcon />
                     </IconButton>
