@@ -385,6 +385,14 @@ app.patch("/images/:imageID", (req, res) => {
     )
 })
 
+app.delete("/images/:username", (req, res) => {
+    const username = req.params.username
+    Image.findOneAndDelete({username: username}).then(img => {
+        cloudinary.uploader.destroy(img.image_id)
+        res.send(img)
+    })
+})
+
 /*** Webpage routes below **********************************/
 // Serve the build
 app.use(express.static(__dirname + "/client/build"));
