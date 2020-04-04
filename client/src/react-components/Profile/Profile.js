@@ -21,7 +21,7 @@ class Profile extends Component {
                 Fitness: false,
                 Gaming: false,
                 School: false,
-                Food: false,
+                Work: false
             },
             sortPosts: {
                 Top: true,
@@ -37,7 +37,7 @@ class Profile extends Component {
         // if (this.props.location.uploadedContent) {
         //     this.state.posts.push(this.props.location.uploadedContent)
         // }
-        this.props.history.push("/user/" + this.props.profileName)
+        //this.props.history.push("/user/" + this.props.profileName)
         if (this.props.profileName) {
             this.name = this.props.profileName
         } else {
