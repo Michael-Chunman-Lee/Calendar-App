@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './ProfileBox.css'
-import DEUUEAUGH from "../../data/DEUUEAUGH.png";
 import { withRouter } from 'react-router-dom'
 
 class ProfileBox extends Component {
@@ -23,7 +22,7 @@ class ProfileBox extends Component {
         return (
             <div className="profile-box">
                 <div><strong>{this.props.name}</strong></div>
-                {this.state.image_url === "" ? <img className="profile-pic" src={DEUUEAUGH}/> : <img className="profile-pic" src={this.props.image_url}/>}
+                {this.state.image_url === "" ? <img className="profile-pic"/> : <img className="profile-pic" src={this.props.image_url}/>}
 
             </div>
         )

@@ -8,7 +8,6 @@ import OldRating from './OldRating'
 
 import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close';
-import { sourceStr } from '../../data/coursesCalendarString'
 import { withRouter } from 'react-router-dom'
 import { deletePost } from '../../actions/post'
 class SpecificPost extends Component {
