@@ -33,10 +33,12 @@ class Signup extends React.Component {
         this.setState({open: false});
     }
     onDrop = files => {
-        const reader = new FileReader()
-        reader.readAsDataURL(files[0])
-        reader.onload = () => {
-            this.setState({curFile: reader.result, uploadMessage: "File uploaded"})
+        if (files[0] !== undefined) {
+            const reader = new FileReader()
+            reader.readAsDataURL(files[0])
+            reader.onload = () => {
+                this.setState({curFile: reader.result, uploadMessage: "File uploaded"})
+            }
         }
     }
 
