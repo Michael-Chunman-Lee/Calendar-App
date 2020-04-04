@@ -103,7 +103,7 @@ app.post("/users", (req, res) => {
             res.send(user);
         },
         error => {
-            res.statusMessage = "Username or email already taken!"
+            res.statusMessage = "Username or email already taken, or password length is less than 4!"
             res.status(400).send(error); // 400 for bad request
         }
     );
