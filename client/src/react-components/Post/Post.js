@@ -38,13 +38,18 @@ class Post extends Component {
                 pathname: '../specificPost/' + this.props.post._id,
                 post: this.props.post
             })
-        } else {
-            this.props.history.push("../user/" + this.state.post.username)
-        }
+        } 
     }
 
     onCalendarClick = e => {
         e.stopPropagation()
+    }
+
+    redirectToUser = (username, e) => {
+        e.stopPropagation()
+        this.props.history.push({
+            pathname: '../user/' + username,
+        })
     }
 
     render() {
@@ -59,7 +64,7 @@ class Post extends Component {
                         </span>
                     )}
                     <div className="post-headers">
-                        <span className="posted-by">
+                        <span className="posted-by" onClick={this.redirectToUser.bind(this, this.state.post.username)}>
                             {this.state.post.username}
                         </span>
                         <span className="post-tag">{this.state.post.tag}</span>

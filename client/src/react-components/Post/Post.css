@@ -19,6 +19,12 @@
     color: gray;
     font-size: 120%;
 }
+
+.posted-by:hover {
+    color: blue;
+    cursor: pointer;
+}
+
 .post-headers {
     display: flex;
     justify-content: space-between;
