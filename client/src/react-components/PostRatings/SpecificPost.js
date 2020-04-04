@@ -97,7 +97,9 @@ class SpecificPost extends Component {
     onPostDeleteClick = (e, id) => {
         deletePost(id, this,this.props.app)
         e.stopPropagation()
-        this.props.history.push("/home")
+        this.props.history.push({
+            pathname:"/home",
+            refresh: true})
     }
 
     submithandler() {
