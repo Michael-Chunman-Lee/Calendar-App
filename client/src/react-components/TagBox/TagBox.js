@@ -14,7 +14,7 @@ export default class TagBox extends Component {
             <div className="tag-box">
                 <div>
                     {' '}
-                    <h1> tags</h1>{' '}
+                    <h1> Tags</h1>{' '}
                 </div>
                 <div className="tag-list">
                     {Object.keys(this.props.tags).map(k => (

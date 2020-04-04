@@ -73,19 +73,11 @@ class Home extends Component {
     }
 
     handleSortClick = (event, newVal) => {
-        let newState = Object.assign({}, this.state)
-        newState.sortPosts[newVal] = !newState.sortPosts[newVal]
         if (newVal === 'Top') {
-            newState.posts.sort((a, b) => b.viewCount - a.viewCount)
-            newState.sortPosts[newVal] = true
-            newState.sortPosts['New'] = false
+            this.setState(prevState => ({posts: prevState.posts.sort((a, b) => {return b.viewCount - a.viewCount}), sortPosts: {"Top": true, "New": false}}))
         } else if (newVal === 'New') {
-            newState.posts.sort((a, b) => b.date - a.date)
-            newState.sortPosts[newVal] = true
-            newState.sortPosts['Top'] = false
+            this.setState(prevState => ({posts: prevState.posts.sort((a,b) => {return new Date(b.date) - new Date(a.date)}), sortPosts: {"New": true, "Top": false}}))
         }
-
-        this.setState(newState)
     }
 
     checkSortClicked = () => {
