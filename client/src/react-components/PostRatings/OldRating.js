@@ -10,10 +10,12 @@ export default class OldRating extends Component {
     };
   }
 
+
+
   render() {
     return (
       <div className="oldReviewForm">
-        <div className="reviewerUsername">{this.props.obj.username}</div>
+        <div className="reviewerUsername"><span className="reviewerUsernameText" onClick={this.props.redirect}>{this.props.obj.username}</span></div>
         <div className="criteriaHeader">Criteria:</div>
         <div className="formContainer">
           <div className="starForm">
