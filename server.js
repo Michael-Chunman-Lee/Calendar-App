@@ -148,19 +148,6 @@ app.delete("/users/:id", (req, res) => {
     })
 
 
-    /*
-    User.findByIdAndDelete(id).then(user => {
-        if (!user) {
-            console.log("404")
-            res.status(404).send()
-        } else {
-            res.send(user)
-        }
-    }).catch(error => {
-        console.log(error)
-        res.status(400).send(error)
-    })
-    */
 })
 
 /** Post routes below */
