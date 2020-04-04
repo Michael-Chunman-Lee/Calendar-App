@@ -125,10 +125,22 @@ app.patch("/users/:username", (req, res) => {
     })
 })
 
-// WILL NEED TO CHECK IF ADMIN
 app.delete("/users/:id", (req, res) => { 
     const id = req.params.id;
-    
+
+    User.findByIdAndDelete(id).then(user => {
+        Post.findOneAndRemove({ username: user.username }).then(posts => {
+            console.log(posts)
+            res.send(user)
+        }).catch(error => {
+            console.log(error)
+        })
+    }).catch(error => {
+        console.log(error)
+        res.status(400).send(error)
+    })
+
+    /*
     User.findByIdAndDelete(id).then(user => {
         if (!user) {
             console.log("404")
@@ -140,6 +152,7 @@ app.delete("/users/:id", (req, res) => {
         console.log(error)
         res.status(400).send(error)
     })
+    */
 })
 
 /** Post routes below */
