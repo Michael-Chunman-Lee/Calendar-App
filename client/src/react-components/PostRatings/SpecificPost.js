@@ -193,7 +193,7 @@ class SpecificPost extends Component {
         
             return (
                 <div className="main-div">
-                    <NavBar name={this.state.name} app={this.props.app} history={this.props.history}></NavBar>
+                    <NavBar name={this.state.name} app={this.props.app} history={this.props.history} noSearchBar={true}></NavBar>
                     <div className="content">
                         
                             {this.loadMiddleContent()}
