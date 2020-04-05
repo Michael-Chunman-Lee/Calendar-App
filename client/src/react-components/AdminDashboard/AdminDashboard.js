@@ -102,7 +102,30 @@ class AdminDashboard extends Component {
         return fetch("/users/" + user._id, {
             method: "delete"
         })
-        .then(response => {this.getData()})
+        .then(response => {
+            this.getData()
+            fetch("/images/" + user.username, {
+                method: "get"
+            })
+            .then(res => {
+                if (res.status === 200) {
+                    return res.json()
+                }
+            })
+            .then(json => {
+                if (json) {
+                    fetch("/images/" + json.image_id, {
+                        method: "delete"
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            }) 
+        })
         .catch(error => {
             console.log(error);
         });
