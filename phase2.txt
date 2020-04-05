@@ -195,7 +195,7 @@ Given the post's document ID and appropriate body, delete the post. Note the use
 must be an admin or the poster to delete the post (checks by the user's document id or isAdmin field).  
 Simply returns status 200 on success, returns status 404 if the user is not the admin or the poster
 or returns status 500 on general errors.
-Request body expects:
+Request body expects (with an example of a request body below):
 {
     "_id": <User's document id>
 }
@@ -228,3 +228,11 @@ Request body expects:
 DELETE "/images/:imageID":
 Given the image's cloudinary public id (i.e. the image_id field in the document), delete
 the associated image document and return the deleted image's document.
+
+Example of a valid request body for a post:  
+{  
+    "username": "s123",
+    "tag": "Fitness",
+    "title": "Workout schedule",
+    "icsRawText":"BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//ZContent.net//Zap Calendar 1.0//EN\nCALSCALE:GREGORIAN\nMETHOD:PUBLISH\nBEGIN:VEVENT\nSUMMARY:Abraham Lincoln \nUID:c7614cff-3549-4a00-9152-d25cc1fe077d\nSEQUENCE:0\nSTATUS:CONFIRMED\nTRANSP:TRANSPARENT\nRRULE:FREQ=YEARLY;INTERVAL=1;BYMONTH=2;BYMONTHDAY=12\nDTSTART:20080212\nDTEND:20080213\nDTSTAMP:20150421T141403\nCATEGORIES:U.S. Presidents,Civil War People\nLOCATION:Hodgenville\\, Kentucky\nGEO:37.5739497;-85.7399606\nDESCRIPTION:Born February 12\\, 1809\nSixteenth President (1861-1865)\n\n\n\nhttp://AmericanHistoryCalendar.com\nURL:http://americanhistorycalendar.com/peoplecalendar/1,328-abraham-lincoln\nEND:VEVENT\nEND:VCALENDAR"  
+}  
