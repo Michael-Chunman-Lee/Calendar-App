@@ -19,7 +19,6 @@ class AdminDashboard extends Component {
     }
 
     getData() {
-        console.log(this)
         const request = new Request("/users", {
             method: "get",
             headers: {
@@ -132,7 +131,7 @@ class AdminDashboard extends Component {
                         </thead>
                         <tbody>
                             {this.state.dbusers.map((user, i) => this.userPassesSearchQuery(user) && (
-                                <tr className={user.email}>
+                                <tr className={user.email} key={i}>
                                     <td className="usernameCell">
                                         <button
                                             onClick={this.redirectToUser.bind(
