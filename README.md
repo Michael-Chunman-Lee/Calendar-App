@@ -151,11 +151,11 @@ the error if the request fails for any other reason.
 POST "/posts":
 Given the appropriate request body, create the new post, sending the new post's document
 on success or otherwise set the statusMessage and return the status 400 with the error on failure.  
-Request body expects:  
+Request body expects (with an example of a request body below):  
 {  
         "username": `<poster's username>`,  
         "tag": `<A valid tag (i.e. "Fitness", "School", "Gaming", "Work")>`,  
-        "icsRawText": `<ics file dump in a proper javascript string format (i.e. all \ changed to \\ and all new lines changed to \n) (example below)>  `  
+        "icsRawText": `<ics file dump in a proper javascript string format (i.e. all \ changed to \\ and all new lines changed to \n)>  `  
 }  
 
 PATCH "/posts/increment/:id":
@@ -230,7 +230,7 @@ DELETE "/images/:imageID":
 Given the image's cloudinary public id (i.e. the image_id field in the document), delete
 the associated image document and return the deleted image's document.
 
-Example of a valid icsRawText format:  
+Example of a valid request body for a post:  
 {  
     "username": "s123",
     "tag": "Fitness",
