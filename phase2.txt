@@ -1,14 +1,4 @@
 The deployed app is available at https://calendar-app-csc309.herokuapp.com/
-
-Running Locally:
-To use the app will require the user install the correct dependencies by running 'npm run setup' from the team39 directory.
-To run the app the user will need to execute 'npm build-run' from the team39 directory.
-
-The app will start up at the login page. Here, a user may log in to an existing account by entering the username and password and clicking "done".
-The user can also reset their account's password by clicking "reset password" and filling in the form.
-The user may create a new account by clicking "Not yet a user? Sign Up here" from the login page and then filling out the form.
-Alternatively, the user can also press enter to submit the form.
-
 Two accounts have been pre-created on the deployed website for testing purposes:
 
 The user can login using the following credentials:
@@ -18,6 +8,31 @@ password: user
 If the user wants to login as the admin, they will need to enter the following credentials:
 username: admin
 password: admin
+
+
+
+Running Locally:
+To use the app will require the user install the correct dependencies by running 'npm run setup' from the team39 directory. This command will also create a mongo-data directory where the local database will be stored.
+
+To run the app the user will need to first start the local database server by running 'mongod --dbpath mongo-data' from the team39 directory (make sure you've run the setup first!)
+Then, in a separate terminal, execute 'npm build-run' from the team39 directory. The app will be running on localhost:5000
+Notice that when running locally, unlike when using the deployed site, there will be initially no accounts in the database until created manually by signing up in the app.
+For security reasons, the app has no built-in way of creating the admin account. 
+To create an admin account on a local instance of the app, you will have to manually edit the database.
+You can do this by:
+- Going to https://www.mongodb.com/download-center/compass (Links to an external site.) and installing MongoDB Compass
+- Making sure your local database instance is running (instructions above) 
+- Inserting the following string for a new connection: mongodb://localhost:27017
+- Clicking 'Connect' to connect to your database server.
+- Clicking the edit button for the desired user document in the users collection and setting the isAdmin field to true, and clicking "update" to save the change.
+
+
+
+The app will start up at the login page. Here, a user may log in to an existing account by entering the username and password and clicking "done".
+The user can also reset their account's password by clicking "reset password" and filling in the form.
+The user may create a new account by clicking "Not yet a user? Sign Up here" from the login page and then filling out the form.
+Alternatively, the user can also press enter to submit the form.
+
 
 USING APP AS A REGULAR USER:
 For the user view of the site the user can access the following features:
