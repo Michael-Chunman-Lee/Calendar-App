@@ -150,7 +150,6 @@ app.delete("/users/:id", (req, res) => {
 
 })
 
-/** Post routes below */
 app.get('/users', (req, res) => {
 	User.find().then(users => {
 		res.send({users})
@@ -370,6 +369,14 @@ app.patch("/images/:imageID", (req, res) => {
             })
         }
     )
+})
+
+app.delete("/images/:imageID", (req, res) => {
+    const imageID = req.params.imageID
+    Image.findOneAndDelete({image_id: imageID}).then(img => {
+        cloudinary.uploader.destroy(img.image_id)
+        res.send(img)
+    })
 })
 
 /*** Webpage routes below **********************************/

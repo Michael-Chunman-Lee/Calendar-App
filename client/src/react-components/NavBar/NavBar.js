@@ -54,11 +54,9 @@ class NavBar extends Component {
             <div className="nav">
                 <span className="title">Calendar App</span>
                 {(!noSearchBar) && (<div className="search">
-                    <div className="search-icon">
-                        <IconButton>
-                            <SearchIcon></SearchIcon>
-                        </IconButton>
-                    </div>
+                    <span className="search-icon">
+                        <SearchIcon></SearchIcon>
+                    </span>
                     <InputBase
                         placeholder="Search…"
                         onChange={this.updateSearchQuery}

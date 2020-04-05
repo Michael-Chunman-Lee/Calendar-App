@@ -14,28 +14,6 @@ class AdminDashboard extends Component {
             // This information will eventually be obtained from the backend
             // In the meantime, we will use mock objects
             searchQuery : "",
-            users: [
-                {
-                    user: 'TheLegend76',
-                    email: 'thelegend76@gmail.com',
-                    created: '01/20/2020',
-                },
-                {
-                    user: 'CerealWithMilk',
-                    email: 'itsjustcereal@hotmail.com',
-                    created: '01/20/2020',
-                },
-                {
-                    user: 'BananaApple5',
-                    email: 'banana@gmail.com',
-                    created: '01/20/2020',
-                },
-                {
-                    user: 'anotheruser2',
-                    email: 'anotheruser2@gmail.com',
-                    created: '01/20/2020',
-                },
-            ],
             dbusers: [],
         }
     }
@@ -58,7 +36,19 @@ class AdminDashboard extends Component {
         })
         .then(json => {
             if (json.users !== undefined) {
-                this.setState({ dbusers: json.users });
+                this.setState({ dbusers: json.users.sort((a,b) => {
+                    var nameA = a.username.toUpperCase(); // ignore upper and lowercase
+                    var nameB = b.username.toUpperCase(); // ignore upper and lowercase
+                    if (nameA < nameB) {
+                      return -1;
+                    }
+                    if (nameA > nameB) {
+                      return 1;
+                    }
+                  
+                    // names must be equal
+                    return 0;
+                })});
             }
         })
         .catch(error => {
@@ -68,19 +58,6 @@ class AdminDashboard extends Component {
 
     componentDidMount()  {
         this.getData();
-        this.state.users.sort((a,b) => function(a, b) {
-            var nameA = a.username.toUpperCase(); // ignore upper and lowercase
-            var nameB = b.username.toUpperCase(); // ignore upper and lowercase
-            if (nameA < nameB) {
-              return -1;
-            }
-            if (nameA > nameB) {
-              return 1;
-            }
-          
-            // names must be equal
-            return 0;
-        });
     }
 
     updateSearchQuery = searchBarText => {
@@ -102,7 +79,30 @@ class AdminDashboard extends Component {
         return fetch("/users/" + user._id, {
             method: "delete"
         })
-        .then(response => {this.getData()})
+        .then(response => {
+            this.getData()
+            fetch("/images/" + user.username, {
+                method: "get"
+            })
+            .then(res => {
+                if (res.status === 200) {
+                    return res.json()
+                }
+            })
+            .then(json => {
+                if (json) {
+                    fetch("/images/" + json.image_id, {
+                        method: "delete"
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            }) 
+        })
         .catch(error => {
             console.log(error);
         });

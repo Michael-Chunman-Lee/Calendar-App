@@ -11,12 +11,14 @@
 }
 .search {
     margin-right: auto;
-    display: inline-block;
+    display: flex;
     width: 60%;
     align-self: center;
 }
 .search-icon {
     display: inline-block;
+    margin-right: 1%;
+    justify-self: center;
     align-self: center;
 }
 
