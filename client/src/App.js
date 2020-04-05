@@ -32,7 +32,7 @@ class App extends React.Component {
             <BrowserRouter>
                 <Switch>
                     <Route 
-                        exact path={["/", "/login", "/home"]}
+                        exact path={["/", "/home"]}
                         render={({history}) => (
                             <div className="App">
                                 {!currentUser ? <Login history={history} app={this}/> : <Home history={history} app={this}/>}

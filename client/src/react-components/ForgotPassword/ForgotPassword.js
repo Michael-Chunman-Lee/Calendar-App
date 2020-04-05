@@ -28,7 +28,7 @@ class ForgotPassword extends React.Component {
         } else if (this.state.newPassword !== this.state.confirmPassword) {
             this.setState({errorMessage: "Passwords do not match!", open: true});
         } else if (this.state.newPassword === this.state.confirmPassword) {
-            this.props.history.push("./login");
+            this.props.history.push("/");
         }
     }
 

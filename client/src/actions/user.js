@@ -40,7 +40,7 @@ export const newPassword = (newPasswordComp, app)  => {
         }
     }).then( json => {
         if (json !== undefined) {
-            newPasswordComp.props.history.push("/login")
+            newPasswordComp.props.history.push("/")
         }
     }).catch(error => {
         console.log(error)
