@@ -36,7 +36,7 @@ class AdminDashboard extends Component {
         })
         .then(json => {
             if (json.users !== undefined) {
-                this.setState({ dbusers: json.users.sort((a,b) => function(a, b) {
+                this.setState({ dbusers: json.users.sort((a,b) => {
                     var nameA = a.username.toUpperCase(); // ignore upper and lowercase
                     var nameB = b.username.toUpperCase(); // ignore upper and lowercase
                     if (nameA < nameB) {
