@@ -155,7 +155,7 @@ Request body expects:
 {  
         "username": `<poster's username>`,  
         "tag": `<A valid tag (i.e. "Fitness", "School", "Gaming", "Work")>`,  
-        "icsRawText": `<ics file dump in a proper javascript string format (i.e. all \ changed to \\ and all new lines changed to \n)>  `  
+        "icsRawText": `<ics file dump in a proper javascript string format (i.e. all \ changed to \\ and all new lines changed to \n) (example below)>  `  
 }  
 
 PATCH "/posts/increment/:id":
