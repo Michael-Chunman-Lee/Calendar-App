@@ -185,7 +185,6 @@ class SpecificPost extends Component {
     }
     
     checkIfRated() {
-        console.log(this.state.oldRatings.filter(obj => obj.username == this.props.app.state.currentUser).length > 0)
         return this.state.oldRatings.filter(obj => obj.username == this.props.app.state.currentUser).length > 0;
     }
 

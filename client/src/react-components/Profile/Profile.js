@@ -116,7 +116,7 @@ class Profile extends Component {
         Object.keys(this.state.tags).map(
             k => this.state.tags[k] && filterTags.push(k)
         )
-        const {app, history, profileName} = this.props
+        const {app, history} = this.props
 
         return (
             <div className="main-div">
