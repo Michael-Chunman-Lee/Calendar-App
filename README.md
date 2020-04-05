@@ -99,8 +99,8 @@ now logged in user. If there is an error processing the request, the request wil
 the error.  
 Request body expects:  
 {  
-        "username": <username>,   
-        "password": <password>  
+        "username": `<username>`,  
+        "password": `<password>`  
 }  
 
 GET "/users/logout":
@@ -118,9 +118,9 @@ returning the new user document on success. On failure, the statusMessage is set
 a status 404 with the error.  
 Request body expects:  
 {  
-        "email": <email>,  
-        "username": <username>,  
-        "password": <password>,  
+        "email": `<email>`,  
+        "username": `<username>`,  
+        "password": `<password>`,  
 }  
 
 PATCH "/users/:username":
@@ -129,8 +129,8 @@ change the specified user's password, returning the modified user document on
 success. On failure, returns the status 404 with the error.  
 Request body expects:  
 {  
-        "oldPassword": <user's old password>,  
-        "newPassword": <user's new password>  
+        "oldPassword": `<user's old password>`,  
+        "newPassword": `<user's new password>`  
 }  
 
 DELETE "/users/:id":
@@ -153,9 +153,9 @@ Given the appropriate request body, create the new post, sending the new post's 
 on success or otherwise set the statusMessage and return the status 400 with the error on failure.  
 Request body expects:  
 {  
-        "username": <poster's username>,  
-        "tag": <A valid tag (i.e. "Fitness", "School", "Gaming", "Work")>,  
-        "icsRawText": <ics file dump with all new lines stripped>  
+        "username": `<poster's username>`,  
+        "tag": `<A valid tag (i.e. "Fitness", "School", "Gaming", "Work")>`,  
+        "icsRawText": `<ics file dump with all new lines stripped>  `  
 }  
 
 PATCH "/posts/increment/:id":
@@ -169,10 +169,10 @@ specified rating. Return the modified post document on success, return status
 404 when the id is not valid or the result is not found or status 400 on other general errors.  
 Request body expects:  
 {  
-       "username": <poster's username>,  
-       "additionalComment": <Comment text>,  
-        "criteriaLabels": ["Workload", "Interest", "Timing"],  
-       "criteriaRatings": [<Workload rating from 1 to 5>, <Interest rating from 1 to 5>, <Timing rating from 1 to 5>]  
+       "username": `<poster's username>`,  
+       "additionalComment": `<comment text>`,  
+        "criteriaLabels": `["Workload", "Interest", "Timing"]`,  
+       "criteriaRatings": `[<Workload rating from 1 to 5>, <Interest rating from 1 to 5>, <Timing rating from 1 to 5>]`  
 }  
 
 POST "/posts/add-rating/:id":
@@ -181,10 +181,10 @@ rating. Return the modified post document on success, return status
 404 when the id is not valid or the result is not found or status 400 on other general errors.
 Request body expects:  
 {  
-        "username": <poster's username>,  
-       "additionalComment": <Comment text>,  
-       "criteriaLabels": ["Workload", "Interest", "Timing"],  
-       "criteriaRatings": [<Workload rating from 1 to 5>, <Interest rating from 1 to 5>, <Timing rating from 1 to 5>]  
+        "username": `<poster's username>`,  
+       "additionalComment": `<comment text>`,  
+       "criteriaLabels": `["Workload", "Interest", "Timing"]`,  
+       "criteriaRatings": `[<Workload rating from 1 to 5>, <Interest rating from 1 to 5>, <Timing rating from 1 to 5>]  `  
 }   
 
 GET "/posts/username/:username":
@@ -198,7 +198,7 @@ Simply returns status 200 on success, returns status 404 if the user is not the 
 or returns status 500 on general errors.  
 Request body expects:  
 {  
-        "_id": <User's document id>  
+        `"_id": <User's document id> `   
 }  
 
 POST "/images":
@@ -207,8 +207,8 @@ fields from cloudinary to the database with an associated username. Returns the 
 on success or otherwise returns status 400 with the error on failure.  
 Request body expects:    
 {  
-       "username": <user's username">,  
-       "curFile": <the image's data url>  
+       "username": `<user's username">`,  
+       "curFile": `<the image's data url>`  
 }  
 
 GET "/images/:username":
@@ -222,8 +222,8 @@ from the upload. Returns the modified document on success, or otherwise returns 
 error on failure.  
 Request body expects:  
 {  
-      "username": <user's username">,  
-      "curFile": <the image's data url>  
+      "username": `<user's username">`,  
+      "curFile": `<the image's data url>`  
 }  
 
 DELETE "/images/:imageID":
