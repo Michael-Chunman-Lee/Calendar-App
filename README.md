@@ -97,11 +97,11 @@ Find the appropriate user in the database to update that user's session cookies 
 fields. The request would return an object containing the current user's username, the isAdmin flag and the userID of the
 now logged in user. If there is an error processing the request, the request will return status 404 with 
 the error.
-Request body expects: 
-{
-    "username": <username>,
-    "password": <password>
-}
+Request body expects:  
+{  
+    "username": <username>,   
+    "password": <password>  
+}  
 
 GET "/users/logout":
 Clears the current user's session cookies. Simply return status 200 on success, otherwise the request
@@ -116,22 +116,22 @@ POST "/users":
 Creates the user using information from the request body, saving that user into the database and
 returning the new user document on success. On failure, the statusMessage is set and returns
 a status 404 with the error.
-Request body expects:
-{
-    "email": <email>,
-    "username": <username>,
-    "password": <password>,
-}
+Request body expects:  
+{  
+    "email": <email>,  
+    "username": <username>,  
+    "password": <password>,  
+}  
 
 PATCH "/users/:username":
 Given the username parameter and appropriate request body, the server will
 change the specified user's password, returning the modified user document on 
 success. On failure, returns the status 404 with the error.
 Request body expects:
-{
-    "oldPassword": <user's old password>,
-    "newPassword": <user's new password>
-}
+{  
+    "oldPassword": <user's old password>,  
+    "newPassword": <user's new password>  
+}  
 
 DELETE "/users/:id":
 Given the user's document id, delete the specified user along with all his posts and ratings.
@@ -152,11 +152,11 @@ POST "/posts":
 Given the appropriate request body, create the new post, sending the new post's document
 on success or otherwise set the statusMessage and return the status 400 with the error on failure.
 Request body expects:
-{
-    "username": <poster's username>,
-    "tag": <A valid tag (i.e. "Fitness", "School", "Gaming", "Work")>,
-    "icsRawText": <ics file dump with all new lines stripped>
-}
+{  
+    "username": <poster's username>,  
+    "tag": <A valid tag (i.e. "Fitness", "School", "Gaming", "Work")>,  
+    "icsRawText": <ics file dump with all new lines stripped>  
+}  
 
 PATCH "/posts/increment/:id":
 Given the post's document id as the parameter, increment the post's current view count fields
@@ -168,24 +168,24 @@ Given the appropriate request body and the post's document id as the parameter, 
 specified rating. Return the modified post document on success, return status
 404 when the id is not valid or the result is not found or status 400 on other general errors.
 Request body expects:
-{
-    "username": <poster's username>,
-    "additionalComment": <Comment text>,
-    "criteriaLabels": ["Workload", "Interest", "Timing"],
-    "criteriaRatings": [<Workload rating from 1 to 5>, <Interest rating from 1 to 5>, <Timing rating from 1 to 5>]
-} 
+{  
+    "username": <poster's username>,  
+    "additionalComment": <Comment text>,  
+    "criteriaLabels": ["Workload", "Interest", "Timing"],  
+    "criteriaRatings": [<Workload rating from 1 to 5>, <Interest rating from 1 to 5>, <Timing rating from 1 to 5>]  
+}  
 
 POST "/posts/add-rating/:id":
 Given the appropriate request body and the post's document id as the parameter, create the new
 rating. Return the modified post document on success, return status
 404 when the id is not valid or the result is not found or status 400 on other general errors.
 Request body expects:
-{
-    "username": <poster's username>,
-    "additionalComment": <Comment text>,
-    "criteriaLabels": ["Workload", "Interest", "Timing"],
-    "criteriaRatings": [<Workload rating from 1 to 5>, <Interest rating from 1 to 5>, <Timing rating from 1 to 5>]
-} 
+{  
+    "username": <poster's username>,  
+    "additionalComment": <Comment text>,  
+    "criteriaLabels": ["Workload", "Interest", "Timing"],  
+    "criteriaRatings": [<Workload rating from 1 to 5>, <Interest rating from 1 to 5>, <Timing rating from 1 to 5>]  
+}   
 
 GET "/posts/username/:username":
 Given the username, get all posts associated with that username. On success, returns all the user's posts,
@@ -197,19 +197,19 @@ must be an admin or the poster to delete the post (checks by the user's document
 Simply returns status 200 on success, returns status 404 if the user is not the admin or the poster
 or returns status 500 on general errors.
 Request body expects:
-{
-    "_id": <User's document id>
-}
+{  
+    "_id": <User's document id>  
+}  
 
 POST "/images":
 Given the appropriate body, uploads the image to cloudinary as well as saves thhe result's 
 fields from cloudinary to the database with an associated username. Returns the new document
 on success or otherwise returns status 400 with the error on failure.
-Request body expects:
-{
-    "username": <user's username">,
-    "curFile": <the image's data url>
-}
+Request body expects:    
+{  
+    "username": <user's username">,  
+    "curFile": <the image's data url>  
+}  
 
 GET "/images/:username":
 Given the username as the parameter, returns the user's associated image document on success
@@ -220,11 +220,11 @@ Given the appropriate body and the image's cloudinary public id (i.e. the image_
 delete the old image and upload the new image to cloudinary, setting the new fields with the result's
 from the upload. Returns the modified document on success, or otherwise returns a status 400 with the
 error on failure.
-Request body expects:
-{
-    "username": <user's username">,
-    "curFile": <the image's data url>
-}
+Request body expects:  
+{  
+    "username": <user's username">,  
+    "curFile": <the image's data url>  
+}  
 
 DELETE "/images/:imageID":
 Given the image's cloudinary public id (i.e. the image_id field in the document), delete
