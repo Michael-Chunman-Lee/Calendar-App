@@ -131,7 +131,7 @@ app.delete("/users/:id", (req, res) => {
     User.findByIdAndDelete(id).then(user => {
         Post.deleteMany({ username: user.username }).then(posts => {
 
-            Post.findOneAndUpdate({}, { $pull: { ratings: { username: user.username } } }).then(deleted => {
+            Post.updateMany({}, { $pull: { ratings: { username: user.username } } }).then(deleted => {
                 res.send(user)
             })
 
