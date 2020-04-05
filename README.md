@@ -230,7 +230,7 @@ DELETE "/images/:imageID":
 Given the image's cloudinary public id (i.e. the image_id field in the document), delete
 the associated image document and return the deleted image's document.
 
-Example of a valid icsRawText:  
+Example of a valid icsRawText format:  
 {  
     "username": "s123",
     "tag": "Fitness",
