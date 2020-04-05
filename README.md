@@ -96,11 +96,11 @@ POST "/users/login":
 Find the appropriate user in the database to update that user's session cookies to the retrieved user's
 fields. The request would return an object containing the current user's username, the isAdmin flag and the userID of the
 now logged in user. If there is an error processing the request, the request will return status 404 with 
-the error.
+the error.  
 Request body expects:  
 {  
-    "username": <username>,   
-    "password": <password>  
+        "username": `<username>`,  
+        "password": `<password>`  
 }  
 
 GET "/users/logout":
@@ -115,22 +115,22 @@ the request returns a status 401.
 POST "/users":
 Creates the user using information from the request body, saving that user into the database and
 returning the new user document on success. On failure, the statusMessage is set and returns
-a status 404 with the error.
+a status 404 with the error.  
 Request body expects:  
 {  
-    "email": <email>,  
-    "username": <username>,  
-    "password": <password>,  
+        "email": `<email>`,  
+        "username": `<username>`,  
+        "password": `<password>`,  
 }  
 
 PATCH "/users/:username":
 Given the username parameter and appropriate request body, the server will
 change the specified user's password, returning the modified user document on 
-success. On failure, returns the status 404 with the error.
-Request body expects:
+success. On failure, returns the status 404 with the error.  
+Request body expects:  
 {  
-    "oldPassword": <user's old password>,  
-    "newPassword": <user's new password>  
+        "oldPassword": `<user's old password>`,  
+        "newPassword": `<user's new password>`  
 }  
 
 DELETE "/users/:id":
@@ -150,12 +150,12 @@ the error if the request fails for any other reason.
 
 POST "/posts":
 Given the appropriate request body, create the new post, sending the new post's document
-on success or otherwise set the statusMessage and return the status 400 with the error on failure.
-Request body expects:
+on success or otherwise set the statusMessage and return the status 400 with the error on failure.  
+Request body expects:  
 {  
-    "username": <poster's username>,  
-    "tag": <A valid tag (i.e. "Fitness", "School", "Gaming", "Work")>,  
-    "icsRawText": <ics file dump with all new lines stripped>  
+        "username": `<poster's username>`,  
+        "tag": `<A valid tag (i.e. "Fitness", "School", "Gaming", "Work")>`,  
+        "icsRawText": `<ics file dump with all new lines stripped>  `  
 }  
 
 PATCH "/posts/increment/:id":
@@ -166,25 +166,25 @@ valid or the post is not found, or status 400 with the error on other general er
 DELETE "/posts/delete-rating/:id":
 Given the appropriate request body and the post's document id as the parameter, delete the
 specified rating. Return the modified post document on success, return status
-404 when the id is not valid or the result is not found or status 400 on other general errors.
-Request body expects:
+404 when the id is not valid or the result is not found or status 400 on other general errors.  
+Request body expects:  
 {  
-    "username": <poster's username>,  
-    "additionalComment": <Comment text>,  
-    "criteriaLabels": ["Workload", "Interest", "Timing"],  
-    "criteriaRatings": [<Workload rating from 1 to 5>, <Interest rating from 1 to 5>, <Timing rating from 1 to 5>]  
+       "username": `<poster's username>`,  
+       "additionalComment": `<comment text>`,  
+        "criteriaLabels": `["Workload", "Interest", "Timing"]`,  
+       "criteriaRatings": `[<Workload rating from 1 to 5>, <Interest rating from 1 to 5>, <Timing rating from 1 to 5>]`  
 }  
 
 POST "/posts/add-rating/:id":
 Given the appropriate request body and the post's document id as the parameter, create the new
 rating. Return the modified post document on success, return status
 404 when the id is not valid or the result is not found or status 400 on other general errors.
-Request body expects:
+Request body expects:  
 {  
-    "username": <poster's username>,  
-    "additionalComment": <Comment text>,  
-    "criteriaLabels": ["Workload", "Interest", "Timing"],  
-    "criteriaRatings": [<Workload rating from 1 to 5>, <Interest rating from 1 to 5>, <Timing rating from 1 to 5>]  
+        "username": `<poster's username>`,  
+       "additionalComment": `<comment text>`,  
+       "criteriaLabels": `["Workload", "Interest", "Timing"]`,  
+       "criteriaRatings": `[<Workload rating from 1 to 5>, <Interest rating from 1 to 5>, <Timing rating from 1 to 5>]  `  
 }   
 
 GET "/posts/username/:username":
@@ -195,20 +195,20 @@ DELETE "/posts/:id":
 Given the post's document ID and appropriate body, delete the post. Note the user must itself
 must be an admin or the poster to delete the post (checks by the user's document id or isAdmin field).  
 Simply returns status 200 on success, returns status 404 if the user is not the admin or the poster
-or returns status 500 on general errors.
-Request body expects:
+or returns status 500 on general errors.  
+Request body expects:  
 {  
-    "_id": <User's document id>  
+        `"_id": <User's document id> `   
 }  
 
 POST "/images":
 Given the appropriate body, uploads the image to cloudinary as well as saves thhe result's 
 fields from cloudinary to the database with an associated username. Returns the new document
-on success or otherwise returns status 400 with the error on failure.
+on success or otherwise returns status 400 with the error on failure.  
 Request body expects:    
 {  
-    "username": <user's username">,  
-    "curFile": <the image's data url>  
+       "username": `<user's username">`,  
+       "curFile": `<the image's data url>`  
 }  
 
 GET "/images/:username":
@@ -219,11 +219,11 @@ PATCH "/images/:imageID":
 Given the appropriate body and the image's cloudinary public id (i.e. the image_id field in the document), 
 delete the old image and upload the new image to cloudinary, setting the new fields with the result's
 from the upload. Returns the modified document on success, or otherwise returns a status 400 with the
-error on failure.
+error on failure.  
 Request body expects:  
 {  
-    "username": <user's username">,  
-    "curFile": <the image's data url>  
+      "username": `<user's username">`,  
+      "curFile": `<the image's data url>`  
 }  
 
 DELETE "/images/:imageID":
