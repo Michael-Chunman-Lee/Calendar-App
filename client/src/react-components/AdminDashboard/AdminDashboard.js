@@ -68,7 +68,7 @@ class AdminDashboard extends Component {
 
     componentDidMount()  {
         this.getData();
-        this.state.users.sort((a,b) => function(a, b) {
+        this.setState(users: this.state.users.sort((a,b) => function(a, b) {
             var nameA = a.username.toUpperCase(); // ignore upper and lowercase
             var nameB = b.username.toUpperCase(); // ignore upper and lowercase
             if (nameA < nameB) {
@@ -80,7 +80,7 @@ class AdminDashboard extends Component {
           
             // names must be equal
             return 0;
-        });
+        }));
     }
 
     updateSearchQuery = searchBarText => {
