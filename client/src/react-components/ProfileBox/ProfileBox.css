@@ -4,6 +4,7 @@
     min-width: 100%;
     background-color: rgb(253, 253, 253);
     font-size: 150%;
+    border-radius: 10px;
 }
 
 .profile-pic {

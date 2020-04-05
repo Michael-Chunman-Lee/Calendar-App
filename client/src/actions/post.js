@@ -21,7 +21,7 @@ export const uploadPost = (uploadPostComp, app) => {
         }
     }).then(json => {
         if (json !== undefined) {
-            uploadPostComp.props.history.push("/")
+            uploadPostComp.props.history.push("./home")
         }
     }).catch(error => {
         console.log(error)
@@ -68,7 +68,7 @@ export const getPosts = (postsComp) => {
     })
     .then(json => {
         if (json.posts !== undefined) {
-            postsComp.setState({ posts: json.posts});
+            postsComp.setState({ posts: json.posts.sort((a, b) => {return b.viewCount - a.viewCount})});
         }
     })
     .catch(error => {

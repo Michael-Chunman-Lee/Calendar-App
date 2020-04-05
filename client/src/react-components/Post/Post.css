@@ -7,6 +7,7 @@
     background-color: rgb(253, 253, 253);
     padding: 3%;
     z-index: -1;
+    border-radius: 10px;
 }
 .post-title {
     text-align: left;
