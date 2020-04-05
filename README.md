@@ -1,3 +1,5 @@
+# PHASE 2
+
 The deployed app is available at https://calendar-app-csc309.herokuapp.com/
 Two accounts have been pre-created on the deployed website for testing purposes:
 
@@ -10,8 +12,7 @@ username: admin
 password: admin
 
 
-
-Running Locally:
+### Running Locally: 
 To use the app will require the user install the correct dependencies by running 'npm run setup' from the team39 directory. This command will also create a mongo-data directory where the local database will be stored.
 
 To run the app the user will need to first start the local database server by running 'mongod --dbpath mongo-data' from the team39 directory (make sure you've run the setup first!)
@@ -34,7 +35,7 @@ The user may create a new account by clicking "Not yet a user? Sign Up here" fro
 Alternatively, the user can also press enter to submit the form.
 
 
-USING APP AS A REGULAR USER:
+### USING APP AS A REGULAR USER: 
 For the user view of the site the user can access the following features:
 - Upon login, the user will land on the home page. Here, they will see a list of all the posts on the site.
 This list is sorted by "Top" by default (sorted by number of views).
@@ -75,7 +76,7 @@ The main objective of the app is to allow users to gather opinions about their s
 Users can then go to their profile to view their own posts, and see the ratings and feedback provided by other users.
 
 
-USING THE APP AS THE ADMIN:
+### USING THE APP AS THE ADMIN: 
 The admin uses the app exact same way as regular users, although they have additional permissions and features available to them.
 The purpose of the admin account is to allow for management and moderation of the website, for example by removing inappropriate posts or deleting
 users.
@@ -90,7 +91,7 @@ Deleting a user will remove their account and all posts and ratings they've made
 
 
 
-OVERVIEW OF EXPRESS ROUTES:
+### OVERVIEW OF EXPRESS ROUTES: 
 POST "/users/login": 
 Find the appropriate user in the database to update that user's session cookies to the retrieved user's
 fields. The request would return an object containing the current user's username, the isAdmin flag and the userID of the

@@ -124,10 +124,10 @@ class AdminDashboard extends Component {
                     <table id="userTable">
                         <thead>
                             <tr>
-                                <th style={{ width: '20%' }}> Username </th>
-                                <th style={{ width: '30%' }}> Email </th>
-                                <th style={{ width: '20%' }}></th>
-                                <th style={{ width: '30%' }}></th>
+                                <th className="w20" > Username </th>
+                                <th className="w30" > Email </th>
+                                <th className="w20" ></th>
+                                <th className="w30" ></th>
                             </tr>
                         </thead>
                         <tbody>
