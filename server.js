@@ -125,21 +125,29 @@ app.patch("/users/:username", (req, res) => {
     })
 })
 
-// WILL NEED TO CHECK IF ADMIN
 app.delete("/users/:id", (req, res) => { 
     const id = req.params.id;
-    
+
     User.findByIdAndDelete(id).then(user => {
-        if (!user) {
-            console.log("404")
-            res.status(404).send()
-        } else {
-            res.send(user)
-        }
+        Post.deleteMany({ username: user.username }).then(posts => {
+
+            Post.findOneAndUpdate({}, { $pull: { ratings: { username: user.username } } }).then(deleted => {
+                res.send(user)
+            })
+
+        }).catch(error => {
+            console.log(error)
+        })
+
+
+
+
     }).catch(error => {
         console.log(error)
         res.status(400).send(error)
     })
+
+
 })
 
 /** Post routes below */
@@ -362,6 +370,14 @@ app.patch("/images/:imageID", (req, res) => {
             })
         }
     )
+})
+
+app.delete("/images/:imageID", (req, res) => {
+    const imageID = req.params.imageID
+    Image.findOneAndDelete({image_id: imageID}).then(img => {
+        cloudinary.uploader.destroy(img.image_id)
+        res.send(img)
+    })
 })
 
 /*** Webpage routes below **********************************/

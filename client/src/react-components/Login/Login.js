@@ -16,7 +16,7 @@ class Login extends React.Component {
             password: "",
             open: false,
         }
-        this.props.history.push("/login")
+        //this.props.history.push("/login")
 
     }
     
