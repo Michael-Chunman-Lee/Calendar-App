@@ -150,7 +150,6 @@ app.delete("/users/:id", (req, res) => {
 
 })
 
-/** Post routes below */
 app.get('/users', (req, res) => {
 	User.find().then(users => {
 		res.send({users})
