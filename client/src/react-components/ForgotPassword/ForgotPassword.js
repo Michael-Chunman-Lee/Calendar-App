@@ -100,7 +100,7 @@ class ForgotPassword extends React.Component {
                     />
                     <br/>
                     
-                    <Link to={"login"} className="linkStyle">Return to login</Link> 
+                    <Link to={""} className="linkStyle">Return to login</Link> 
                     <br/><br/>
 
                     <Snackbar
