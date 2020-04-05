@@ -35,6 +35,7 @@ Alternatively, the user can also press enter to submit the form.
 
 
 USING APP AS A REGULAR USER:
+
 For the user view of the site the user can access the following features:
 - Upon login, the user will land on the home page. Here, they will see a list of all the posts on the site.
 This list is sorted by "Top" by default (sorted by number of views).
@@ -76,6 +77,7 @@ Users can then go to their profile to view their own posts, and see the ratings 
 
 
 USING THE APP AS THE ADMIN:
+
 The admin uses the app exact same way as regular users, although they have additional permissions and features available to them.
 The purpose of the admin account is to allow for management and moderation of the website, for example by removing inappropriate posts or deleting
 users.
@@ -91,6 +93,7 @@ Deleting a user will remove their account and all posts and ratings they've made
 
 
 OVERVIEW OF EXPRESS ROUTES:
+
 POST "/users/login": 
 Find the appropriate user in the database to update that user's session cookies to the retrieved user's
 fields. The request would return an object containing the current user's username, the isAdmin flag and the userID of the
