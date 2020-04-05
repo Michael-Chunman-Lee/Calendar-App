@@ -1,13 +1,13 @@
 The deployed app is available at https://calendar-app-csc309.herokuapp.com/
 
 Running Locally:
-To use the app will require the user install the correct dependencies through by running 'npm run setup' from the team39 directory.
+To use the app will require the user install the correct dependencies by running 'npm run setup' from the team39 directory.
 To run the app the user will need to execute 'npm build-run' from the team39 directory.
 
 The app will start up at the login page. Here, a user may log in to an existing account by entering the username and password and clicking "done".
 The user can also reset their account's password by clicking "reset password" and filling in the form.
 The user may create a new account by clicking "Not yet a user? Sign Up here" from the login page and then filling out the form.
-
+Alternatively, the user can also press enter to submit the form.
 
 Two accounts have been pre-created on the deployed website for testing purposes:
 
@@ -50,7 +50,7 @@ A user can visit their own profile page by clicking their own username on a post
 When a user is on their own profile page, they can change their own profile picture by first uploading a new picture by clicking or dragging it into the indicated region on the right side of the screen, and then clicking the "CHANGE PROFILE PIC" button.
 A user can also create a new post from their own profile page by clicking on the "CREATE NEW SCHEDULE" button. Doing this will lead to the post creation page.
 
-At the post creation page, a user must select a tag for their post using the dropdown menuat the top left.
+At the post creation page, a user must select a tag for their post using the dropdown menu at the top left.
 They may also give their post a title by entering it in the title bar.
 Then they must upload their .ics calendar file by clicking or dragging and dropping it into the indicated region.
 The user may then submit their post to the website by clicking the "POST" button, or 
