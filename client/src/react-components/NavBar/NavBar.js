@@ -49,7 +49,7 @@ class NavBar extends Component {
     }
 
     render() {
-        const { app, searchCallback, noSearchBar } = this.props
+        const { app, searchCallback, noSearchBar, history } = this.props
         return (
             <div className="nav">
                 <span className="title">Calendar App</span>
@@ -78,7 +78,7 @@ class NavBar extends Component {
                     <IconButton onClick={this.onHomeClick} color="inherit">
                         <HomeIcon />
                     </IconButton>
-                    <IconButton onClick={() => logout(app)} color="inherit">
+                    <IconButton onClick={() => logout(app, history)} color="inherit">
                         <MeetingRoomIcon/>
                     </IconButton>
                 </span>

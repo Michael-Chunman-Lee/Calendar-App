@@ -29,11 +29,11 @@ class Login extends React.Component {
     }
 
     render() {
-        const {app} = this.props
+        const {app, history} = this.props
 
         return (
             <div className="login">
-                <form className="loginForm" onKeyPress={(event) => {if (event.key === "Enter") login(this, app)}}>
+                <form className="loginForm" onKeyPress={(event) => {if (event.key === "Enter") login(this, app, history)}}>
 
                     <br/>
                     <span className="loginTitle">Login</span>
@@ -85,7 +85,7 @@ class Login extends React.Component {
                         }/>
                     </Snackbar>
                     
-                    <Button id="loginButton" onClick={() => login(this, app)}> 
+                    <Button id="loginButton" onClick={() => login(this, app, history)}> 
                         Done
                     </Button>
                     <br/><br/><br/>

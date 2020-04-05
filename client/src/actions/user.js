@@ -104,7 +104,7 @@ export const signup = (signupComp, app) => {
 }
 
 // A function to send a POST request with the user to be logged in
-export const login = (loginComp, app) => {
+export const login = (loginComp, app, history) => {
     // Create our request constructor with all the parameters we need
     const request = new Request("/users/login", {
         method: "post",
@@ -114,7 +114,6 @@ export const login = (loginComp, app) => {
             "Content-Type": "application/json"
         }
     });
-
     fetch(request)
         .then(res => {
             if (res.status === 200) {
@@ -127,6 +126,7 @@ export const login = (loginComp, app) => {
         .then(json => {
             if (json.currentUser !== undefined) {
                 app.setState({ currentUser: json.currentUser, isAdmin: json.isAdmin, userID: json.userID });
+                history.push("/home")
             }
         })
         .catch(error => {
@@ -135,9 +135,9 @@ export const login = (loginComp, app) => {
 };
 
 // A function to send a GET request to logout the current user
-export const logout = (app) => {
+export const logout = (app, history) => {
     const url = "/users/logout";
-
+    history.push("/")
     fetch(url)
         .then(res => {
             app.setState({
