@@ -14,10 +14,10 @@ password: admin
 
 
 ### Running Locally: 
-To use the app will require the user install the correct dependencies by running 'npm run setup' from the team39 directory. This command will also create a mongo-data directory where the local database will be stored.
+To use the app will require the user install the correct dependencies by running 'npm run setup' from the main directory. This command will also create a mongo-data directory where the local database will be stored.
 
-To run the app the user will need to first start the local database server by running 'mongod --dbpath mongo-data' from the team39 directory (make sure you've run the setup first!)
-Then, in a separate terminal, execute 'npm build-run' from the team39 directory. The app will be running on localhost:5000
+To run the app the user will need to first start the local database server by running 'mongod --dbpath mongo-data' from the main directory (make sure you've run the setup first!)
+Then, in a separate terminal, execute 'npm build-run' from the main directory. The app will be running on localhost:5000
 Notice that when running locally, unlike when using the deployed site, there will be initially no accounts in the database until created manually by signing up in the app.
 For security reasons, the app has no built-in way of creating the admin account. 
 To create an admin account on a local instance of the app, you will have to manually edit the database.
