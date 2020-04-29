@@ -1,4 +1,4 @@
-# PHASE 2
+# README
 
 Note: Heroku date time is different since Heroku servers are US and Europe based.  
 The deployed app is available at https://calendar-app-csc309.herokuapp.com/
