@@ -25,9 +25,9 @@ const multipartMiddleware = multipart()
 
 const cloudinary = require('cloudinary')
 cloudinary.config({
-    cloud_name: "dwhjaxqzl",
-    api_key: "158346197952723",
-    api_secret: "KjoKyD8vQGmkVC4EhyiPjOxQ0OE"
+    cloud_name: "CLOUD NAME", 
+    api_key: "API KEY", 
+    api_secret: "API SECRET"
 })
 
 /*** Session handling **************************************/
